@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import plotly.graph_objects as go
+from google import genai
 
 # ─── APP CONFIGURATION ───
 st.set_page_config(page_title="Career OS - Topology Engine", layout="wide")
@@ -19,7 +20,7 @@ k_cfd = st.sidebar.slider("[PATH C] CFD & Thermal Management", 0.1, 1.0, 0.3)
 st.sidebar.divider()
 st.sidebar.info("**note:** Changing the CFD slider instantly lifts the high-yield EV valley on the map (basis on FSUTP)")
 
-# ─── MATHEMATICAL MATHEMATICAL ENGINE ───
+# ─── MATHEMATICAL ENGINE ───
 # X-Axis: Time (0 to 40 Years)
 x_time = np.linspace(0, 40, 50)
 # Y-Axis: Categorical Career Pathways (1: Plant Ops, 2: Simulation, 3: EV Tech)
@@ -66,7 +67,7 @@ fig.update_layout(
         yaxis=dict(
             title='Y: Trajectory Choice',
             tickvals=[1, 2, 3],
-            ticktext=['Path A: Plant Ops', 'Path B: Simulation', 'Path C: EV Thermal']
+            ticktext=['Path A: Downstream Operations', 'Path B: Numerical Simulation', 'Path C: CFD & Thermal Management']
         ),
         zaxis=dict(title='Z: Career Viability & Yield', range=[-1, 20]),
         camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2)) # Sets initial 3D viewing angle
@@ -97,3 +98,67 @@ with col2:
     * **Y-Axis:** Structural industry domain branches.
     * **Z-Axis:** Career height vector (compensation range + regional stability multiplier).
     """)
+
+# AI Copilot (Google GenAI)
+st.divider()
+st.subheader("AIMAN.AI: Honest Navigation Copilot")
+st.caption("Ask your co-pilot anything. It dynamically tracks your map configuration to give transparent, authentic advice.")
+
+# Securely pull the Gemini API Key from Streamlit's secrets manager
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+
+# Initialize dialogue history session state
+if "messages" not in st.session_state:
+    st.session_state.messages = [
+        {"role": "assistant", "content": "Greetings! I'm your Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
+    ]
+
+# Render continuous chat elements
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Process active user interactions
+if user_query := st.chat_input("Ask about trade-offs, valleys, or if you're feeling stuck..."):
+    with st.chat_message("user"):
+        st.markdown(user_query)
+    st.session_state.messages.append({"role": "user", "content": user_query})
+
+    # System prompt feeding real-time landscape topology values into the engine's instructions
+    system_instruction = f"""
+    You are the Career OS Honest Navigation Copilot, a supportive, grounded, and radically candid mentor for a Chemical Engineering student.
+    Your tone is empathetic but highly direct—like a helpful peer, not a rigid lecturer. Avoid corporate fluff; speak with data-driven honesty.
+    
+    The user is looking at a 3D Career Topology Surface map driven by these EXACT live metrics from their profile sliders:
+    - Reactor Kinetics Mastery (Path A Core): {k_kinetics}/1.0
+    - Numerical Methods Vector (Path B Core): {k_math}/1.0
+    - CFD & Thermal Management Vector (Path C Core): {k_cfd}/1.0
+    
+    The topology surface models 3 interconnected tracks across a 40-year landscape:
+    - Path A (Downstream Operations): Stable climb early on, but hits a structural 'Mesa Plateau' at Year 6 due to industry seniority bottlenecks.
+    - Path B (Numerical Simulation): High-elevation digital ridge peaking around Year 15. Scales globally but requires strong math optimization.
+    - Path C (CFD & Thermal Management): Features a deep 'Learning Valley' from Year 0-3 due to core mechanical engineering entry barriers, but rises exponentially by Year 10 because EV battery thermal systems are fundamentally a thermodynamics/chemical phase-change challenge.
+    
+    Respond to the user's query naturally. If they express existential dread (e.g., 'Am I suited for this course?'), look at their metrics, validate their feelings authentically, and show them alternative routes on the topology map. If they ask about a path, break down the brutal trade-offs using their metrics. Keep responses clean and scannable using bolding and short paragraphs.
+    """
+
+    # Format the chat history logs for context retention
+    formatted_contents = []
+    for msg in st.session_state.messages[:-1]:
+        formatted_contents.append(f"{msg['role'].upper()}: {msg['content']}")
+    formatted_contents.append(f"USER: {user_query}")
+
+    # Generate streaming/live inference text output
+    with st.chat_message("assistant"):
+        response_placeholder = st.empty()
+        
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=formatted_contents,
+            config={"system_instruction": system_instruction}
+        )
+        
+        ai_text = response.text
+        response_placeholder.markdown(ai_text)
+        
+    st.session_state.messages.append({"role": "assistant", "content": ai_text})
