@@ -98,7 +98,7 @@ with tab1:
 
     for message in st.session_state.messages:
         avatar_img = "aimanai.jpeg" if message["role"] == "assistant" else "user"
-        with st.chat_message(message["role"]):
+        with st.chat_message(message["role"], avatar=avatar_img):
             st.markdown(message["content"])
 
     if user_query := st.chat_input("Ask about trade-offs, valleys, or if you're feeling stuck..."):
@@ -134,9 +134,9 @@ with tab1:
 # 💼 TAB 2: LIVE INTERNSHIP MARKETPLACE MODULE (FOR YOUR FRIEND)
 # ==============================================================================
 with tab2:
-    st.title("💼 Live Internship Marketplace")
+    st.title("Live Internship Marketplace")
     st.subheader("Verifiable Anti-Spam Career Deployment Portals")
-    st.write("Unlike traditional job boards, these listings map directly to specific coordinates on your 3D career trajectory.")
+    st.write("Internship listings that map directly to specific coordinates on your 3D career trajectory. Currently using mock postings.")
 
     # Mock Data Catalogue for internships
     internships = [
