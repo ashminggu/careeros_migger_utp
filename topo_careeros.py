@@ -110,12 +110,14 @@ client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 # Initialize dialogue history session state
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Greetings! I'm your Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
+        {"role": "assistant", "content": "Greetings! I'm Aiman Boge- urgh.. I mean AIMAN.AI b-baka! I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
     ]
 
 # Render continuous chat elements
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+    # If the message is from the assistant, use your custom PNG file
+    avatar_img = "aimanai.jpeg" if message["role"] == "assistant" else "user"
+    with st.chat_message(message["role"], avatar=avatar_img):
         st.markdown(message["content"])
 
 # Process active user interactions
@@ -149,7 +151,7 @@ if user_query := st.chat_input("Ask about trade-offs, valleys, or if you're feel
     formatted_contents.append(f"USER: {user_query}")
 
     # Generate streaming/live inference text output
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="aimanai.jpeg"):
         response_placeholder = st.empty()
         
         response = client.models.generate_content(
