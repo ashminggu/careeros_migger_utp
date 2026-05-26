@@ -27,30 +27,31 @@ st.markdown("""
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin-top: 12%;
+        margin-top: 10%; /* Slightly reduced to account for larger text height */
         width: 100%;
     }
     .landing-title {
-        font-size: 84px;
+        font-size: 110px; /* Increased from 84px to make it massive */
         font-weight: 900;
-        letter-spacing: -2px;
+        letter-spacing: -3px;
+        line-height: 1.1; /* Ensures text doesn't clip or overlap */
         /* Cyberpunk fluid gradient text */
         background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
         animation: fadeIn 1.5s ease-out;
     }
     .landing-subtitle {
-        font-size: 22px;
+        font-size: 28px; /* Increased from 22px to balance the large header */
         color: #8b949e;
-        margin-bottom: 45px;
+        margin-bottom: 55px;
         font-weight: 300;
         letter-spacing: 0.5px;
+        line-height: 1.4;
     }
     
     /* ─── CENTERING & STYLING THE CURVED LOGIN BUTTON ─── */
-    /* Target the exact wrapper block to ensure flawless horizontal alignment */
     .stButton {
         display: flex;
         justify-content: center;
@@ -59,12 +60,12 @@ st.markdown("""
     div.stButton > button:first-child {
         background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
         color: #ffffff !important;
-        font-size: 18px;
+        font-size: 20px; /* Slightly bigger text inside the button too */
         font-weight: 600;
-        padding: 14px 55px;
-        border-radius: 30px; /* High rounding factor for the pill box container */
+        padding: 16px 65px; /* Increased padding for a more substantial pill shape */
+        border-radius: 35px; 
         border: none;
-        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        box-shadow: 0 4px 20 rgba(99, 102, 241, 0.4);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
     }
@@ -77,7 +78,6 @@ st.markdown("""
         transform: scale(0.98);
     }
     
-    /* Animations */
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(15px); }
         to { opacity: 1; transform: translateY(0); }
@@ -103,7 +103,7 @@ if not st.session_state.logged_in:
     
     # ─── THE FOOLPROOF CENTERING TRICK ───
     # Create 3 columns with ratios [2, 1, 2]. The middle column sits exactly in the center of the screen!
-    left_space, center_button_col, right_space = st.columns([2.2, 1, 2])
+    left_space, center_button_col, right_space = st.columns([2.3, 1, 2])
     
     with center_button_col:
         # Placing the button inside the exact center column alignment zone
