@@ -103,7 +103,7 @@ if not st.session_state.logged_in:
     
     # ─── THE FOOLPROOF CENTERING TRICK ───
     # Create 3 columns with ratios [2, 1, 2]. The middle column sits exactly in the center of the screen!
-    left_space, center_button_col, right_space = st.columns([2.3, 1, 2])
+    left_space, center_button_col, right_space = st.columns([2.25, 1, 2])
     
     with center_button_col:
         # Placing the button inside the exact center column alignment zone
