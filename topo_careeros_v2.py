@@ -31,7 +31,7 @@ st.markdown("""
         width: 100%;
     }
     .landing-title {
-        font-size: 110px; /* Increased from 84px to make it massive */
+        font-size: 210px; /* Increased from 84px to make it massive */
         font-weight: 900;
         letter-spacing: -3px;
         line-height: 1.1; /* Ensures text doesn't clip or overlap */
@@ -43,7 +43,7 @@ st.markdown("""
         animation: fadeIn 1.5s ease-out;
     }
     .landing-subtitle {
-        font-size: 28px; /* Increased from 22px to balance the large header */
+        font-size: 45px; /* Increased from 22px to balance the large header */
         color: #8b949e;
         margin-bottom: 55px;
         font-weight: 300;
