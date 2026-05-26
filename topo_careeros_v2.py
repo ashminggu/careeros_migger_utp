@@ -150,10 +150,10 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 # ==============================================================================
-# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE WITH GRAPHICS & ICON TRIPS
+# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE (HTML RENDER FIX)
 # ==============================================================================
 if not st.session_state.logged_in:
-    # Title & Subheader
+    # Notice the unsafe_allow_html=True statement right at the very end of this markdown block!
     st.markdown("""
         <div class="landing-wrapper">
             <h1 class="landing-title">Career OS</h1>
@@ -182,9 +182,9 @@ if not st.session_state.logged_in:
                 </div>
             </div>
         </div>
-    """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True) # <-- This flag tells Streamlit to execute the design layout code!
     
-    # Three-column centering container locks the button securely below the cards
+    # Three-column centering layout grid
     left_space, center_button_col, right_space = st.columns([2, 1, 2])
     
     with center_button_col:
