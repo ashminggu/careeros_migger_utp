@@ -163,7 +163,7 @@ if not st.session_state.logged_in:
     st.html(landing_html)
     
     # Clean Grid split for the login block
-    left_space, center_button_col, right_space = st.columns([2, 1, 2])
+    left_space, center_button_col, right_space = st.columns([2.25, 1, 2])
     with center_button_col:
         if st.button("Login"):
             st.session_state.logged_in = True
