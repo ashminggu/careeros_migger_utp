@@ -15,36 +15,24 @@ if "messages" not in st.session_state:
 # ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES ───
 st.markdown("""
     <style>
-    /* 1. Global Dark Tech Mesh Background */
+    /* Global Background subtle contrast shift */
     .stApp {
         background-color: #0b0f17;
         background-image: 
             linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
             linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px; /* Creates a clean engineering grid across the background */
+        background-size: 40px 40px;
     }
     
-    /* 2. Landing Page Wrapper & Ambient Glow Container */
+    /* ─── LANDING PAGE STYLING ─── */
     .landing-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin-top: 8%;
+        margin-top: 6%;
         width: 100%;
-        position: relative;
-    }
-    
-    /* Glowing circular graphic asset behind the text (SaaS style) */
-    .landing-wrapper::before {
-        content: "";
-        position: absolute;
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
-        top: -100px;
-        z-index: -1;
     }
     
     .landing-title {
@@ -56,7 +44,6 @@ st.markdown("""
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 20px;
-        animation: fadeIn 1.2s ease-out;
     }
     
     .landing-subtitle {
@@ -69,56 +56,48 @@ st.markdown("""
         line-height: 1.5;
     }
     
-    /* 3. Glassmorphic Features Preview Tray (Grid of Modules) */
+    /* ─── FEATURES PREVIEW TRAY ─── */
     .features-tray {
         display: flex;
         gap: 20px;
         justify-content: center;
         margin-bottom: 60px;
-        max-width: 1000px;
+        max-width: 1100px;
         width: 100%;
     }
     
     .feature-card {
-        background: rgba(22, 27, 34, 0.6);
-        border: 1px solid rgba(240, 246, 252, 0.1);
+        background: rgba(22, 27, 34, 0.7) !important;
+        border: 1px solid rgba(240, 246, 252, 0.1) !important;
         border-radius: 16px;
         padding: 24px;
         flex: 1;
         text-align: left;
-        backdrop-filter: blur(8px);
-        transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    
-    .feature-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(99, 102, 241, 0.4);
     }
     
     .icon-box {
-        font-size: 28px;
+        font-size: 32px;
         margin-bottom: 12px;
     }
     
     .feature-title {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 600;
         color: #f0f6fc;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
     }
     
     .feature-desc {
         font-size: 14px;
         color: #8b949e;
-        line-height: 1.4;
+        line-height: 1.5;
     }
     
-    /* 4. Styled Curved Center Login Button */
+    /* ─── STYLED CURVED CENTER LOGIN BUTTON ─── */
     .stButton {
         display: flex;
         justify-content: center;
         width: 100%;
-        margin-bottom: 40px;
     }
     div.stButton > button:first-child {
         background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
@@ -136,11 +115,7 @@ st.markdown("""
         background: linear-gradient(90deg, #5850ec 0%, #8c46ff 100%);
         transform: scale(1.05) translateY(-2px);
         box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+        color: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -150,43 +125,45 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 # ==============================================================================
-# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE (HTML RENDER FIX)
+# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE
 # ==============================================================================
 if not st.session_state.logged_in:
-    # Notice the unsafe_allow_html=True statement right at the very end of this markdown block!
-    st.markdown("""
-        <div class="landing-wrapper">
-            <h1 class="landing-title">Career OS</h1>
-            <p class="landing-subtitle">Your personal data-driven life-long career coach.</p>
-            
-            <div class="features-tray">
-                <div class="feature-card">
-                    <div class="icon-box">📊</div>
-                    <div class="feature-title">Career Topology</div>
-                    <div class="feature-desc">Interactive 3D mathematical terrain surfaces structural career peaks and valleys.</div>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box">📂</div>
-                    <div class="feature-title">Living Portfolio</div>
-                    <div class="feature-desc">Automated system tracking that compiles verifiable workflows quietly in the background.</div>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box">⚖️</div>
-                    <div class="feature-title">Fair Pay Engine</div>
-                    <div class="feature-desc">Combats asymmetry by casting direct visual shadows across underpaid peer timelines.</div>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box">💼</div>
-                    <div class="feature-title">Market Deployment</div>
-                    <div class="feature-desc">Placements tied to explicit vector actions that physically alter your map variables.</div>
-                </div>
+    
+    # Store html in a clear string block to avoid string manipulation errors
+    landing_html = """
+    <div class="landing-wrapper">
+        <h1 class="landing-title">Career OS</h1>
+        <p class="landing-subtitle">Your personal data-driven life-long career coach.</p>
+        <div class="features-tray">
+            <div class="feature-card">
+                <div class="icon-box">📊</div>
+                <div class="feature-title">Career Topology</div>
+                <div class="feature-desc">Interactive 3D mathematical terrain surfaces structural career peaks and valleys.</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box">📂</div>
+                <div class="feature-title">Living Portfolio</div>
+                <div class="feature-desc">Automated system tracking that compiles verifiable workflows quietly in the background.</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box">⚖️</div>
+                <div class="feature-title">Fair Pay Engine</div>
+                <div class="feature-desc">Combats asymmetry by casting direct visual shadows across underpaid peer timelines.</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box">💼</div>
+                <div class="feature-title">Market Deployment</div>
+                <div class="feature-desc">Placements tied to explicit vector actions that physically alter your map variables.</div>
             </div>
         </div>
-    """, unsafe_allow_html=True) # <-- This flag tells Streamlit to execute the design layout code!
+    </div>
+    """
     
-    # Three-column centering layout grid
+    # Executing the design directly
+    st.html(landing_html)
+    
+    # Clean Grid split for the login block
     left_space, center_button_col, right_space = st.columns([2, 1, 2])
-    
     with center_button_col:
         if st.button("Login"):
             st.session_state.logged_in = True
