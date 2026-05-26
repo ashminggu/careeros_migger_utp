@@ -6,53 +6,81 @@ from google import genai
 # ─── APP CONFIGURATION ───
 st.set_page_config(page_title="Career OS - Ecosystem", layout="wide")
 
-# ─── CUSTOM FIGMA-STYLE CSS THEMING ───
+# Initialize dialogue history session state early
+if "messages" not in st.session_state:
+    st.session_state.messages = [
+        {"role": "assistant", "content": "Greetings! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
+    ]
+
+# ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES ───
 st.markdown("""
     <style>
-    /* Center container for the landing page elements */
-    .landing-container {
+    /* Global Background subtle contrast shift */
+    .stApp {
+        background-color: #0d1117;
+    }
+    
+    /* ─── LANDING PAGE STYLING ─── */
+    .landing-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding-top: 8%;
+        margin-top: 12%;
+        width: 100%;
     }
-    /* Large, bold modern title */
     .landing-title {
-        font-size: 72px;
-        font-weight: 800;
-        background: linear-gradient(45deg, #4b6cb7, #182848);
+        font-size: 84px;
+        font-weight: 900;
+        letter-spacing: -2px;
+        /* Cyberpunk fluid gradient text */
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+        animation: fadeIn 1.5s ease-out;
     }
-    /* Minimalist subheader description */
     .landing-subtitle {
-        font-size: 24px;
-        color: #555555;
-        margin-bottom: 40px;
-        font-weight: 400;
+        font-size: 22px;
+        color: #8b949e;
+        margin-bottom: 45px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
     }
-    /* Make the login button look like a custom curved Figma asset */
+    
+    /* ─── CENTERING & STYLING THE CURVED LOGIN BUTTON ─── */
+    /* Target the exact wrapper block to ensure flawless horizontal alignment */
+    .stButton {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
     div.stButton > button:first-child {
-        background-color: #1e3c72;
-        color: white;
+        background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+        color: #ffffff !important;
         font-size: 18px;
         font-weight: 600;
-        padding: 12px 40px;
-        border-radius: 25px; /* Creates the beautifully curved container box */
+        padding: 14px 55px;
+        border-radius: 30px; /* High rounding factor for the pill box container */
         border: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        transition: all 0.3s ease;
-        display: block;
-        margin: 0 auto;
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
     }
     div.stButton > button:first-child:hover {
-        background-color: #2a5298;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        color: white;
+        background: linear-gradient(90deg, #5850ec 0%, #8c46ff 100%);
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6);
+    }
+    div.stButton > button:first-child:active {
+        transform: scale(0.98);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     </style>
 """, unsafe_allow_html=True)
@@ -61,35 +89,30 @@ st.markdown("""
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-if "messages" not in st.session_state:
-    st.session_state.messages = [
-        {"role": "assistant", "content": "Greetings! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
-    ]
-
 # ==============================================================================
-# 🚪 PHASE 1: MINIMALIST LANDING INTERFACE
+# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE
 # ==============================================================================
 if not st.session_state.logged_in:
-    # Use HTML wrapping to apply our custom landing theme
+    # Render the structured typography card
     st.markdown("""
-        <div class="landing-container">
+        <div class="landing-wrapper">
             <h1 class="landing-title">Career OS</h1>
             <p class="landing-subtitle">Your personal data-driven life-long career coach.</p>
         </div>
     """, unsafe_allow_html=True)
     
-    # Render the curved login button exactly in the center
+    # This button now respects the parent flex block alignment properties perfectly
     if st.button("Login"):
         st.session_state.logged_in = True
         st.rerun()
 
 # ==============================================================================
-# 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN)
+# 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN COMPLETE)
 # ==============================================================================
 else:
     # ─── SIDEBAR CONTROL PANEL ───
     st.sidebar.header("Candidate Shape Vector")
-    st.sidebar.write("Adjust skill mastery to watch the mathematical terrain morph (or boleh input variables in terms of salary, career growth, dll.):")
+    st.sidebar.write("Adjust skill mastery to watch the mathematical terrain morph:")
 
     k_kinetics = st.sidebar.slider("[PATH A] Downstream Operations: Reactor Kinetics Mastery", 0.1, 1.0, 0.8)
     k_math = st.sidebar.slider("[PATH B] Numerical Methods in ChemE", 0.1, 1.0, 0.5)
@@ -98,7 +121,6 @@ else:
     st.sidebar.divider()
     st.sidebar.info("**note:** Changing the CFD slider instantly lifts the high-yield EV valley on the map (basis on FSUTP)")
 
-    # Logout button to return to landing page layout easily during pitch demos
     if st.sidebar.button("Log Out Workspace"):
         st.session_state.logged_in = False
         st.rerun()
@@ -119,11 +141,11 @@ else:
 
         for i in range(len(y_paths)):
             path_type = y_paths[i]
-            if path_type == 1:  # Path A: Downstream Plant Operations
+            if path_type == 1:
                 Z[i, :] = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
-            elif path_type == 2:  # Path B: Process Simulation & Optimization
+            elif path_type == 2:
                 Z[i, :] = 1 + (x_time * (k_math * 0.4))
-            elif path_type == 3:  # Path C: Next-Gen EV Thermal Management
+            elif path_type == 3:
                 valley_effect = -2 * np.exp(-((x_time - 3)**2) / 4)
                 growth_effect = (x_time * (k_cfd * 0.55))
                 Z[i, :] = 1.5 + valley_effect + growth_effect
@@ -136,18 +158,19 @@ else:
         )])
 
         fig.update_layout(
-            title='Interactive Career Topology Surface',
             scene=dict(
-                xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40]),
+                xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
                 yaxis=dict(
                     title='Y: Trajectory Choice',
                     tickvals=[1, 2, 3],
-                    ticktext=['Path A: Downstream Operations', 'Path B: Numerical Simulation', 'Path C: CFD & Thermal Management']
+                    ticktext=['Path A: Downstream Operations', 'Path B: Numerical Simulation', 'Path C: CFD & Thermal Management'],
+                    gridcolor='#23282f'
                 ),
-                zaxis=dict(title='Z: Career Viability & Yield', range=[-1, 20]),
+                zaxis=dict(title='Z: Career Viability & Yield', range=[-1, 20], gridcolor='#23282f'),
                 camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
             ),
-            margin=dict(l=0, r=0, b=0, t=40), height=650
+            margin=dict(l=0, r=0, b=0, t=40), height=650,
+            paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
         )
 
         # ─── DISPLAY APP COLUMNS ───
@@ -157,9 +180,9 @@ else:
         with col2:
             st.markdown("### 📋 Navigation Analytics")
             if k_cfd > 0.7:
-                st.success("**Optimal Pathway Detected:** Your high CFD vector has successfully flattened the early friction valley in the EV Automotive sector. Your 10-year yield looks highly optimized.")
+                st.success("🎯 **Optimal Pathway Detected:** Your high CFD vector has successfully flattened the early friction valley in the EV Automotive sector.")
             else:
-                st.warning("**Plateau Warning:** Your current profile relies heavily on traditional downstream kinetics. Watch out for the flat structural mesa appearing on Path A around Year 6.")
+                st.warning("⚠️ **Plateau Warning:** Your current profile relies heavily on traditional downstream kinetics. Watch out for the flat structural mesa appearing on Path A around Year 6.")
             st.markdown("""
             **Axis Definitions:**
             * **X-Axis:** Continuous 40-year career arc timeline.
@@ -169,7 +192,7 @@ else:
 
         # ─── THE LIVE HUMAN AI COPILOT CONTAINER ───
         st.divider()
-        st.subheader("Career OS: AIMAN.AI Navigation Copilot")
+        st.subheader("🤖 Career OS: AIMAN.AI Navigation Copilot")
         st.caption("Ask your co-pilot anything. It dynamically tracks your map configuration to give transparent, authentic advice.")
 
         chat_container = st.container()
@@ -200,7 +223,7 @@ else:
         st.markdown("### 📋 Available Trajectory Placements")
         for job in internships:
             if selected_course == "All" or job["course"] == selected_course:
-                with st.expander(f"{job['company']} ── {job['role']}"):
+                with st.expander(f"🏢 {job['company']} ── {job['role']}"):
                     c1, c2 = st.columns([2, 1])
                     with c1:
                         st.markdown(f"**Target Discipline:** `{job['course']}`")
@@ -208,7 +231,7 @@ else:
                         st.markdown("**Core Job Scope & Responsibilities:**")
                         st.write(job["scope"])
                     with c2:
-                        st.info(f"**Trajectory Vector Impact:**\n\n{job['impact']}")
+                        st.info(f"🏆 **Trajectory Vector Impact:**\n\n{job['impact']}")
                         if st.button("Deploy Application", key=f"btn_{job['company']}_{job['role']}"):
                             st.success(f"Application securely deployed to {job['company']}!")
 
