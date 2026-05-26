@@ -90,7 +90,7 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 # ==============================================================================
-# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE
+# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE (FOOLPROOF CENTERING)
 # ==============================================================================
 if not st.session_state.logged_in:
     # Render the structured typography card
@@ -101,10 +101,15 @@ if not st.session_state.logged_in:
         </div>
     """, unsafe_allow_html=True)
     
-    # This button now respects the parent flex block alignment properties perfectly
-    if st.button("Login"):
-        st.session_state.logged_in = True
-        st.rerun()
+    # ─── THE FOOLPROOF CENTERING TRICK ───
+    # Create 3 columns with ratios [2, 1, 2]. The middle column sits exactly in the center of the screen!
+    left_space, center_button_col, right_space = st.columns([2, 1, 2])
+    
+    with center_button_col:
+        # Placing the button inside the exact center column alignment zone
+        if st.button("Login"):
+            st.session_state.logged_in = True
+            st.rerun()
 
 # ==============================================================================
 # 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN COMPLETE)
