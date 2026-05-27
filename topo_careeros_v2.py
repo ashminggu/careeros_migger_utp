@@ -291,7 +291,7 @@ else:
     k_cfd = st.sidebar.slider("[PATH C] CFD & Thermal Management", 0.1, 1.0, 0.3)
 
     st.sidebar.divider()
-    st.sidebar.info("**note:** Changing the CFD slider instantly lifts the high-yield EV valley on the map (basis on FSUTP)")
+    st.sidebar.info("**Note:** Changing the CFD slider instantly lifts the high-yield EV valley on the map (basis on FSUTP)")
 
     if st.sidebar.button("Log Out Workspace"):
         st.session_state.logged_in = False
@@ -354,9 +354,9 @@ else:
         # ─── CONDITION B: RENDER 2D MULTI-LINE TIMELINE GRAPH ───
         else:
             fig = go.Figure()
-            fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#818cf8', width=4)))
-            fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#c084fc', width=4)))
-            fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#f472b6', width=4)))
+            fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#FF0000', width=4)))
+            fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#0096FF', width=4)))
+            fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#FFFF00', width=4)))
 
             fig.update_layout(
                 xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f', zeroline=False),
