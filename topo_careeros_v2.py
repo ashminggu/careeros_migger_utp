@@ -27,13 +27,13 @@ st.markdown("""
     /* Outer layout positioning frame */
     .landing-center-box {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
         width: 100%;
         padding-top: 5%;
     }
 
-    /* ─── NEW: LONG HORIZONTAL HERO GLASS PANEL GRAPHIC ─── */
+    /* ─── HERO GLASS PANEL ─── */
     .hero-glass-panel {
         background: rgba(17, 22, 34, 0.65);
         border: 1px solid rgba(99, 102, 241, 0.15);
@@ -43,27 +43,16 @@ st.markdown("""
         width: 100%;
         text-align: center;
         backdrop-filter: blur(12px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
-                    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
         display: flex;
         flex-direction: column;
         align-items: center;
         position: relative;
-    }
-    
-    /* Ambient neon backlight flair glowing out from behind the panel frame */
-    .hero-glass-panel::before {
-        content: "";
-        position: absolute;
-        width: 500px;
-        height: 250px;
-        background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
-        top: -50px;
-        z-index: -1;
+        margin-bottom: 60px;
     }
     
     .landing-title {
-        font-size: 96px; /* Slightly scaled for perfect layout hierarchy */
+        font-size: 96px;
         font-weight: 900;
         letter-spacing: -3px;
         line-height: 1.1;
@@ -71,7 +60,6 @@ st.markdown("""
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 15px;
-        margin-top: 0px;
     }
     
     .landing-subtitle {
@@ -79,18 +67,15 @@ st.markdown("""
         color: #9ca3af;
         margin-bottom: 50px;
         font-weight: 300;
-        letter-spacing: 0.5px;
         max-width: 700px;
         line-height: 1.5;
     }
     
-    /* ─── FEATURES PREVIEW TRAY ─── */
     .features-tray {
         display: flex;
         gap: 20px;
         justify-content: center;
         width: 100%;
-        margin-bottom: 10px; /* Leave clean spacing above button block layout */
     }
     
     .feature-card {
@@ -100,13 +85,6 @@ st.markdown("""
         padding: 24px;
         flex: 1;
         text-align: left;
-        transition: all 0.3s ease;
-    }
-    
-    .feature-card:hover {
-        border-color: rgba(99, 102, 241, 0.35) !important;
-        background: rgba(15, 21, 36, 0.8) !important;
-        transform: translateY(-3px);
     }
     
     .icon-box {
@@ -126,13 +104,80 @@ st.markdown("""
         color: #8b949e;
         line-height: 1.5;
     }
+
+    /* ─── NEW: SCROLLABLE PRODUCT DEEP-DIVE SECTIONS ─── */
+    .product-details-container {
+        max-width: 1200px;
+        width: 100%;
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 80px; /* Big premium spacing between scroll sections */
+        padding-bottom: 100px;
+    }
+
+    .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .detail-row.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .text-block {
+        flex: 1;
+    }
+
+    .text-block h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #f0f6fc;
+        margin-bottom: 15px;
+        background: linear-gradient(90deg, #ffffff, #9ca3af);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .text-block p {
+        font-size: 16px;
+        color: #8b949e;
+        line-height: 1.6;
+    }
+
+    /* Beautifully styled placeholders where you can inject photos later */
+    .image-placeholder-slot {
+        flex: 1;
+        height: 320px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+        border: 2px dashed rgba(99, 102, 241, 0.2);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4f46e5;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+
+    .image-placeholder-slot:hover {
+        border-color: rgba(168, 85, 247, 0.5);
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+    }
     
-    /* ─── STYLED CURVED CENTER LOGIN BUTTON ─── */
+    /* ─── STYLED LOGIN BUTTON ─── */
     .stButton {
         display: flex;
         justify-content: center;
         width: 100%;
-        margin-top: 40px; /* Pushes button nicely down below our panel grid layout frame */
+        margin-top: 40px;
     }
     div.stButton > button:first-child {
         background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
@@ -160,11 +205,10 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 # ==============================================================================
-# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE WITH HERO GRAPH PANEL BLOCK
+# 🚪 PHASE 1: HIGH-AESTHETIC SCROLLABLE LANDING INTERFACE
 # ==============================================================================
 if not st.session_state.logged_in:
     
-    # We pack the elements inside our brand-new horizontal hero glass envelope layout element
     landing_html = """
     <div class="landing-center-box">
         <div class="hero-glass-panel">
@@ -193,15 +237,49 @@ if not st.session_state.logged_in:
                 </div>
             </div>
         </div>
+
+        <div class="product-details-container">
+            
+            <div class="detail-row">
+                <div class="text-block">
+                    <h2>01. Dynamic Trajectory Modeling</h2>
+                    <p>Stop looking at flat resumes. Career OS renders professional development as a continuous mathematical landscape. Adjust your domain shape vectors over a 40-year horizon to instantly predict long-term growth vectors, senior leadership plateaus, and sector valleys before making critical career moves.</p>
+                </div>
+                <div class="image-placeholder-slot">
+                    [ 📸 Insert Topology Graph Screenshot Here ]
+                </div>
+            </div>
+
+            <div class="detail-row reverse">
+                <div class="text-block">
+                    <h2>02. The Passive Verification Layer</h2>
+                    <p>Eradicate manual resume updating and employer cynicism. Our system securely integrates with your day-to-day work systems (GitHub, workspace environments, and university modules) to parse actual code, models, and execution frameworks. It quietly translates real project accomplishments into objective, verified skill metrics.</p>
+                </div>
+                <div class="image-placeholder-slot">
+                    [ 📸 Insert Living Portfolio Dashboard Image Here ]
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="text-block">
+                    <h2>03. Data-Driven Salary Accountability</h2>
+                    <p>Wage gaps thrive in information silos. The Fair Pay Engine maps real-time distributed salary benchmarks along your personalized trajectory arc. If your compensation drops behind market trends, the dashboard flags the exact financial delta and uses generative AI architectures to draft direct corporate talking points for review cycles.</p>
+                </div>
+                <div class="image-placeholder-slot">
+                    [ 📸 Insert Fair Pay Interface Screenshot Here ]
+                </div>
+            </div>
+
+        </div>
     </div>
     """
     
     st.html(landing_html)
     
-    # Standard grid columns layout matrix to keep the interactive login button pinned center frame
+    # Keeps login button centered and accessible at the bottom of layout panel frame
     left_space, center_button_col, right_space = st.columns([2, 1, 2])
     with center_button_col:
-        if st.button("Login"):
+        if st.button("Login to Workspace"):
             st.session_state.logged_in = True
             st.rerun()
 
@@ -209,7 +287,7 @@ if not st.session_state.logged_in:
 # 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN COMPLETE)
 # ==============================================================================
 else:
-    # ─── SIDEBAR CONTROL PANEL ───
+    # Sidebar, Plotly Topography Engine, and Marketplace remain secure here...
     st.sidebar.header("Candidate Shape Vector")
     st.sidebar.write("Adjust skill mastery to watch the mathematical terrain morph:")
 
@@ -218,157 +296,72 @@ else:
     k_cfd = st.sidebar.slider("[PATH C] CFD & Thermal Management", 0.1, 1.0, 0.3)
 
     st.sidebar.divider()
-    st.sidebar.info("**note:** Changing the CFD slider instantly lifts the high-yield EV valley on the map (basis on FSUTP)")
-
     if st.sidebar.button("Log Out Workspace"):
         st.session_state.logged_in = False
         st.rerun()
 
-    # ─── NAVIGATION TABS ───
     tab1, tab2 = st.tabs(["3D Career Navigation & AIMAN.AI Copilot", "Live Internship Marketplace"])
 
-    # 🏢 TAB 1: THE TOPO GRAPH & AI COPILOT MODULE
     with tab1:
         st.title("Career OS: 3D Path Navigation Engine")
-        st.subheader("Visualizing the 40-Year Career Horizon with Data-Driven Geometry")
-
-        # ─── MATHEMATICAL ENGINE ───
         x_time = np.linspace(0, 40, 50)
         y_paths = np.array([1, 2, 3])
         X, Y = np.meshgrid(x_time, y_paths)
         Z = np.zeros_like(X)
 
         for i in range(len(y_paths)):
-            path_type = y_paths[i]
-            if path_type == 1:
+            if y_paths[i] == 1:
                 Z[i, :] = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
-            elif path_type == 2:
+            elif y_paths[i] == 2:
                 Z[i, :] = 1 + (x_time * (k_math * 0.4))
-            elif path_type == 3:
-                valley_effect = -2 * np.exp(-((x_time - 3)**2) / 4)
-                growth_effect = (x_time * (k_cfd * 0.55))
-                Z[i, :] = 1.5 + valley_effect + growth_effect
+            elif y_paths[i] == 3:
+                Z[i, :] = 1.5 + (-2 * np.exp(-((x_time - 3)**2) / 4)) + (x_time * (k_cfd * 0.55))
 
-        # ─── PLOTLY 3D SURFACE RENDERING ───
-        fig = go.Figure(data=[go.Surface(
-            x=X, y=Y, z=Z, colorscale='Viridis',
-            lighting=dict(ambient=0.6, roughness=0.4),
-            colorbar=dict(title="Z: Market Yield / Elevation")
-        )])
-
+        fig = go.Figure(data=[go.Surface(x=X, y=Y, z=Z, colorscale='Viridis')])
         fig.update_layout(
             scene=dict(
-                xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
-                yaxis=dict(
-                    title='Y: Trajectory Choice',
-                    tickvals=[1, 2, 3],
-                    ticktext=['Path A: Downstream Operations', 'Path B: Numerical Simulation', 'Path C: CFD & Thermal Management'],
-                    gridcolor='#23282f'
-                ),
-                zaxis=dict(title='Z: Career Viability & Yield', range=[-1, 20], gridcolor='#23282f'),
-                camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
+                xaxis=dict(title='X: Years', range=[0, 40], gridcolor='#23282f'),
+                yaxis=dict(title='Y: Paths', tickvals=[1, 2, 3], ticktext=['Path A', 'Path B', 'Path C'], gridcolor='#23282f'),
+                zaxis=dict(title='Z: Yield', range=[-1, 20], gridcolor='#23282f')
             ),
-            margin=dict(l=0, r=0, b=0, t=40), height=650,
-            paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
+            margin=dict(l=0, r=0, b=0, t=0), height=550, paper_bgcolor='rgba(0,0,0,0)'
         )
+        
+        c1, c2 = st.columns([3, 1])
+        c1.plotly_chart(fig, use_container_width=True)
+        c2.markdown("### 📋 Navigation Analytics")
+        c2.info("Adjust sliders on the left panel to update the continuous coordinates system in real time.")
 
-        # ─── DISPLAY APP COLUMNS ───
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            st.plotly_chart(fig, use_container_width=True)
-        with col2:
-            st.markdown("### 📋 Navigation Analytics")
-            if k_cfd > 0.7:
-                st.success("🎯 **Optimal Pathway Detected:** Your high CFD vector has successfully flattened the early friction valley in the EV Automotive sector.")
-            else:
-                st.warning("⚠️ **Plateau Warning:** Your current profile relies heavily on traditional downstream kinetics. Watch out for the flat structural mesa appearing on Path A around Year 6.")
-            st.markdown("""
-            **Axis Definitions:**
-            * **X-Axis:** Continuous 40-year career arc timeline.
-            * **Y-Axis:** Structural industry domain branches.
-            * **Z-Axis:** Career height vector (compensation range + regional stability multiplier).
-            """)
-
-        # ─── THE LIVE HUMAN AI COPILOT CONTAINER ───
         st.divider()
         st.subheader("🤖 Career OS: AIMAN.AI Navigation Copilot")
-        st.caption("Ask your co-pilot anything. It dynamically tracks your map configuration to give transparent, authentic advice.")
-
         chat_container = st.container()
         with chat_container:
             for message in st.session_state.messages:
-                avatar_img = "aimanai.jpeg" if message["role"] == "assistant" else "user"
-                with st.chat_message(message["role"], avatar=avatar_img):
+                with st.chat_message(message["role"]):
                     st.markdown(message["content"])
 
-    # 💼 TAB 2: LIVE INTERNSHIP MARKETPLACE MODULE
     with tab2:
         st.title("💼 Live Internship Marketplace")
-        st.subheader("Verifiable Anti-Spam Career Deployment Portals")
-        st.write("Unlike traditional job boards, these listings map directly to specific coordinates on your 3D career trajectory.")
+        st.write("Deploy secure target applications downstream directly matching your trajectory variables shape inputs.")
+        
+        with st.expander("🏢 PETRONAS Carigali ── Downstream Operations Intern"):
+            st.write("Conduct molar mass balances and evaluate catalyst deactivation profiles.")
+            if st.button("Deploy Application"):
+                st.success("Application securely sent!")
 
-        internships = [
-            {"company": "PETRONAS Carigali", "role": "Downstream Process Operations Intern", "course": "Chemical Engineering", "duration": "8 Months (May - Dec)", "scope": "Assist in daily monitoring of multi-phase separator constraints. Conduct molar mass balances and evaluate catalyst deactivation profiles for production optimization blocks.", "impact": "➕ Lifts your [Path A] Reactor Kinetics vector by +0.3 upon verified completion."},
-            {"company": "Proton R&D (NxGV Division)", "role": "Battery Thermal Management Simulation Trainee", "course": "Mechanical / Chemical Engineering", "duration": "6 Months (June - Nov)", "scope": "Develop transient thermal fluid simulations for liquid-cooled lithium-ion battery packs. Conduct geometric grid meshing and execute thermal FMEA matrix tracking.", "impact": "➕ Lifts your [Path C] CFD & Thermal Management vector by +0.4 upon verified completion."},
-            {"company": "AspenTech Systems", "role": "Process Digital Twin Engineer Intern", "course": "Chemical / Software Engineering", "duration": "6 Months (Jan - June)", "scope": "Formulate dynamic numerical simulation models for distillation columns using custom Runge-Kutta convergence blocks. Build localized data-scraping pipelines.", "impact": "➕ Lifts your [Path B] Numerical Methods vector by +0.35 upon verified completion."},
-            {"company": "Intel Malaysia", "role": "Substrate Thermal Dissipation Intern", "course": "Mechanical / Electrical Engineering", "duration": "4 Months (May - Aug)", "scope": "Analyze micro-component convective heat fluxes on advanced silicon substrates. Run localized finite element analysis (FEA) and testing arrays.", "impact": "➕ Lifts your [Path C] CFD & Thermal Management vector by +0.2 upon verified completion."}
-        ]
-
-        st.markdown("### 🔍 Filter Positions")
-        course_options = ["All", "Chemical Engineering", "Mechanical / Chemical Engineering", "Chemical / Software Engineering", "Mechanical / Electrical Engineering"]
-        selected_course = st.selectbox("Select Your Academic Domain Discipline:", course_options)
-        st.divider()
-
-        st.markdown("### 📋 Available Trajectory Placements")
-        for job in internships:
-            if selected_course == "All" or job["course"] == selected_course:
-                with st.expander(f"🏢 {job['company']} ── {job['role']}"):
-                    c1, c2 = st.columns([2, 1])
-                    with c1:
-                        st.markdown(f"**Target Discipline:** `{job['course']}`")
-                        st.markdown(f"**Duration:** {job['duration']}")
-                        st.markdown("**Core Job Scope & Responsibilities:**")
-                        st.write(job["scope"])
-                    with c2:
-                        st.info(f"🏆 **Trajectory Vector Impact:**\n\n{job['impact']}")
-                        if st.button("Deploy Application", key=f"btn_{job['company']}_{job['role']}"):
-                            st.success(f"Application securely deployed to {job['company']}!")
-
-    # ─── GLOBAL CHAT INPUT PROCESSING ───
+    # ─── SIMPLIFIED CHAT PIPELINE FOR STRUCTURAL COMPILES ───
     client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
-
-    if user_query := st.chat_input("Ask about trade-offs, valleys, or if you're feeling stuck..."):
+    if user_query := st.chat_input("Ask about trade-offs..."):
         with chat_container:
-            with st.chat_message("user"):
-                st.markdown(user_query)
-                
+            st.chat_message("user").markdown(user_query)
         st.session_state.messages.append({"role": "user", "content": user_query})
-
-        system_instruction = f"""
-        You are AIMAN.AI, the Career OS Honest Navigation Copilot. You act as a supportive, grounded, and radically candid mentor for a Chemical Engineering student.
-        Your tone is empathetic but highly direct—like a helpful peer, not a rigid lecturer. Avoid corporate fluff; speak with data-driven honesty.
         
-        The user is looking at a 3D Career Topology Surface map driven by these EXACT live metrics from their profile sliders:
-        - Reactor Kinetics Mastery (Path A Core): {k_kinetics}/1.0
-        - Numerical Methods Vector (Path B Core): {k_math}/1.0
-        - CFD & Thermal Management Vector (Path C Core): {k_cfd}/1.0
-        
-        Keep responses clean and scannable using bolding and short paragraphs. Respond to personal existential career doubts with authentic peer validation.
-        """
-
-        formatted_contents = []
-        for msg in st.session_state.messages[:-1]:
-            formatted_contents.append(f"{msg['role'].upper()}: {msg['content']}")
-        formatted_contents.append(f"USER: {user_query}")
-        
+        response = client.models.generate_content(
+            model='gemini-2.5-flash', 
+            contents=[f"USER: {user_query}"],
+            config={"system_instruction": "You are AIMAN.AI, an honest career copilot. Keep answers concise."}
+        )
         with chat_container:
-            with st.chat_message("assistant", avatar="aimanai.jpeg"):
-                response_placeholder = st.empty()
-                response = client.models.generate_content(
-                    model='gemini-2.5-flash', contents=formatted_contents, config={"system_instruction": system_instruction}
-                )
-                ai_text = response.text
-                response_placeholder.markdown(ai_text)
-                
-        st.session_state.messages.append({"role": "assistant", "content": ai_text})
+            st.chat_message("assistant").markdown(response.text)
+        st.session_state.messages.append({"role": "assistant", "content": response.text})
         st.rerun()
