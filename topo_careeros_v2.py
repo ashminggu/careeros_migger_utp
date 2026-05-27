@@ -105,14 +105,14 @@ st.markdown("""
         line-height: 1.5;
     }
 
-    /* ─── NEW: SCROLLABLE PRODUCT DEEP-DIVE SECTIONS ─── */
+    /* ─── SCROLLABLE PRODUCT DEEP-DIVE SECTIONS ─── */
     .product-details-container {
         max-width: 1200px;
         width: 100%;
         margin-top: 40px;
         display: flex;
         flex-direction: column;
-        gap: 80px; /* Big premium spacing between scroll sections */
+        gap: 80px;
         padding-bottom: 100px;
     }
 
@@ -148,7 +148,7 @@ st.markdown("""
         line-height: 1.6;
     }
 
-    /* Beautifully styled placeholders where you can inject photos later */
+    /* Styled Image Placeholder Boxes */
     .image-placeholder-slot {
         flex: 1;
         height: 320px;
@@ -205,7 +205,7 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 # ==============================================================================
-# 🚪 PHASE 1: HIGH-AESTHETIC SCROLLABLE LANDING INTERFACE
+# 🚪 PHASE 1: SCROLLABLE LANDING INTERFACE
 # ==============================================================================
 if not st.session_state.logged_in:
     
@@ -239,7 +239,6 @@ if not st.session_state.logged_in:
         </div>
 
         <div class="product-details-container">
-            
             <div class="detail-row">
                 <div class="text-block">
                     <h2>01. Dynamic Trajectory Modeling</h2>
@@ -269,14 +268,11 @@ if not st.session_state.logged_in:
                     [ 📸 Insert Fair Pay Interface Screenshot Here ]
                 </div>
             </div>
-
         </div>
     </div>
     """
-    
     st.html(landing_html)
     
-    # Keeps login button centered and accessible at the bottom of layout panel frame
     left_space, center_button_col, right_space = st.columns([2, 1, 2])
     with center_button_col:
         if st.button("Login to Workspace"):
@@ -284,10 +280,10 @@ if not st.session_state.logged_in:
             st.rerun()
 
 # ==============================================================================
-# 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN COMPLETE)
+# 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN)
 # ==============================================================================
 else:
-    # Sidebar, Plotly Topography Engine, and Marketplace remain secure here...
+    # Sidebar Setup
     st.sidebar.header("Candidate Shape Vector")
     st.sidebar.write("Adjust skill mastery to watch the mathematical terrain morph:")
 
@@ -302,8 +298,11 @@ else:
 
     tab1, tab2 = st.tabs(["3D Career Navigation & AIMAN.AI Copilot", "Live Internship Marketplace"])
 
+    # TAB 1: GRAPH & CHAT RUNTIME ENVIRONMENT
     with tab1:
         st.title("Career OS: 3D Path Navigation Engine")
+        
+        # Mathematical Grid Topology
         x_time = np.linspace(0, 40, 50)
         y_paths = np.array([1, 2, 3])
         X, Y = np.meshgrid(x_time, y_paths)
@@ -327,41 +326,57 @@ else:
             margin=dict(l=0, r=0, b=0, t=0), height=550, paper_bgcolor='rgba(0,0,0,0)'
         )
         
-        c1, c2 = st.columns([3, 1])
-        c1.plotly_chart(fig, use_container_width=True)
-        c2.markdown("### 📋 Navigation Analytics")
-        c2.info("Adjust sliders on the left panel to update the continuous coordinates system in real time.")
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            st.markdown("### 📋 Navigation Analytics")
+            st.info("Adjust sliders on the left panel to dynamically shift terrain dimensions.")
 
         st.divider()
         st.subheader("🤖 Career OS: AIMAN.AI Navigation Copilot")
+        
+        # Container representing active dialogue history loop
         chat_container = st.container()
         with chat_container:
             for message in st.session_state.messages:
-                with st.chat_message(message["role"]):
+                # FIX 1: Linked assistant image pfp definition inside active loop
+                avatar_img = "aimanai.jpeg" if message["role"] == "assistant" else "user"
+                with st.chat_message(message["role"], avatar=avatar_img):
                     st.markdown(message["content"])
 
+    # TAB 2: MARKETPLACE
     with tab2:
         st.title("💼 Live Internship Marketplace")
-        st.write("Deploy secure target applications downstream directly matching your trajectory variables shape inputs.")
-        
         with st.expander("🏢 PETRONAS Carigali ── Downstream Operations Intern"):
             st.write("Conduct molar mass balances and evaluate catalyst deactivation profiles.")
             if st.button("Deploy Application"):
                 st.success("Application securely sent!")
 
-    # ─── SIMPLIFIED CHAT PIPELINE FOR STRUCTURAL COMPILES ───
+    # ─── GLOBAL AI CHAT PIPELINE EXECUTION ENGINE ───
     client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
     if user_query := st.chat_input("Ask about trade-offs..."):
         with chat_container:
             st.chat_message("user").markdown(user_query)
         st.session_state.messages.append({"role": "user", "content": user_query})
         
-        response = client.models.generate_content(
-            model='gemini-2.5-flash', 
-            contents=[f"USER: {user_query}"],
-            config={"system_instruction": "You are AIMAN.AI, an honest career copilot. Keep answers concise."}
-        )
+        # Format the sliding values context parameters
+        system_instruction = f"""
+        You are AIMAN.AI, the Career OS Navigation Copilot. Speak directly and authentically.
+        Current Vector States: Path A={k_kinetics}, Path B={k_math}, Path C={k_cfd}.
+        """
+        
+        formatted_contents = [f"{msg['role'].upper()}: {msg['content']}" for msg in st.session_state.messages]
+        
         with chat_container:
-            st.chat_message("assistant").markdown(response.text)
-        st.session_state.messages.append({"role": "assistant", "content": response.text})
+            # FIX 2: Linked assistant image pfp definition during generation phase
+            with st.chat_message("assistant", avatar="aimanai.jpeg"):
+                response_placeholder = st.empty()
+                response = client.models.generate_content(
+                    model='gemini-2.5-flash', contents=formatted_contents, config={"system_instruction": system_instruction}
+                )
+                ai_text = response.text
+                response_placeholder.markdown(ai_text)
+                
+        st.session_state.messages.append({"role": "assistant", "content": ai_text})
         st.rerun()
