@@ -302,49 +302,71 @@ else:
 
     # 🏢 TAB 1: THE TOPO GRAPH & AI COPILOT MODULE
     with tab1:
-        st.title("Career OS: 3D Path Navigation Engine")
+        st.title("Career OS: Path Navigation Engine")
+        
+        # ─── NEW VIEW OPTION TOGGLE ───
+        view_mode = st.radio(
+            "Select Visualization Framework Layout:",
+            ["3D Topography Surface Map", "2D Continuous Line Graph View"],
+            horizontal=True
+        )
         st.subheader("Visualizing the 40-Year Career Horizon with Data-Driven Geometry")
         
-        # Mathematical Grid Topology Calculation Block
+        # Mathematical Shared Arrays for Math Engine
         x_time = np.linspace(0, 40, 50)
-        y_paths = np.array([1, 2, 3])
-        X, Y = np.meshgrid(x_time, y_paths)
-        Z = np.zeros_like(X)
-
-        for i in range(len(y_paths)):
-            path_type = y_paths[i]
-            if path_type == 1:
-                Z[i, :] = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
-            elif path_type == 2:
-                Z[i, :] = 1 + (x_time * (k_math * 0.4))
-            elif path_type == 3:
-                valley_effect = -2 * np.exp(-((x_time - 3)**2) / 4)
-                growth_effect = (x_time * (k_cfd * 0.55))
-                Z[i, :] = 1.5 + valley_effect + growth_effect
-
-        # Plotly 3D Surface Rendering
-        fig = go.Figure(data=[go.Surface(
-            x=X, y=Y, z=Z, colorscale='Viridis',
-            lighting=dict(ambient=0.6, roughness=0.4),
-            colorbar=dict(title="Z: Market Yield / Elevation")
-        )])
-
-        fig.update_layout(
-            scene=dict(
-                xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
-                yaxis=dict(
-                    title='Y: Trajectory Choice',
-                    tickvals=[1, 2, 3],
-                    ticktext=['Path A: Downstream Operations', 'Path B: Numerical Simulation', 'Path C: CFD & Thermal Management'],
-                    gridcolor='#23282f'
-                ),
-                zaxis=dict(title='Z: Career Viability & Yield', range=[-1, 20], gridcolor='#23282f'),
-                camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
-            ),
-            margin=dict(l=0, r=0, b=0, t=40), height=650,
-            paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
-        )
         
+        # Compute individual path lines explicitly so they are ready for either rendering method
+        path_a_y = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
+        path_b_y = 1 + (x_time * (k_math * 0.4))
+        path_c_y = 1.5 + (-2 * np.exp(-((x_time - 3)**2) / 4)) + (x_time * (k_cfd * 0.55))
+
+        # ─── CONDITION A: RENDER 3D TOPOGRAPHY ───
+        if view_mode == "3D Topography Surface Map":
+            y_paths = np.array([1, 2, 3])
+            X, Y = np.meshgrid(x_time, y_paths)
+            Z = np.zeros_like(X)
+            Z[0, :] = path_a_y
+            Z[1, :] = path_b_y
+            Z[2, :] = path_c_y
+
+            fig = go.Figure(data=[go.Surface(
+                x=X, y=Y, z=Z, colorscale='Viridis',
+                lighting=dict(ambient=0.6, roughness=0.4),
+                colorbar=dict(title="Z: Market Yield")
+            )])
+
+            fig.update_layout(
+                scene=dict(
+                    xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
+                    yaxis=dict(
+                        title='Y: Trajectory Choice',
+                        tickvals=[1, 2, 3],
+                        ticktext=['Path A: Downstream', 'Path B: Numerical', 'Path C: CFD/Thermal'],
+                        gridcolor='#23282f'
+                    ),
+                    zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#23282f'),
+                    camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
+                ),
+                margin=dict(l=0, r=0, b=0, t=40), height=650,
+                paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
+            )
+
+        # ─── CONDITION B: RENDER 2D MULTI-LINE TIMELINE GRAPH ───
+        else:
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#818cf8', width=4)))
+            fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#c084fc', width=4)))
+            fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#f472b6', width=4)))
+
+            fig.update_layout(
+                xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f', zeroline=False),
+                yaxis=dict(title='Y: Career Viability & Yield Metric', range=[-1, 20], gridcolor='#23282f', zeroline=False),
+                margin=dict(l=40, r=40, b=40, t=40), height=550,
+                paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)", bordercolor="rgba(99,102,241,0.15)", borderwidth=1)
+            )
+        
+        # Render the chosen interactive visualization
         col1, col2 = st.columns([3, 1])
         with col1:
             st.plotly_chart(fig, use_container_width=True)
@@ -372,7 +394,7 @@ else:
                 with st.chat_message(message["role"], avatar=avatar_img):
                     st.markdown(message["content"])
 
-    # 💼 TAB 2: LIVE INTERNSHIP MARKETPLACE MODULE (RESTORED COMPLETELY)
+    # 💼 TAB 2: LIVE INTERNSHIP MARKETPLACE MODULE
     with tab2:
         st.title("💼 Live Internship Marketplace")
         st.subheader("Verifiable Anti-Spam Career Deployment Portals")
@@ -419,12 +441,10 @@ else:
         You are AIMAN.AI, the Career OS Honest Navigation Copilot. You act as a supportive, grounded, and radically candid mentor for a Chemical Engineering student.
         Your tone is empathetic but highly direct—like a helpful peer, not a rigid lecturer. Avoid corporate fluff; speak with data-driven honesty.
         
-        The user is looking at a 3D Career Topology Surface map driven by these EXACT live metrics from their profile sliders:
+        The user is looking at a career layout tracking tool map driven by these EXACT live metrics from their profile sliders:
         - Reactor Kinetics Mastery (Path A Core): {k_kinetics}/1.0
         - Numerical Methods Vector (Path B Core): {k_math}/1.0
         - CFD & Thermal Management Vector (Path C Core): {k_cfd}/1.0
-        
-        Keep responses clean and scannable using bolding and short paragraphs. Respond to personal existential career doubts with authentic peer validation.
         """
 
         formatted_contents = []
