@@ -15,7 +15,7 @@ if "messages" not in st.session_state:
 # ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES ───
 st.markdown("""
     <style>
-    /* Global Background subtle contrast shift */
+    /* Global Background tech grid layout mesh */
     .stApp {
         background-color: #0b0f17;
         background-image: 
@@ -24,30 +24,58 @@ st.markdown("""
         background-size: 40px 40px;
     }
     
-    /* ─── LANDING PAGE STYLING ─── */
-    .landing-wrapper {
+    /* Outer layout positioning frame */
+    .landing-center-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding-top: 5%;
+    }
+
+    /* ─── NEW: LONG HORIZONTAL HERO GLASS PANEL GRAPHIC ─── */
+    .hero-glass-panel {
+        background: rgba(17, 22, 34, 0.65);
+        border: 1px solid rgba(99, 102, 241, 0.15);
+        border-radius: 24px;
+        padding: 60px 40px;
+        max-width: 1200px;
+        width: 100%;
+        text-align: center;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.05);
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        text-align: center;
-        margin-top: 6%;
-        width: 100%;
+        position: relative;
+    }
+    
+    /* Ambient neon backlight flair glowing out from behind the panel frame */
+    .hero-glass-panel::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+        top: -50px;
+        z-index: -1;
     }
     
     .landing-title {
-        font-size: 110px;
+        font-size: 96px; /* Slightly scaled for perfect layout hierarchy */
         font-weight: 900;
         letter-spacing: -3px;
         line-height: 1.1;
         background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        margin-top: 0px;
     }
     
     .landing-subtitle {
-        font-size: 26px;
+        font-size: 24px;
         color: #9ca3af;
         margin-bottom: 50px;
         font-weight: 300;
@@ -61,18 +89,24 @@ st.markdown("""
         display: flex;
         gap: 20px;
         justify-content: center;
-        margin-bottom: 60px;
-        max-width: 1100px;
         width: 100%;
+        margin-bottom: 10px; /* Leave clean spacing above button block layout */
     }
     
     .feature-card {
-        background: rgba(22, 27, 34, 0.7) !important;
-        border: 1px solid rgba(240, 246, 252, 0.1) !important;
+        background: rgba(10, 14, 23, 0.6) !important;
+        border: 1px solid rgba(240, 246, 252, 0.06) !important;
         border-radius: 16px;
         padding: 24px;
         flex: 1;
         text-align: left;
+        transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        border-color: rgba(99, 102, 241, 0.35) !important;
+        background: rgba(15, 21, 36, 0.8) !important;
+        transform: translateY(-3px);
     }
     
     .icon-box {
@@ -81,14 +115,14 @@ st.markdown("""
     }
     
     .feature-title {
-        font-size: 20px;
+        font-size: 19px;
         font-weight: 600;
         color: #f0f6fc;
         margin-bottom: 8px;
     }
     
     .feature-desc {
-        font-size: 14px;
+        font-size: 13.5px;
         color: #8b949e;
         line-height: 1.5;
     }
@@ -98,13 +132,14 @@ st.markdown("""
         display: flex;
         justify-content: center;
         width: 100%;
+        margin-top: 40px; /* Pushes button nicely down below our panel grid layout frame */
     }
     div.stButton > button:first-child {
         background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
         color: #ffffff !important;
         font-size: 20px;
         font-weight: 600;
-        padding: 16px 70px;
+        padding: 16px 75px;
         border-radius: 35px; 
         border: none;
         box-shadow: 0 4px 25px rgba(99, 102, 241, 0.4);
@@ -125,45 +160,46 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 # ==============================================================================
-# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE
+# 🚪 PHASE 1: HIGH-AESTHETIC LANDING INTERFACE WITH HERO GRAPH PANEL BLOCK
 # ==============================================================================
 if not st.session_state.logged_in:
     
-    # Store html in a clear string block to avoid string manipulation errors
+    # We pack the elements inside our brand-new horizontal hero glass envelope layout element
     landing_html = """
-    <div class="landing-wrapper">
-        <h1 class="landing-title">Career OS</h1>
-        <p class="landing-subtitle">Your personal data-driven life-long career coach.</p>
-        <div class="features-tray">
-            <div class="feature-card">
-                <div class="icon-box">📊</div>
-                <div class="feature-title">Career Topology</div>
-                <div class="feature-desc">Interactive 3D mathematical terrain surfaces structural career peaks and valleys.</div>
-            </div>
-            <div class="feature-card">
-                <div class="icon-box">📂</div>
-                <div class="feature-title">Living Portfolio</div>
-                <div class="feature-desc">Automated system tracking that compiles verifiable workflows quietly in the background.</div>
-            </div>
-            <div class="feature-card">
-                <div class="icon-box">⚖️</div>
-                <div class="feature-title">Fair Pay Engine</div>
-                <div class="feature-desc">Combats asymmetry by casting direct visual shadows across underpaid peer timelines.</div>
-            </div>
-            <div class="feature-card">
-                <div class="icon-box">💼</div>
-                <div class="feature-title">Market Deployment</div>
-                <div class="feature-desc">Placements tied to explicit vector actions that physically alter your map variables.</div>
+    <div class="landing-center-box">
+        <div class="hero-glass-panel">
+            <h1 class="landing-title">Career OS</h1>
+            <p class="landing-subtitle">Your personal data-driven life-long career coach.</p>
+            <div class="features-tray">
+                <div class="feature-card">
+                    <div class="icon-box">📊</div>
+                    <div class="feature-title">Career Topology</div>
+                    <div class="feature-desc">Interactive 3D mathematical terrain surfaces structural career peaks and valleys.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">📂</div>
+                    <div class="feature-title">Living Portfolio</div>
+                    <div class="feature-desc">Automated system tracking that compiles verifiable workflows quietly in the background.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">⚖️</div>
+                    <div class="feature-title">Fair Pay Engine</div>
+                    <div class="feature-desc">Combats asymmetry by casting direct visual shadows across underpaid peer timelines.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">💼</div>
+                    <div class="feature-title">Market Deployment</div>
+                    <div class="feature-desc">Placements tied to explicit vector actions that physically alter your map variables.</div>
+                </div>
             </div>
         </div>
     </div>
     """
     
-    # Executing the design directly
     st.html(landing_html)
     
-    # Clean Grid split for the login block
-    left_space, center_button_col, right_space = st.columns([2.25, 1, 2])
+    # Standard grid columns layout matrix to keep the interactive login button pinned center frame
+    left_space, center_button_col, right_space = st.columns([2, 1, 2])
     with center_button_col:
         if st.button("Login"):
             st.session_state.logged_in = True
