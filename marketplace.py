@@ -346,7 +346,7 @@ else:
     internships_db = [
         {"company": "PETRONAS Carigali", "role": "Downstream Process Operations Intern", "course": "Chemical Engineering", "duration": "8 Months (May - Dec)", "scope": "Assist in daily monitoring of multi-phase separator constraints. Conduct molar mass balances and evaluate catalyst deactivation profiles.", "impact": "➕ Lifts [Path A] Reactor Kinetics by +0.3"},
         {"company": "Proton R&D (NxGV Division)", "role": "Battery Thermal Management Simulation Trainee", "course": "Mechanical / Chemical Engineering", "duration": "6 Months (June - Nov)", "scope": "Develop transient thermal fluid simulations for liquid-cooled lithium-ion battery packs. Conduct geometric grid meshing and execute thermal FMEA matrix tracking.", "impact": "➕ Lifts [Path C] CFD & Thermal Management by +0.4"},
-        {"company": "AspenTech Systems", "role": "Process Digital Twin Engineer Intern", "course": "Chemical / Software Engineering", "duration": "6 Months (Jan - June)", "scope": "Formulate dynamic numerical simulation models for distillation columns using custom Runge-Kutta convergence blocks.", "impact": "➕ Lifts [Path B] Numerical Methods by +0.35"},
+        {"company": "AspenTech", "role": "Process Digital Twin Engineer Intern", "course": "Chemical / Software Engineering", "duration": "6 Months (Jan - June)", "scope": "Formulate dynamic numerical simulation models for distillation columns using custom Runge-Kutta convergence blocks.", "impact": "➕ Lifts [Path B] Numerical Methods by +0.35"},
         {"company": "Intel Malaysia", "role": "Substrate Thermal Dissipation Intern", "course": "Mechanical / Electrical Engineering", "duration": "4 Months (May - Aug)", "scope": "Analyze micro-component convective heat fluxes on advanced silicon substrates. Run localized FEA and testing arrays.", "impact": "➕ Lifts [Path C] CFD & Thermal Management by +0.2"}
     ]
 
@@ -385,21 +385,19 @@ else:
                     fig.update_layout(scene=dict(xaxis_title='Horizon (Years)', yaxis_title='Trajectory Branches', zaxis_title='Yield Elevation'), height=450)
                 else:
                     fig = go.Figure()
-                    fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A', line=dict(color='#FF0000', width=3)))
-                    fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B', line=dict(color='#0096FF', width=3)))
-                    fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C', line=dict(color='#FFFF00', width=3)))
+                    fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A', line=dict(color='#818cf8', width=3)))
+                    fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B', line=dict(color='#c084fc', width=3)))
+                    fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C', line=dict(color='#f472b6', width=3)))
                     fig.update_layout(xaxis_title="Time Horizon (Years)", yaxis_title="Viability Index", height=350)
                 st.plotly_chart(fig, use_container_width=True)
 
         if show_salary:
             with st.expander("⚖️ FAIR PAY TIMELINE ACCORDANCE & SHADOW MODEL", expanded=True):
                 st.info("Showing real, peer-distributed lower, median, and upper career quartile trajectories over a 10-year horizon.")
-                # Base valuation vs regional markers
                 salary_fig = go.Figure()
                 salary_fig.add_trace(go.Scatter(x=x_time[:25], y=path_a_y[:25]*1500, mode='lines', name='Upper Quartile (Top Tier Local)', line=dict(dash='dash', color='#00FF00')))
                 salary_fig.add_trace(go.Scatter(x=x_time[:25], y=path_a_y[:25]*1100, mode='lines', name='Median Peer Benchmark', line=dict(color='#818cf8')))
                 salary_fig.add_trace(go.Scatter(x=x_time[:25], y=path_a_y[:25]*800, mode='lines', name='Lower Quartile Baseline', line=dict(color='#FF0000')))
-                # Projecting custom anchoring scenario
                 st.markdown("⚠️ **Visual Trajectory Pay Shadow:** Your current anchor compensation vector casts a baseline lifetime loss shadow across the 20-year horizon.")
                 st.plotly_chart(salary_fig, use_container_width=True)
 
@@ -436,7 +434,6 @@ else:
                 st.success(f"Focused System View: **{target_comp}**")
                 st.markdown(f"**Verified Open Trajectory Alignments for {target_comp}:**")
                 
-                # Dynamic matching database query based on video engagement link
                 matched_roles = [j for j in internships_db if j["company"] == target_comp]
                 for mr in matched_roles:
                     st.markdown(f"**Role:** {mr['role']}")
@@ -452,7 +449,8 @@ else:
         chat_container = st.container()
         with chat_container:
             for message in st.session_state.messages:
-                with st.chat_message(message["role"]):
+                avatar_img = "aimanai.jpeg" if message["role"] == "assistant" else "user"
+                with st.chat_message(message["role"], avatar=avatar_img):
                     st.markdown(message["content"])
 
     # 💼 TAB 2: PLACEMENTS PLUGINS MARKETPLACE
@@ -481,7 +479,7 @@ else:
                         if st.button("Deploy Application Stack", key=f"market_btn_{job['company']}_{job['role']}"):
                             st.success(f"Application securely deployed to {job['company']} recruitment dashboard!")
 
-    # 💬 TAB 3: COMMUNICATIONS NETWORK (ACQUAINTANCES & EMPLOYERS OVERVIEW)
+    # ─── TAB 3: COMMUNICATIONS NETWORK ───
     with app_tabs[2]:
         st.title("💬 Career OS Communications Matrix")
         st.subheader("Real-Time Network Inbound Tracks & Verification Logs")
