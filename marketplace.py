@@ -365,7 +365,7 @@ else:
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
             
             # TODO: Swap out this link with your raw GitHub video link when uploaded!
-            video_url_proton = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            video_url_proton = "https://github.com/ashminggu/careeros_migger_utp/blob/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
             st.markdown(f"""
                 <div class="tiktok-video-container">
                     <video width="100%" height="440" controls loop muted playsinline class="tiktok-media-element">
