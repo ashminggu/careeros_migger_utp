@@ -200,21 +200,24 @@ st.markdown("""
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
-    .tiktok-video-placeholder {
-        background: linear-gradient(180deg, #1e2640 0%, #0d1324 100%);
-        height: 480px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: #818cf8;
-        font-weight: bold;
+    
+    .tiktok-video-container {
+        background: #0d1324; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
         border-bottom: 1px solid rgba(240, 246, 252, 0.05);
-        position: relative;
     }
+
+    .tiktok-media-element {
+        border-radius: 16px 16px 0 0; 
+        object-fit: cover;
+    }
+
     .tiktok-meta {
         padding: 20px;
     }
+    
     .tiktok-badge {
         background: rgba(99, 102, 241, 0.15);
         color: #818cf8;
@@ -340,7 +343,7 @@ else:
         {"company": "Intel Malaysia", "role": "Substrate Thermal Dissipation Intern", "course": "Mechanical / Electrical Engineering", "duration": "4 Months (May - Aug)", "scope": "Analyze micro-component convective heat fluxes on advanced silicon substrates. Run localized FEA and testing arrays.", "impact": "➕ Lifts [Path C] CFD & Thermal Management by +0.2"}
     ]
 
-    # Global Navigation Tabs Architecture (Re-organized completely into full-page views)
+    # Global Navigation Tabs Architecture (Organized into full distinct layout tracks)
     app_tabs = st.tabs([
         "📱 Discover Feed", 
         "📊 Universal Career Graph",
@@ -358,9 +361,20 @@ else:
         feed_col, drawer_col = st.columns([2, 1])
 
         with feed_col:
-            # Post Vector 1: Proton NxGV Lead
+            # 🎥 Post Vector 1: Proton NxGV Lead (HTML5 Auto-looping/Muted Framework)
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
-            st.markdown('<div class="tiktok-video-placeholder">🎬 [Short-Form Video Playback Slot]<br><span style="font-size:13px; font-weight:300; color:#8b949e;">Analyzing Multi-Phase Transient Battery Pack Fluid Coolant Fluxes</span></div>', unsafe_allow_html=True)
+            
+            # TODO: Swap out this link with your raw GitHub video link when uploaded!
+            video_url_proton = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            st.markdown(f"""
+                <div class="tiktok-video-container">
+                    <video width="100%" height="440" controls loop muted playsinline class="tiktok-media-element">
+                        <source src="{video_url_proton}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            """, unsafe_allow_html=True)
+
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
             st.markdown('<span class="tiktok-badge">🔥 Corporate Engineering Update</span>', unsafe_allow_html=True)
             st.markdown('<h4>"Why mechanical grid meshing limits transient cooling iterations in hybrid powertrains."</h4>', unsafe_allow_html=True)
@@ -369,9 +383,20 @@ else:
                 st.session_state.active_company_drawer = "Proton R&D (NxGV Division)"
             st.markdown('</div></div>', unsafe_allow_html=True)
 
-            # Post Vector 2: PETRONAS Carigali Asset Lead
+            # 🎥 Post Vector 2: PETRONAS Carigali Asset Lead
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
-            st.markdown('<div class="tiktok-video-placeholder">🎬 [Short-Form Video Playback Slot]<br><span style="font-size:13px; font-weight:300; color:#8b949e;">Live Separator Control Overrides & High-Pressure Fluid Management</span></div>', unsafe_allow_html=True)
+            
+            # TODO: Swap out this link with your raw GitHub video link when uploaded!
+            video_url_petronas = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            st.markdown(f"""
+                <div class="tiktok-video-container">
+                    <video width="100%" height="440" controls loop muted playsinline class="tiktok-media-element">
+                        <source src="{video_url_petronas}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            """, unsafe_allow_html=True)
+
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
             st.markdown('<span class="tiktok-badge">⚡ Asset Performance Deployment</span>', unsafe_allow_html=True)
             st.markdown('<h4>"Balancing downstream separator constraint margins during unexpected catalyst deactivation cycles."</h4>', unsafe_allow_html=True)
