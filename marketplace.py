@@ -225,16 +225,6 @@ st.markdown("""
         display: inline-block;
         margin-bottom: 8px;
     }
-    
-    /* ─── FLOATING WIDGET BAR UI ─── */
-    .widget-container {
-        background: rgba(17, 22, 34, 0.85);
-        border: 1px solid rgba(99, 102, 241, 0.2);
-        padding: 15px;
-        border-radius: 16px;
-        backdrop-filter: blur(8px);
-        margin-bottom: 30px;
-    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -350,9 +340,11 @@ else:
         {"company": "Intel Malaysia", "role": "Substrate Thermal Dissipation Intern", "course": "Mechanical / Electrical Engineering", "duration": "4 Months (May - Aug)", "scope": "Analyze micro-component convective heat fluxes on advanced silicon substrates. Run localized FEA and testing arrays.", "impact": "➕ Lifts [Path C] CFD & Thermal Management by +0.2"}
     ]
 
-    # Global Navigation Tabs
+    # Global Navigation Tabs Architecture (Re-organized completely into full-page views)
     app_tabs = st.tabs([
         "📱 Discover Feed", 
+        "📊 Universal Career Graph",
+        "⚖️ Fair Pay Engine",
         "💼 Placements Marketplace", 
         "💬 Communications Network"
     ])
@@ -362,46 +354,7 @@ else:
         st.title("Discover Ecosystem")
         st.caption("Verifiable authentic workflows streamed directly by peer talents and corporate engineering leads.")
         
-        # ─── FLOATING ANALYTICS WIDGETS OVERLAY BAR ───
-        st.markdown('<div class="widget-container">', unsafe_allow_html=True)
-        w_col1, w_col2, w_col3 = st.columns(3)
-        with w_col1:
-            st.metric(label="System Yield State", value="Optimal" if k_cfd > 0.7 else "Stable", delta=None if k_cfd > 0.7 else "-12% Mesa Plateau")
-        with w_col2:
-            show_topo = st.checkbox("📊 Floating Widget: View Universal Career Map", value=False)
-        with w_col3:
-            show_salary = st.checkbox("⚖️ Floating Widget: View Fair Pay Shadow Engine", value=False)
-        st.markdown('</div>', unsafe_allow_html=True)
-
-        # Dynamic expansion blocks simulating floating overlay logic
-        if show_topo:
-            with st.expander("📊 UNIVERSAL CAREER HORIZON TOPOGRAPHY MODEL", expanded=True):
-                v_mode = st.radio("Framework Layout Mapping:", ["3D Topography Surface Map", "2D Continuous Line Graph View"], horizontal=True, key="topo_widget_view")
-                if v_mode == "3D Topography Surface Map":
-                    X, Y = np.meshgrid(x_time, np.array([1, 2, 3]))
-                    Z = np.zeros_like(X)
-                    Z[0, :] = path_a_y; Z[1, :] = path_b_y; Z[2, :] = path_c_y
-                    fig = go.Figure(data=[go.Surface(x=X, y=Y, z=Z, colorscale='Viridis')])
-                    fig.update_layout(scene=dict(xaxis_title='Horizon (Years)', yaxis_title='Trajectory Branches', zaxis_title='Yield Elevation'), height=450)
-                else:
-                    fig = go.Figure()
-                    fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A', line=dict(color='#818cf8', width=3)))
-                    fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B', line=dict(color='#c084fc', width=3)))
-                    fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C', line=dict(color='#f472b6', width=3)))
-                    fig.update_layout(xaxis_title="Time Horizon (Years)", yaxis_title="Viability Index", height=350)
-                st.plotly_chart(fig, use_container_width=True)
-
-        if show_salary:
-            with st.expander("⚖️ FAIR PAY TIMELINE ACCORDANCE & SHADOW MODEL", expanded=True):
-                st.info("Showing real, peer-distributed lower, median, and upper career quartile trajectories over a 10-year horizon.")
-                salary_fig = go.Figure()
-                salary_fig.add_trace(go.Scatter(x=x_time[:25], y=path_a_y[:25]*1500, mode='lines', name='Upper Quartile (Top Tier Local)', line=dict(dash='dash', color='#00FF00')))
-                salary_fig.add_trace(go.Scatter(x=x_time[:25], y=path_a_y[:25]*1100, mode='lines', name='Median Peer Benchmark', line=dict(color='#818cf8')))
-                salary_fig.add_trace(go.Scatter(x=x_time[:25], y=path_a_y[:25]*800, mode='lines', name='Lower Quartile Baseline', line=dict(color='#FF0000')))
-                st.markdown("⚠️ **Visual Trajectory Pay Shadow:** Your current anchor compensation vector casts a baseline lifetime loss shadow across the 20-year horizon.")
-                st.plotly_chart(salary_fig, use_container_width=True)
-
-        # ─── MAIN SCROLLABLE MEDIA CONTENT FEED (Two-column Drawer architecture) ───
+        # Main Scrollable media layout feed with dynamic side drawer
         feed_col, drawer_col = st.columns([2, 1])
 
         with feed_col:
@@ -443,18 +396,109 @@ else:
             else:
                 st.info("Click 'Inspect Corporate Profile' on any scrolling video inside your discovery timeline to auto-extract their open operational tracks and metrics here.")
 
-        # AI Assistant Framework Embedment inside Tab 1
-        st.divider()
-        st.subheader("🤖 Career OS: AIMAN.AI Navigation Copilot")
-        chat_container = st.container()
-        with chat_container:
-            for message in st.session_state.messages:
-                avatar_img = "aimanai.jpeg" if message["role"] == "assistant" else "user"
-                with st.chat_message(message["role"], avatar=avatar_img):
-                    st.markdown(message["content"])
-
-    # 💼 TAB 2: PLACEMENTS PLUGINS MARKETPLACE
+    # 📊 TAB 2: ORIGINAL FULL-PAGE UNIVERSAL CAREER GRAPH
     with app_tabs[1]:
+        st.title("Career OS: Path Navigation Engine")
+        
+        view_mode = st.radio(
+            "Select Visualization Framework Layout:",
+            ["3D Topography Surface Map", "2D Continuous Line Graph View"],
+            horizontal=True,
+            key="universal_graph_toggle"
+        )
+        st.subheader("Visualizing the 40-Year Career Horizon with Data-Driven Geometry")
+        
+        # ─── CONDITION A: RENDER ORIGINAL 3D TOPOGRAPHY ───
+        if view_mode == "3D Topography Surface Map":
+            y_paths = np.array([1, 2, 3])
+            X, Y = np.meshgrid(x_time, y_paths)
+            Z = np.zeros_like(X)
+            Z[0, :] = path_a_y
+            Z[1, :] = path_b_y
+            Z[2, :] = path_c_y
+
+            fig = go.Figure(data=[go.Surface(
+                x=X, y=Y, z=Z, colorscale='Viridis',
+                lighting=dict(ambient=0.6, roughness=0.4),
+                colorbar=dict(title="Z: Market Yield")
+            )])
+
+            fig.update_layout(
+                scene=dict(
+                    xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
+                    yaxis=dict(
+                        title='Y: Trajectory Choice',
+                        tickvals=[1, 2, 3],
+                        ticktext=['Path A: Downstream', 'Path B: Numerical', 'Path C: CFD/Thermal'],
+                        gridcolor='#23282f'
+                    ),
+                    zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#23282f'),
+                    camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
+                ),
+                margin=dict(l=0, r=0, b=0, t=40), height=650,
+                paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
+            )
+
+        # ─── CONDITION B: RENDER Clean 2D MULTI-LINE VIEW ───
+        else:
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#818cf8', width=4)))
+            fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#c084fc', width=4)))
+            fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#f472b6', width=4)))
+
+            fig.update_layout(
+                xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f', zeroline=False),
+                yaxis=dict(title='Y: Career Viability & Yield Metric', range=[-1, 20], gridcolor='#23282f', zeroline=False),
+                margin=dict(l=40, r=40, b=40, t=40), height=550,
+                paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)", bordercolor="rgba(99,102,241,0.15)", borderwidth=1)
+            )
+        
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            st.markdown("### 📋 Navigation Analytics")
+            if k_cfd > 0.7:
+                st.success("🎯 **Optimal Pathway Detected:** Your high CFD vector has successfully flattened the early friction valley in the EV Automotive sector.")
+            else:
+                st.warning("⚠️ **Plateau Warning:** Your current profile relies heavily on traditional downstream kinetics. Watch out for the flat structural mesa appearing on Path A around Year 6.")
+            st.markdown("""
+            **Axis Definitions:**
+            * **X-Axis:** Continuous 40-year career arc timeline.
+            * **Y-Axis:** Structural industry domain branches.
+            * **Z-Axis:** Career height vector (compensation range + regional stability multiplier).
+            """)
+
+    # ⚖️ TAB 3: SALARY SPECIFIC GRAPH (FAIR PAY ENGINE)
+    with app_tabs[2]:
+        st.title("⚖️ Fair Pay Engine: Compensation Trajectory Mapping")
+        st.subheader("Combating Information Asymmetry via Distributed Peer Market Quartiles")
+        st.caption("This full-page projection charts distributed compensation bands over a 25-year tracking horizon based on active shape metrics.")
+        
+        salary_fig = go.Figure()
+        salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y[:35]*1600, mode='lines', name='Upper Quartile (Top Tier Tier-1 Multinationals)', line=dict(dash='dash', color='#00FF00', width=3)))
+        salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y[:35]*1100, mode='lines', name='Median Peer Benchmark Industry Standard', line=dict(color='#818cf8', width=4)))
+        salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y[:35]*750, mode='lines', name='Lower Quartile Base Pay Margin', line=dict(color='#FF3333', width=3)))
+
+        salary_fig.update_layout(
+            xaxis=dict(title='Career Timeline Horizon (Years)', gridcolor='#23282f'),
+            yaxis=dict(title='Estimated Monthly Yield Vector (RM / Local Adjusted)', gridcolor='#23282f'),
+            height=550,
+            paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+            legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)")
+        )
+        
+        s_col1, s_col2 = st.columns([3, 1])
+        with s_col1:
+            st.plotly_chart(salary_fig, use_container_width=True)
+        with s_col2:
+            st.markdown("### 🔍 Pay Shadow Audit")
+            st.warning("⚠️ **Asymmetry Detected:** Based on default regional baseline weights, entry-level downstream process operations roles reflect a -15% visual trajectory pay shadow compared to advanced computation fields.")
+            st.info("💡 **Vector Remedy:** Increasing your [Path B] Numerical Simulation profile tracking slider lifts your early career salary anchor line away from the lower quartile valley boundary.")
+
+    # 💼 TAB 4: PLACEMENTS PLUGINS MARKETPLACE
+    with app_tabs[3]:
         st.title("💼 Live Placements & Trajectory Hub")
         st.write("Anti-spam job deployment tunnels mapping real-time professional actions to your specific profile dimension nodes.")
         
@@ -479,8 +523,8 @@ else:
                         if st.button("Deploy Application Stack", key=f"market_btn_{job['company']}_{job['role']}"):
                             st.success(f"Application securely deployed to {job['company']} recruitment dashboard!")
 
-    # ─── TAB 3: COMMUNICATIONS NETWORK ───
-    with app_tabs[2]:
+    # ─── TAB 5: COMMUNICATIONS NETWORK ───
+    with app_tabs[4]:
         st.title("💬 Career OS Communications Matrix")
         st.subheader("Real-Time Network Inbound Tracks & Verification Logs")
         
@@ -509,7 +553,16 @@ else:
                 st.markdown("*Bro, look at the Fair Pay shadow chart metric. I just verified my engineering logs, and our university project parameters shifted my median track up instantly. Let me know if you want to look over my dashboard code.*")
                 st.text_input("Send message to Safaruddin...", key="msg_peer")
 
-    # ─── GLOBAL CHAT INPUT PROCESSING ───
+    # ─── GLOBAL CHAT INPUT PROCESSING & AI INTEGRATION (Embedded inside main workspace) ───
+    st.divider()
+    st.subheader("🤖 Career OS: AIMAN.AI Navigation Copilot")
+    chat_container = st.container()
+    with chat_container:
+        for message in st.session_state.messages:
+            avatar_img = "aimanai.jpeg" if message["role"] == "assistant" else "user"
+            with st.chat_message(message["role"], avatar=avatar_img):
+                st.markdown(message["content"])
+
     client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
     if user_query := st.chat_input("Ask about structural layout adjustments, pay shadows, or path blockages..."):
@@ -523,7 +576,7 @@ else:
         You are AIMAN.AI, the Career OS Honest Navigation Copilot. You act as a supportive, grounded, and radically candid mentor for a Chemical Engineering student.
         Your tone is empathetic but highly direct—like a helpful peer, not a rigid lecturer. Avoid corporate fluff; speak with data-driven honesty.
         
-        The user is navigating a dynamic, short-form video discovery ecosystem equipped with floating graph widgets:
+        The user is navigating an ecosystem with distinct tabs for short form discover feeds, a full 3D growth topography page, and a full fair pay engine layout:
         - Reactor Kinetics Mastery (Path A Core): {k_kinetics}/1.0
         - Numerical Methods Vector (Path B Core): {k_math}/1.0
         - CFD & Thermal Management Vector (Path C Core): {k_cfd}/1.0
