@@ -361,7 +361,7 @@ else:
             
             # NOTE: When you upload your file to GitHub, change this link to your raw URL!
             # Example: "https://raw.githubusercontent.com/your-username/your-repo/main/your-video.mp4"
-            video_url_proton = "https://github.com/ashminggu/careeros_migger_utp/blob/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
+            video_url_proton = "https://www.youtube.com/shorts/i9rOvS2nATg"
             st.video(video_url_proton, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
