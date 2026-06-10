@@ -189,6 +189,12 @@ st.markdown("""
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
     }
+    div.stButton > button:first-child:hover {
+        background: linear-gradient(90deg, #5850ec 0%, #8c46ff 100%);
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
+        color: white !important;
+    }
     
     /* ─── TIKTOK FEED POST UI ─── */
     .tiktok-card {
@@ -201,19 +207,6 @@ st.markdown("""
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
     
-    .tiktok-video-container {
-        background: #0d1324; 
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
-        border-bottom: 1px solid rgba(240, 246, 252, 0.05);
-    }
-
-    .tiktok-media-element {
-        border-radius: 16px 16px 0 0; 
-        object-fit: cover;
-    }
-
     .tiktok-meta {
         padding: 20px;
     }
@@ -318,13 +311,15 @@ if not st.session_state.logged_in:
 # 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN)
 # ==============================================================================
 else:
-    # Global Sidebar Sliders configuration (Always available behind the scenes to control mathematics)
+    # Global Sidebar Sliders configuration
     st.sidebar.header("Candidate Shape Vector Configuration")
-    k_kinetics = st.sidebar.slider("[PATH A] Downstream Operations: Reactor Kinetics", 0.1, 1.0, 0.8)
+    k_kinetics = st.sidebar.slider("[PATH A] Downstream Operations: Reactor Kinetics Mastery", 0.1, 1.0, 0.8)
     k_math = st.sidebar.slider("[PATH B] Numerical Methods in ChemE", 0.1, 1.0, 0.5)
     k_cfd = st.sidebar.slider("[PATH C] CFD & Thermal Management", 0.1, 1.0, 0.3)
     
     st.sidebar.divider()
+    st.sidebar.info("**Note:** Changing the CFD slider instantly lifts the high-yield EV valley on the map (basis on FSUTP)")
+
     if st.sidebar.button("Log Out Workspace", key="logout_system_btn"):
         st.session_state.logged_in = False
         st.rerun()
@@ -339,11 +334,11 @@ else:
     internships_db = [
         {"company": "PETRONAS Carigali", "role": "Downstream Process Operations Intern", "course": "Chemical Engineering", "duration": "8 Months (May - Dec)", "scope": "Assist in daily monitoring of multi-phase separator constraints. Conduct molar mass balances and evaluate catalyst deactivation profiles.", "impact": "➕ Lifts [Path A] Reactor Kinetics by +0.3"},
         {"company": "Proton R&D (NxGV Division)", "role": "Battery Thermal Management Simulation Trainee", "course": "Mechanical / Chemical Engineering", "duration": "6 Months (June - Nov)", "scope": "Develop transient thermal fluid simulations for liquid-cooled lithium-ion battery packs. Conduct geometric grid meshing and execute thermal FMEA matrix tracking.", "impact": "➕ Lifts [Path C] CFD & Thermal Management by +0.4"},
-        {"company": "AspenTech", "role": "Process Digital Twin Engineer Intern", "course": "Chemical / Software Engineering", "duration": "6 Months (Jan - June)", "scope": "Formulate dynamic numerical simulation models for distillation columns using custom Runge-Kutta convergence blocks.", "impact": "➕ Lifts [Path B] Numerical Methods by +0.35"},
+        {"company": "AspenTech Systems", "role": "Process Digital Twin Engineer Intern", "course": "Chemical / Software Engineering", "duration": "6 Months (Jan - June)", "scope": "Formulate dynamic numerical simulation models for distillation columns using custom Runge-Kutta convergence blocks.", "impact": "➕ Lifts [Path B] Numerical Methods by +0.35"},
         {"company": "Intel Malaysia", "role": "Substrate Thermal Dissipation Intern", "course": "Mechanical / Electrical Engineering", "duration": "4 Months (May - Aug)", "scope": "Analyze micro-component convective heat fluxes on advanced silicon substrates. Run localized FEA and testing arrays.", "impact": "➕ Lifts [Path C] CFD & Thermal Management by +0.2"}
     ]
 
-    # Global Navigation Tabs Architecture (Organized into full distinct layout tracks)
+    # Global Navigation Tabs Architecture (Re-organized completely into full distinct viewport pages)
     app_tabs = st.tabs([
         "📱 Discover Feed", 
         "📊 Universal Career Graph",
@@ -361,19 +356,13 @@ else:
         feed_col, drawer_col = st.columns([2, 1])
 
         with feed_col:
-            # 🎥 Post Vector 1: Proton NxGV Lead (HTML5 Auto-looping/Muted Framework)
+            # 🎥 Post Vector 1: Proton NxGV Lead (Native Streamlit Media Optimization Track)
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
             
-            # TODO: Swap out this link with your raw GitHub video link when uploaded!
-            video_url_proton = "https://www.youtube.com/shorts/i9rOvS2nATg"
-            st.markdown(f"""
-                <div class="tiktok-video-container">
-                    <video width="100%" height="440" controls loop muted playsinline class="tiktok-media-element">
-                        <source src="{video_url_proton}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            """, unsafe_allow_html=True)
+            # NOTE: When you upload your file to GitHub, change this link to your raw URL!
+            # Example: "https://raw.githubusercontent.com/your-username/your-repo/main/your-video.mp4"
+            video_url_proton = "https://github.com/ashminggu/careeros_migger_utp/blob/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
+            st.video(video_url_proton, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
             st.markdown('<span class="tiktok-badge">🔥 Corporate Engineering Update</span>', unsafe_allow_html=True)
@@ -386,16 +375,9 @@ else:
             # 🎥 Post Vector 2: PETRONAS Carigali Asset Lead
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
             
-            # TODO: Swap out this link with your raw GitHub video link when uploaded!
-            video_url_petronas = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-            st.markdown(f"""
-                <div class="tiktok-video-container">
-                    <video width="100%" height="440" controls loop muted playsinline class="tiktok-media-element">
-                        <source src="{video_url_petronas}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            """, unsafe_allow_html=True)
+            # NOTE: When you upload your file to GitHub, change this link to your raw URL!
+            video_url_petronas = "https://html5demos.com/assets/dizzy.mp4"
+            st.video(video_url_petronas, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
             st.markdown('<span class="tiktok-badge">⚡ Asset Performance Deployment</span>', unsafe_allow_html=True)
@@ -464,7 +446,7 @@ else:
                 paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
             )
 
-        # ─── CONDITION B: RENDER Clean 2D MULTI-LINE VIEW ───
+        # ─── CONDITION B: RENDER CLEAN 2D MULTI-LINE VIEW ───
         else:
             fig = go.Figure()
             fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#818cf8', width=4)))
@@ -578,7 +560,7 @@ else:
                 st.markdown("*Bro, look at the Fair Pay shadow chart metric. I just verified my engineering logs, and our university project parameters shifted my median track up instantly. Let me know if you want to look over my dashboard code.*")
                 st.text_input("Send message to Safaruddin...", key="msg_peer")
 
-    # ─── GLOBAL CHAT INPUT PROCESSING & AI INTEGRATION (Embedded inside main workspace) ───
+    # ─── GLOBAL CHAT INPUT PROCESSING & AI INTEGRATION ───
     st.divider()
     st.subheader("🤖 Career OS: AIMAN.AI Navigation Copilot")
     chat_container = st.container()
