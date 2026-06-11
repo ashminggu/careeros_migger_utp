@@ -221,6 +221,15 @@ st.markdown("""
         display: inline-block;
         margin-bottom: 8px;
     }
+
+    /* ─── VIDEO SIZE CONSTRAINTS OVERRIDE ─── */
+    div[data-testid="stVideo"], .stVideo {
+        max-width: 440px !important;
+        margin: 15px auto !important;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -358,9 +367,8 @@ else:
             # 🎥 Post Vector 1: Proton NxGV Lead
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
             
-            # Using an open-source animation stream that is completely open-CORS compliant for local development
-            video_url_proton = "https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
-            st.video(video_url_proton, format="video/mp4", start_time=0)
+            raw_github_video_url = "https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
+            st.video(raw_github_video_url, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
             st.markdown('<span class="tiktok-badge">🔥 Corporate Engineering Update</span>', unsafe_allow_html=True)
@@ -373,9 +381,7 @@ else:
             # 🎥 Post Vector 2: PETRONAS Carigali Asset Lead
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
             
-            # Using another completely open-CORS infrastructure test file to confirm background engine loop functionality
-            video_url_petronas = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-            st.video(video_url_petronas, format="video/mp4", start_time=0)
+            st.video(raw_github_video_url, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
             st.markdown('<span class="tiktok-badge">⚡ Asset Performance Deployment</span>', unsafe_allow_html=True)
