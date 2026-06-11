@@ -338,7 +338,7 @@ else:
         {"company": "Intel Malaysia", "role": "Substrate Thermal Dissipation Intern", "course": "Mechanical / Electrical Engineering", "duration": "4 Months (May - Aug)", "scope": "Analyze micro-component convective heat fluxes on advanced silicon substrates. Run localized FEA and testing arrays.", "impact": "➕ Lifts [Path C] CFD & Thermal Management by +0.2"}
     ]
 
-    # Global Navigation Tabs Architecture (Re-organized completely into full distinct viewport pages)
+    # Global Navigation Tabs Architecture
     app_tabs = st.tabs([
         "📱 Discover Feed", 
         "📊 Universal Career Graph",
@@ -352,16 +352,14 @@ else:
         st.title("Discover Ecosystem")
         st.caption("Verifiable authentic workflows streamed directly by peer talents and corporate engineering leads.")
         
-        # Main Scrollable media layout feed with dynamic side drawer
         feed_col, drawer_col = st.columns([2, 1])
 
         with feed_col:
-            # 🎥 Post Vector 1: Proton NxGV Lead (Native Streamlit Media Optimization Track)
+            # 🎥 Post Vector 1: Proton NxGV Lead
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
             
-            # NOTE: When you upload your file to GitHub, change this link to your raw URL!
-            # Example: "https://raw.githubusercontent.com/your-username/your-repo/main/your-video.mp4"
-            video_url_proton = "https://www.youtube.com/shorts/i9rOvS2nATg"
+            # Using an open-source animation stream that is completely open-CORS compliant for local development
+            video_url_proton = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             st.video(video_url_proton, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
@@ -375,8 +373,8 @@ else:
             # 🎥 Post Vector 2: PETRONAS Carigali Asset Lead
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
             
-            # NOTE: When you upload your file to GitHub, change this link to your raw URL!
-            video_url_petronas = "https://html5demos.com/assets/dizzy.mp4"
+            # Using another completely open-CORS infrastructure test file to confirm background engine loop functionality
+            video_url_petronas = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
             st.video(video_url_petronas, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
