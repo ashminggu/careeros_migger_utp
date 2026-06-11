@@ -359,7 +359,7 @@ else:
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
             
             # Using an open-source animation stream that is completely open-CORS compliant for local development
-            video_url_proton = "https://github.com/ashminggu/careeros_migger_utp/blob/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
+            video_url_proton = "https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
             st.video(video_url_proton, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
