@@ -25,10 +25,29 @@ st.markdown("""
         color: #111111 !important;
     }
     
-    /* Global Typography Force Overrides */
+    /* UNIVERSAL CONTRAST FORCE - Fixes blending text across ALL components */
+    .stApp, p, span, label, li, div, [data-testid="stMarkdownContainer"] p {
+        color: #222222 !important;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Global Typography Headings Force Overrides */
     h1, h2, h3, h4, h5, h6, [data-testid="stHeader"] {
         color: #1b3b22 !important; /* Deep Forest Green */
         font-family: 'Inter', sans-serif;
+        font-weight: 700 !important;
+    }
+    
+    /* Widget Input Labels, Slider Titles, Selectbox Text Contrast Fix */
+    .stSlider label, .stSelectbox label, .stRadio label, .stTextInput label, [data-testid="stWidgetLabel"] p {
+        color: #1b3b22 !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+    }
+    
+    /* Expander styling tweaks */
+    .data-testid="stExpander" p, .stExpander details summary {
+        color: #1b3b22 !important;
     }
     
     /* Native App Bar Branding Header */
@@ -274,7 +293,7 @@ st.markdown("""
     
     .overlay-action-counter {
         font-size: 11px;
-        color: #ffffff;
+        color: #ffffff !important;
         font-weight: 700;
         margin-top: -4px;
         margin-bottom: 4px;
@@ -290,7 +309,7 @@ st.markdown("""
     
     .tiktok-badge {
         background: rgba(44, 74, 53, 0.08);
-        color: #1b3b22;
+        color: #1b3b22 !important;
         padding: 4px 12px;
         border-radius: 6px;
         font-size: 12px;
@@ -325,8 +344,6 @@ k_kinetics, k_math, k_cfd = 0.8, 0.5, 0.3
 # 🚪 PHASE 1: SCROLLABLE LANDING INTERFACE
 # ==============================================================================
 if not st.session_state.logged_in:
-    
-    # CRITICAL FIX: Left-aligned content blocks must start exactly flush against the screen margin
     landing_html = """
 <div class="landing-center-box">
     <div class="hero-glass-panel">
@@ -461,7 +478,7 @@ else:
     </div>
     <div class="tiktok-meta">
         <span class="tiktok-badge">🔥 Corporate Engineering Update</span>
-        <h4 style="margin-top:0px; line-height:1.3; font-size:16px;">"Why mechanical grid meshing limits transient cooling iterations in hybrid powertrains."</h4>
+        <h4 style="margin-top:0px; line-height:1.3; font-size:16px; color:#1b3b22 !important;">"Why mechanical grid meshing limits transient cooling iterations in hybrid powertrains."</h4>
         <p style="color:#555555; font-size:13px; margin-bottom:15px;">Published by: Proton R&D (NxGV Division)</p>
     </div>
 </div>
@@ -492,7 +509,7 @@ else:
     </div>
     <div class="tiktok-meta">
         <span class="tiktok-badge">⚡ Asset Performance Deployment</span>
-        <h4 style="margin-top:0px; line-height:1.3; font-size:16px;">"Balancing downstream separator constraint margins during unexpected catalyst deactivation cycles."</h4>
+        <h4 style="margin-top:0px; line-height:1.3; font-size:16px; color:#1b3b22 !important;">"Balancing downstream separator constraint margins during unexpected catalyst deactivation cycles."</h4>
         <p style="color:#555555; font-size:13px; margin-bottom:15px;">Published by: PETRONAS Carigali</p>
     </div>
 </div>
@@ -517,7 +534,7 @@ else:
             else:
                 st.info("Click 'Inspect Corporate Profile' on any scrolling video inside your discovery timeline to auto-extract their open operational tracks and metrics here.")
 
-   # 📊 TAB 2: UNIVERSAL CAREER GRAPH
+    # 📊 TAB 2: UNIVERSAL CAREER GRAPH
     with app_tabs[1]:
         st.title("CariKerja.com: Path Navigation Engine")
         col1, col2 = st.columns([3, 1])
@@ -554,14 +571,12 @@ else:
                 Z[1, :] = path_b_y
                 Z[2, :] = path_c_y
 
-                # FIXED: Moved colorbar title configuration inside the data trace object definition block
                 fig = go.Figure(data=[go.Surface(
                     x=X, y=Y, z=Z, colorscale='Viridis',
                     lighting=dict(ambient=0.6, roughness=0.4),
                     colorbar=dict(title=dict(text="Z: Career Yield", font=dict(color="#1b3b22")))
                 )])
                 
-                # FIXED: Removed the invalid root 'backgroundcolor' key from the scene dictionary block
                 fig.update_layout(
                     scene=dict(
                         xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
@@ -679,9 +694,11 @@ else:
         for message in st.session_state.messages:
             avatar_img = "aimanai.jpeg" if message["role"] == "assistant" else "user"
             with st.chat_message(message["role"], avatar=avatar_img):
-                st.markdown(message["content"])
+                st.markdown(f"<span style='color:#222222 !important;'>{message['content']}</span>", unsafe_allow_html=True)
 
-    client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+    # SECURE EXPLICIT INITIALIZATION WITH FALLBACK PLACEHOLDER TOKEN TO AVOID CRASHES
+    api_token = st.secrets.get("GEMINI_API_KEY", "MOCK_KEY_FALLBACK_VAL")
+    client = genai.Client(api_key=api_token)
 
     if user_query := st.chat_input("Ask about structural layout adjustments, pay shadows, or path blockages..."):
         with chat_container:
@@ -701,10 +718,13 @@ else:
         with chat_container:
             with st.chat_message("assistant", avatar="aimanai.jpeg"):
                 response_placeholder = st.empty()
-                response = client.models.generate_content(
-                    model='gemini-2.5-flash', contents=formatted_contents, config={"system_instruction": system_instruction}
-                )
-                ai_text = response.text
+                if api_token == "MOCK_KEY_FALLBACK_VAL":
+                    ai_text = "⚠️ **System Alert:** `GEMINI_API_KEY` is currently missing from your Streamlit Secrets environment. Please provide a valid token to mount live workspace responses."
+                else:
+                    response = client.models.generate_content(
+                        model='gemini-2.5-flash', contents=formatted_contents, config={"system_instruction": system_instruction}
+                    )
+                    ai_text = response.text
                 response_placeholder.markdown(ai_text)
                 
         st.session_state.messages.append({"role": "assistant", "content": ai_text})
