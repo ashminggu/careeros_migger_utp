@@ -261,7 +261,7 @@ if not st.session_state.logged_in:
                     <div class="feature-desc">Consisting of 1st Year students from Universiti Teknologi PETRONAS, we have developed this project based on our own woes when discussing our future as seeking-to-be-employed post-graduates; all the while being in-line with what we believe CareerOS is about.</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-title"Picture of our team</div>
+                    <div class="feature-title"Damn of our team</div>
                     <div class="feature-desc">From the left; Umar, Aiman, Imran, Ariq (Aca).</div>
                 </div>
                 <div class="feature-card">
