@@ -12,7 +12,7 @@ if "messages" not in st.session_state:
         {"role": "assistant", "content": "Selamat Sejahtera! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
     ]
 
-# ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES (PATCHED CREAM & FOREST GREEN) ───
+# ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES (CREAM & FOREST GREEN) ───
 st.markdown("""
     <style>
     /* Global Background - Premium Editorial Cream */
@@ -90,7 +90,7 @@ st.markdown("""
         line-height: 1.5;
     }
     
-    /* ─── FEATURE TRAY & BOXES (FIXED FONT COLORS) ─── */
+    /* ─── FEATURE TRAY & BOXES ─── */
     .features-tray {
         display: flex;
         gap: 20px;
@@ -114,13 +114,12 @@ st.markdown("""
     .feature-title {
         font-size: 18px;
         font-weight: 700;
-        color: #1b3b22 !important; /* Dark Green Titles */
+        color: #1b3b22 !important;
         margin-bottom: 12px;
         border-bottom: 1px solid #e6e4dc;
         padding-bottom: 6px;
     }
     
-    /* CRITICAL FIX: Explicit black color mapping with high priority targeting */
     .feature-desc {
         font-size: 13.5px;
         color: #222222 !important; 
@@ -183,14 +182,14 @@ st.markdown("""
         text-transform: uppercase;
     }
     
-    /* ─── HIGH CONTRACT BUTTONS ─── */
+    /* ─── HIGH CONTRAST BUTTONS ─── */
     .stButton {
         display: flex;
         justify-content: center;
         width: 100%;
     }
     div.stButton > button:first-child {
-        background: #1b3b22 !important; /* Deep Green Solid Button */
+        background: #1b3b22 !important;
         color: #ffffff !important;
         font-size: 18px;
         font-weight: 600;
@@ -206,7 +205,6 @@ st.markdown("""
         color: #ffffff !important;
     }
     
-    /* Main Content Sidebar Buttons Fix */
     .stSidebar div.stButton > button:first-child {
         background: #cbd5e1 !important;
         color: #1e293b !important;
@@ -216,20 +214,81 @@ st.markdown("""
         border-radius: 6px;
     }
     
-    /* ─── MAIN APP WORKSPACE FEED OVERRIDES ─── */
+    /* ─── MAIN APP WORKSPACE FEED OVERRIDES (FIXED VIDEO FRAMING) ─── */
     .tiktok-card {
         background: #ffffff;
         border: 1px solid #e6e4dc;
         border-radius: 16px;
         padding: 0px;
-        margin-bottom: 30px;
+        margin: 0 auto 30px auto;
+        max-width: 420px; /* Forces card to stay beautifully compact */
         overflow: hidden;
         box-shadow: 0 4px 20px rgba(0,0,0,0.02);
     }
     
+    /* Immersive Overlay Frame Setup */
+    .video-overlay-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 380px;
+        margin: 15px auto;
+    }
+    
+    /* Fixed Video Size Overrides */
+    div[data-testid="stVideo"], .stVideo {
+        max-width: 380px !important;
+        margin: 0 auto !important;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e6e4dc;
+    }
+    
+    /* Absolute Floating Sidebar Controls */
+    .video-action-overlay {
+        position: absolute;
+        right: 12px;
+        bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        z-index: 99;
+        align-items: center;
+    }
+    
+    .overlay-action-btn {
+        background: rgba(27, 59, 34, 0.85) !important;
+        border: 1px solid rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+        width: 42px;
+        height: 42px;
+        border-radius: 50% !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        transition: transform 0.2s ease;
+    }
+    
+    .overlay-action-btn:hover {
+        transform: scale(1.15);
+        background: #1b3b22 !important;
+    }
+    
+    .overlay-action-counter {
+        font-size: 11px;
+        color: #ffffff;
+        font-weight: 600;
+        margin-top: -12px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        font-family: sans-serif;
+    }
+    
     .tiktok-meta {
-        padding: 24px;
+        padding: 20px;
         background: #ffffff;
+        border-top: 1px solid #f4f3ec;
     }
     
     .tiktok-badge {
@@ -243,7 +302,6 @@ st.markdown("""
         margin-bottom: 12px;
     }
 
-    /* Tabs Layout Custom Styling */
     .stTabs [data-baseweb="tab"] {
         color: #666666 !important;
         font-weight: 500;
