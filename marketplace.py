@@ -12,127 +12,130 @@ if "messages" not in st.session_state:
         {"role": "assistant", "content": "Selamat Sejahtera! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
     ]
 
-# ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES (CREAM & FOREST GREEN WORKSPACE) ───
+# ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES (PATCHED CREAM & FOREST GREEN) ───
 st.markdown("""
     <style>
     /* Global Background - Premium Editorial Cream */
     .stApp {
         background-color: #fcfbf7;
         background-image: 
-            linear-gradient(rgba(44, 74, 53, 0.02) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(44, 74, 53, 0.02) 1px, transparent 1px);
+            linear-gradient(rgba(44, 74, 53, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(44, 74, 53, 0.03) 1px, transparent 1px);
         background-size: 30px 30px;
-        color: #111111;
+        color: #111111 !important;
     }
     
-    /* Typography & Core Streamlit Elements Override */
-    h1, h2, h3, [data-testid="stHeader"] {
+    /* Global Typography Force Overrides */
+    h1, h2, h3, h4, h5, h6, [data-testid="stHeader"] {
         color: #1b3b22 !important; /* Deep Forest Green */
         font-family: 'Inter', sans-serif;
     }
     
-    p, span, label, div {
-        color: #222222;
+    /* Native App Bar Branding Header */
+    .brand-header-bar {
+        width: 100%;
+        padding: 15px 0px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e6e4dc;
+    }
+    .brand-header-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #1b3b22 !important;
+        letter-spacing: -1px;
     }
     
-    /* Outer layout positioning frame */
+    /* Outer layout positioning frame - CENTERED FOR LANDING */
     .landing-center-box {
         display: flex;
         flex-direction: column;
-        align-items: flex-start; /* Left-aligned minimal layout matching reference */
+        align-items: center; 
+        justify-content: center;
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
-        padding-top: 4%;
+        padding-top: 2%;
+        text-align: center;
     }
 
-    /* ─── HERO CANVAS PANEL (MINIMAL WHITE BLOCK) ─── */
+    /* ─── HERO CANVAS PANEL ─── */
     .hero-glass-panel {
         background: #ffffff;
         border: 1px solid #e1ded7;
-        border-radius: 16px;
-        padding: 50px 0px;
+        border-radius: 24px;
+        padding: 50px 40px;
         width: 100%;
-        text-align: left; /* Shift text left based on your reference image */
+        text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        position: relative;
-        margin-bottom: 40px;
+        align-items: center;
+        box-shadow: 0 15px 40px rgba(44, 74, 53, 0.04);
     }
     
     .landing-title {
-        font-size: 72px;
-        font-weight: 800;
+        font-size: 80px;
+        font-weight: 900;
         letter-spacing: -2px;
         line-height: 1.1;
-        color: #1b3b22 !important; /* Pure Dark Green Header */
-        background: none !important;
-        -webkit-text-fill-color: initial !important;
-        margin-bottom: 10px;
+        color: #1b3b22 !important;
+        margin-bottom: 15px;
     }
     
     .landing-subtitle {
-        font-size: 20px;
-        color: #555555;
+        font-size: 22px;
+        color: #555555 !important;
         margin-bottom: 40px;
         font-weight: 400;
-        max-width: 650px;
+        max-width: 700px;
         line-height: 1.5;
     }
     
-    /* ─── FOUR OPENING REMARK BOXES ─── */
+    /* ─── FEATURE TRAY & BOXES (FIXED FONT COLORS) ─── */
     .features-tray {
         display: flex;
         gap: 20px;
         justify-content: center;
         width: 100%;
-        max-height: 280px;
         align-items: stretch;
     }
     
     .feature-card {
         background: #ffffff !important;
         border: 1px solid #e6e4dc !important;
-        border-radius: 12px;
+        border-radius: 16px;
         padding: 24px;
         flex: 1;
         text-align: left;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 4px 12px rgba(44, 74, 53, 0.03);
+        box-shadow: 0 4px 12px rgba(44, 74, 53, 0.02);
     }
     
     .feature-title {
         font-size: 18px;
         font-weight: 700;
         color: #1b3b22 !important; /* Dark Green Titles */
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         border-bottom: 1px solid #e6e4dc;
         padding-bottom: 6px;
     }
     
+    /* CRITICAL FIX: Explicit black color mapping with high priority targeting */
     .feature-desc {
         font-size: 13.5px;
-        color: #333333 !important; /* Crisp Black Text */
-        line-height: 1.5;
-    }
-    
-    .feature-subtitle-tag {
-        font-size: 11px;
-        color: #2c4a35 !important;
-        font-weight: 600;
-        letter-spacing: 0.5px;
+        color: #222222 !important; 
+        line-height: 1.6;
+        font-weight: 400 !important;
     }
 
-    /* ─── SCROLLABLE DEEP DIVE ARTIFACTS ─── */
+    /* ─── PRODUCT DEEP DIVE ARTIFACTS ─── */
     .product-details-container {
         width: 100%;
-        margin-top: 40px;
+        margin-top: 50px;
         display: flex;
         flex-direction: column;
         gap: 60px;
-        padding-bottom: 100px;
+        padding-bottom: 80px;
     }
 
     .detail-row {
@@ -140,6 +143,7 @@ st.markdown("""
         align-items: center;
         gap: 50px;
         width: 100%;
+        text-align: left;
     }
 
     .detail-row.reverse {
@@ -155,8 +159,6 @@ st.markdown("""
         font-weight: 700;
         color: #1b3b22 !important;
         margin-bottom: 15px;
-        background: none !important;
-        -webkit-text-fill-color: initial !important;
     }
 
     .text-block p {
@@ -170,7 +172,7 @@ st.markdown("""
         height: 300px;
         background: #f4f3ec;
         border: 1px solid #e1ded7;
-        border-radius: 12px;
+        border-radius: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -179,45 +181,54 @@ st.markdown("""
         font-size: 13px;
         letter-spacing: 1px;
         text-transform: uppercase;
-        box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
     }
     
-    /* ─── HIGH CONTRACT EXECUTIVE BUTTON ─── */
+    /* ─── HIGH CONTRACT BUTTONS ─── */
     .stButton {
         display: flex;
-        justify-content: flex-start; /* Left aligned button */
+        justify-content: center;
         width: 100%;
     }
     div.stButton > button:first-child {
-        background: #1b3b22 !important; /* Deep Forest Green Solid Button */
+        background: #1b3b22 !important; /* Deep Green Solid Button */
         color: #ffffff !important;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
-        padding: 12px 50px;
-        border-radius: 8px; 
+        padding: 12px 60px;
+        border-radius: 30px; 
         border: 1px solid #142c19;
-        box-shadow: 0 4px 12px rgba(27, 59, 34, 0.15);
+        box-shadow: 0 4px 15px rgba(27, 59, 34, 0.15);
         transition: all 0.2s ease;
     }
     div.stButton > button:first-child:hover {
         background: #255230 !important;
         transform: translateY(-1px);
-        box-shadow: 0 6px 18px rgba(27, 59, 34, 0.25);
+        color: #ffffff !important;
     }
     
-    /* ─── WORKSPACE CONTENT ARCHITECTURE (POST-LOGIN GRID) ─── */
+    /* Main Content Sidebar Buttons Fix */
+    .stSidebar div.stButton > button:first-child {
+        background: #cbd5e1 !important;
+        color: #1e293b !important;
+        border: 1px solid #cbd5e1;
+        font-size: 14px;
+        padding: 8px 20px;
+        border-radius: 6px;
+    }
+    
+    /* ─── MAIN APP WORKSPACE FEED OVERRIDES ─── */
     .tiktok-card {
         background: #ffffff;
         border: 1px solid #e6e4dc;
-        border-radius: 12px;
+        border-radius: 16px;
         padding: 0px;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.02);
     }
     
     .tiktok-meta {
-        padding: 20px;
+        padding: 24px;
         background: #ffffff;
     }
     
@@ -225,36 +236,21 @@ st.markdown("""
         background: rgba(44, 74, 53, 0.08);
         color: #1b3b22;
         padding: 4px 12px;
-        border-radius: 4px;
+        border-radius: 6px;
         font-size: 12px;
         font-weight: 600;
         display: inline-block;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
     }
 
-    /* Tabs Styling Adjustments for Light Mode */
+    /* Tabs Layout Custom Styling */
     .stTabs [data-baseweb="tab"] {
-        color: #555555 !important;
+        color: #666666 !important;
         font-weight: 500;
     }
     .stTabs [aria-selected="true"] {
         color: #1b3b22 !important;
         font-weight: 700 !important;
-    }
-
-    /* Expander boxes UI fix */
-    div[data-testid="stExpander"] {
-        background-color: #ffffff !important;
-        border: 1px solid #e6e4dc !important;
-        border-radius: 8px !important;
-    }
-
-    /* Video scaling feed constraint override */
-    div[data-testid="stVideo"], .stVideo {
-        max-width: 440px !important;
-        margin: 15px auto !important;
-        border-radius: 8px;
-        border: 1px solid #e6e4dc;
     }
     </style>
 """, unsafe_allow_html=True)
