@@ -557,14 +557,15 @@ else:
                 fig = go.Figure(data=[go.Surface(
                     x=X, y=Y, z=Z, colorscale='Viridis',
                     lighting=dict(ambient=0.6, roughness=0.4),
-                    colorbar=dict(title="Z: Market Yield")
+                    colorbar=dict(title=dict(text="Z: Market Yield", font=dict(color="#1b3b22")))
                 )])
+                # PREMIUM LIGHT MODE THEME OVERRIDES
                 fig.update_layout(
                     scene=dict(
-                        xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc'),
-                        yaxis=dict(title='Y: Trajectory Choice', tickvals=[1, 2, 3], ticktext=['Path A: Downstream', 'Path B: Numerical', 'Path C: CFD/Thermal'], gridcolor='#e6e4dc'),
-                        zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#e6e4dc'),
-                        camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
+                        xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
+                        yaxis=dict(title='Y: Trajectory Choice', tickvals=[1, 2, 3], ticktext=['Path A', 'Path B', 'Path C'], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
+                        zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
+                        backgroundcolor="rgba(0,0,0,0)"
                     ),
                     margin=dict(l=0, r=0, b=0, t=40), height=550,
                     paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
@@ -573,13 +574,15 @@ else:
                 fig = go.Figure()
                 fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#1b3b22', width=4)))
                 fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#2c4a35', width=4)))
-                fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#f472b6', width=4)))
+                fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#d97706', width=4))) # Adjusted for contrast
+                
+                # PREMIUM LIGHT MODE THEME OVERRIDES
                 fig.update_layout(
-                    xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc'),
-                    yaxis=dict(title='Y: Career Viability Metric', range=[-1, 20], gridcolor='#e6e4dc'),
+                    xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
+                    yaxis=dict(title='Y: Career Viability Metric', range=[-1, 20], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
                     margin=dict(l=40, r=40, b=40, t=40), height=550,
                     paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
-                    legend=dict(font=dict(color="#111111"), bgcolor="rgba(255,255,255,0.6)")
+                    legend=dict(font=dict(color="#1b3b22"), bgcolor="rgba(255,255,255,0.8)", bordercolor="#e6e4dc", borderwidth=1)
                 )
             st.plotly_chart(fig, use_container_width=True)
 
@@ -602,15 +605,16 @@ else:
 
         with s_col1:
             salary_fig = go.Figure()
-            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1600, mode='lines', name='Upper Quartile (Top Tier Multinationals)', line=dict(dash='dash', color='#00FF00', width=3)))
+            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1600, mode='lines', name='Upper Quartile (Top Tier Multinationals)', line=dict(dash='dash', color='#16a34a', width=3)))
             salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1100, mode='lines', name='Median Peer Benchmark Industry Standard', line=dict(color='#1b3b22', width=4)))
-            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*750, mode='lines', name='Lower Quartile Base Pay Margin', line=dict(color='#FF3333', width=3)))
+            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*750, mode='lines', name='Lower Quartile Base Pay Margin', line=dict(color='#dc2626', width=3)))
 
+            # PREMIUM LIGHT MODE THEME OVERRIDES
             salary_fig.update_layout(
-                xaxis=dict(title='Career Timeline Horizon (Years)', gridcolor='#e6e4dc'),
-                yaxis=dict(title='Estimated Monthly Yield Vector (RM / Local Adjusted)', gridcolor='#e6e4dc'),
+                xaxis=dict(title='Career Timeline Horizon (Years)', gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
+                yaxis=dict(title='Estimated Monthly Yield Vector (RM / Local Adjusted)', gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
                 height=550, paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
-                legend=dict(font=dict(color="#111111"), bgcolor="rgba(255,255,255,0.6)")
+                legend=dict(font=dict(color="#1b3b22"), bgcolor="rgba(255,255,255,0.8)", bordercolor="#e6e4dc", borderwidth=1)
             )
             st.plotly_chart(salary_fig, use_container_width=True)
 
