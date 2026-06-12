@@ -270,7 +270,7 @@ if not st.session_state.logged_in:
                         <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center center;">
                     </div>
                     <div class="feature-subtitle-tag" style="font-size: 11px; color: #818cf8; padding: 10px 12px; margin: 0; background: rgba(17, 22, 34, 0.85); border-top: 1px solid rgba(99, 102, 241, 0.15); width: 100%; text-align: center;">
-                        From the left: Umar, Aiman, Imran, Ariq (Aca).
+                        From the left: Ariq (Aca), Aiman, Imran, Umar.
                     </div>
                 </div>
             </div>
