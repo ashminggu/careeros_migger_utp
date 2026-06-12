@@ -4,12 +4,12 @@ import plotly.graph_objects as go
 from google import genai
 
 # ─── APP CONFIGURATION ───
-st.set_page_config(page_title="Career OS - Ecosystem", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="CariKerja.com - Ecosystem", layout="wide", initial_sidebar_state="collapsed")
 
 # Initialize dialogue history session state early
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Greetings! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
+        {"role": "assistant", "content": "Hihi! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
     ]
 
 # ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES ───
@@ -249,11 +249,11 @@ if not st.session_state.logged_in:
     landing_html = """
     <div class="landing-center-box">
         <div class="hero-glass-panel">
-            <h1 class="landing-title">Career OS</h1>
+            <h1 class="landing-title">CariKerja.com</h1>
             <p class="landing-subtitle">Your personal data-driven life-long career coach.</p>
             <div class="features-tray">
                 <div class="feature-card">
-                    <div class="icon-box">📊</div>
+                   
                     <div class="feature-title">Career Topology</div>
                     <div class="feature-desc">Interactive 3D mathematical terrain surfaces structural career peaks and valleys.</div>
                 </div>
