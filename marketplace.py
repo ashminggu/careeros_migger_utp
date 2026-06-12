@@ -386,29 +386,69 @@ else:
 
         with feed_col:
             # 🎥 Post Vector 1: Proton NxGV Lead
-            st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
+            st.markdown("""
+            <div class="tiktok-card">
+                <div class="video-overlay-wrapper">
+                    <div class="video-action-overlay">
+                        <div class="overlay-action-btn">❤️</div>
+                        <div class="overlay-action-counter">14.2k</div>
+                        <div class="overlay-action-btn">💬</div>
+                        <div class="overlay-action-counter">382</div>
+                        <div class="overlay-action-btn">🔖</div>
+                        <div class="overlay-action-counter">1.8k</div>
+                        <div class="overlay-action-btn">↩️</div>
+                        <div class="overlay-action-counter">Share</div>
+                    </div>
+            """, unsafe_allow_html=True)
+            
+            # The Streamlit Video element lives here inside the structured wrapper bounds
             raw_github_video_url = "https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
             st.video(raw_github_video_url, format="video/mp4", start_time=0)
 
-            st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
-            st.markdown('<span class="tiktok-badge">🔥 Corporate Engineering Update</span>', unsafe_allow_html=True)
-            st.markdown('<h4>"Why mechanical grid meshing limits transient cooling iterations in hybrid powertrains."</h4>', unsafe_allow_html=True)
-            st.markdown('<p style="color:#8b949e; font-size:14px;">Published by: Proton R&D (NxGV Division)</p>', unsafe_allow_html=True)
+            st.markdown("""
+                </div> <div class="tiktok-meta">
+                    <span class="tiktok-badge">🔥 Corporate Engineering Update</span>
+                    <h4>"Why mechanical grid meshing limits transient cooling iterations in hybrid powertrains."</h4>
+                    <p style="color:#555555; font-size:14px; margin-bottom:15px;">Published by: Proton R&D (NxGV Division)</p>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Custom styled application launch button
             if st.button("Inspect Corporate Profile & Deploy Roles", key="feed_btn_proton"):
                 st.session_state.active_company_drawer = "Proton R&D (NxGV Division)"
-            st.markdown('</div></div>', unsafe_allow_html=True)
+
+            st.markdown("<br>", unsafe_allow_html=True)
 
             # 🎥 Post Vector 2: PETRONAS Carigali Asset Lead
-            st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
+            st.markdown("""
+            <div class="tiktok-card">
+                <div class="video-overlay-wrapper">
+                    <div class="video-action-overlay">
+                        <div class="overlay-action-btn">❤️</div>
+                        <div class="overlay-action-counter">9.8k</div>
+                        <div class="overlay-action-btn">💬</div>
+                        <div class="overlay-action-counter">214</div>
+                        <div class="overlay-action-btn">🔖</div>
+                        <div class="overlay-action-counter">943</div>
+                        <div class="overlay-action-btn">↩️</div>
+                        <div class="overlay-action-counter">Share</div>
+                    </div>
+            """, unsafe_allow_html=True)
+            
             st.video(raw_github_video_url, format="video/mp4", start_time=0)
 
-            st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
-            st.markdown('<span class="tiktok-badge">⚡ Asset Performance Deployment</span>', unsafe_allow_html=True)
-            st.markdown('<h4>"Balancing downstream separator constraint margins during unexpected catalyst deactivation cycles."</h4>', unsafe_allow_html=True)
-            st.markdown('<p style="color:#8b949e; font-size:14px;">Published by: PETRONAS Carigali</p>', unsafe_allow_html=True)
+            st.markdown("""
+                </div> <div class="tiktok-meta">
+                    <span class="tiktok-badge">⚡ Asset Performance Deployment</span>
+                    <h4>"Balancing downstream separator constraint margins during unexpected catalyst deactivation cycles."</h4>
+                    <p style="color:#555555; font-size:14px; margin-bottom:15px;">Published by: PETRONAS Carigali</p>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
             if st.button("Inspect Corporate Profile & Deploy Roles", key="feed_btn_petronas"):
                 st.session_state.active_company_drawer = "PETRONAS Carigali"
-            st.markdown('</div></div>', unsafe_allow_html=True)
 
         with drawer_col:
             st.markdown("### 🏢 Profile Deep-Dive Drawer")
