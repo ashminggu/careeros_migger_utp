@@ -253,20 +253,20 @@ if not st.session_state.logged_in:
             <p class="landing-subtitle">Networking. Career Projection. Job Finding. All in one app.</p>
             <div class="features-tray">
                 <div class="feature-card">
+                    <div class="feature-title">Social Media, but Pro</div>
+                    <div class="feature-desc">Explore your industry outlooks with easy-to-digest content.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">Living CV/Portfolio</div>
+                    <div class="feature-desc">Automated system that updates your CV based on your verified activity.</div>
+                </div>
+                <div class="feature-card">
                     <div class="feature-title">Career Topology</div>
-                    <div class="feature-desc">Interactive 3D mathematical terrain surfaces structural career peaks and valleys.</div>
+                    <div class="feature-desc">Observe how your career pathways playout in the long-run according to multiple intrapersonal variables.</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-title">Living Portfolio</div>
-                    <div class="feature-desc">Automated system tracking that compiles verifiable workflows quietly in the background.</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-title">Fair Pay Engine</div>
-                    <div class="feature-desc">Combats asymmetry by casting direct visual shadows across underpaid peer timelines.</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-title">Market Deployment</div>
-                    <div class="feature-desc">Placements tied to explicit vector actions that physically alter your map variables.</div>
+                    <div class="feature-title">Internship and Job Marketplace</div>
+                    <div class="feature-desc">Get internship and job offers that are curated specifically to you and you only.</div>
                 </div>
             </div>
         </div>
@@ -284,8 +284,8 @@ if not st.session_state.logged_in:
 
             <div class="detail-row reverse">
                 <div class="text-block">
-                    <h2>02. The Passive Verification Layer</h2>
-                    <p>Eradicate manual resume updating and employer cynicism. Our system securely integrates with your day-to-day work systems (GitHub, workspace environments, and university modules) to parse actual code, models, and execution frameworks. It quietly translates real project accomplishments into objective, verified skill metrics.</p>
+                    <h2>02. Background-Running System: Self-updating CV</h2>
+                    <p>Long are the days of having to manually update your portfolio! Our system securely integrates with your day-to-day work systems; (be it GitHub, workspace environments, and university modules) that gets parsed as variables into our complex equations. Te result? A constantly updating ready-to-use CV that translates real project accomplishments into objective, verified skill metrics.</p>
                 </div>
                 <div class="image-placeholder-slot">
                     [ 📸 Insert Living Portfolio Dashboard Image Here ]
@@ -294,8 +294,8 @@ if not st.session_state.logged_in:
 
             <div class="detail-row">
                 <div class="text-block">
-                    <h2>03. Data-Driven Salary Accountability</h2>
-                    <p>Wage gaps thrive in information silos. The Fair Pay Engine maps real-time distributed salary benchmarks along your personalized trajectory arc. If your compensation drops behind market trends, the dashboard flags the exact financial delta and uses generative AI architectures to draft direct corporate talking points for review cycles.</p>
+                    <h2>03. "Fair Pay Engine": Is your salary right for you?</h2>
+                    <p>Picture this; you accept a posting at a company that offers you X amount starting salary. Later, you end up discovering that X amount is lower than industry standards for the same jobscope. Our "Fair Pay Engine" maps real-time distributed salary benchmarks along your personalized trajectory arc, allowing you to make the right decision, before it becomes too late.</p>
                 </div>
                 <div class="image-placeholder-slot">
                     [ 📸 Insert Fair Pay Interface Screenshot Here ]
