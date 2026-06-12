@@ -45,7 +45,7 @@ st.markdown("""
         letter-spacing: -1px;
     }
     
-    /* Outer layout positioning frame */
+    /* Outer layout positioning frame - CENTERED FOR LANDING */
     .landing-center-box {
         display: flex;
         flex-direction: column;
@@ -72,6 +72,148 @@ st.markdown("""
         box-shadow: 0 15px 40px rgba(44, 74, 53, 0.04);
     }
     
+    .landing-title {
+        font-size: 80px;
+        font-weight: 900;
+        letter-spacing: -2px;
+        line-height: 1.1;
+        color: #1b3b22 !important;
+        margin-bottom: 15px;
+    }
+    
+    .landing-subtitle {
+        font-size: 22px;
+        color: #555555 !important;
+        margin-bottom: 40px;
+        font-weight: 400;
+        max-width: 700px;
+        line-height: 1.5;
+    }
+    
+    /* ─── FEATURE TRAY & BOXES ─── */
+    .features-tray {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        width: 100%;
+        align-items: stretch;
+    }
+    
+    .feature-card {
+        background: #ffffff !important;
+        border: 1px solid #e6e4dc !important;
+        border-radius: 16px;
+        padding: 24px;
+        flex: 1;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 4px 12px rgba(44, 74, 53, 0.02);
+    }
+    
+    .feature-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1b3b22 !important;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #e6e4dc;
+        padding-bottom: 6px;
+    }
+    
+    .feature-desc {
+        font-size: 13.5px;
+        color: #222222 !important; 
+        line-height: 1.6;
+        font-weight: 400 !important;
+    }
+
+    /* ─── PRODUCT DEEP DIVE ARTIFACTS ─── */
+    .product-details-container {
+        width: 100%;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        padding-bottom: 80px;
+    }
+
+    .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .detail-row.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .text-block {
+        flex: 1;
+    }
+
+    .text-block h2 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1b3b22 !important;
+        margin-bottom: 15px;
+    }
+
+    .text-block p {
+        font-size: 15px;
+        color: #444444 !important;
+        line-height: 1.6;
+    }
+
+    .image-placeholder-slot {
+        flex: 1;
+        height: 300px;
+        background: #f4f3ec;
+        border: 1px solid #e1ded7;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2c4a35;
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+    /* ─── HIGH CONTRAST BUTTONS ─── */
+    .stButton {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    div.stButton > button:first-child {
+        background: #1b3b22 !important;
+        color: #ffffff !important;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 12px 60px;
+        border-radius: 30px; 
+        border: 1px solid #142c19;
+        box-shadow: 0 4px 15px rgba(27, 59, 34, 0.15);
+        transition: all 0.2s ease;
+    }
+    div.stButton > button:first-child:hover {
+        background: #255230 !important;
+        transform: translateY(-1px);
+        color: #ffffff !important;
+    }
+    
+    .stSidebar div.stButton > button:first-child {
+        background: #cbd5e1 !important;
+        color: #1e293b !important;
+        border: 1px solid #cbd5e1;
+        font-size: 14px;
+        padding: 8px 20px;
+        border-radius: 6px;
+    }
+    
     /* ─── MAIN APP WORKSPACE FEED OVERRIDES (FIXED REELS MOCKUP) ─── */
     .tiktok-card {
         background: #ffffff;
@@ -79,35 +221,32 @@ st.markdown("""
         border-radius: 20px;
         padding: 0px;
         margin: 0 auto 30px auto;
-        max-width: 350px; /* Perfectly bounds your mobile card view width */
+        max-width: 350px;
         overflow: hidden;
         box-shadow: 0 8px 32px rgba(44,74,53,0.05);
     }
     
-    /* Immersive Core Video View Sandbox Container Frame */
     .video-overlay-wrapper {
-        position: relative; /* Lock absolute children down inside this specific perimeter */
+        position: relative;
         width: 100%;
-        height: 520px; /* Keeps standard vertical video aspect ratio frame intact */
+        height: 520px;
         background-color: #000000;
     }
     
-    /* HTML5 Canvas Component Mapping Override */
     .immersive-html5-video {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Forces the clip profile to fully track bounding layout box margins */
+        object-fit: cover;
     }
     
-    /* Absolute Floating Sidebar Controls */
     .video-action-overlay {
         position: absolute;
-        right: 14px; /* Securely lock array column against the right hand side edge */
-        bottom: 30px; /* Float up above lower dashboard playback tracking controls */
+        right: 14px;
+        bottom: 30px;
         display: flex;
         flex-direction: column;
         gap: 12px;
-        z-index: 999; /* Forces layer structure to slide completely above your video feed graphics */
+        z-index: 999;
         align-items: center;
         text-align: center;
     }
@@ -179,7 +318,7 @@ if "active_company_drawer" not in st.session_state:
 if "selected_marketplace_course" not in st.session_state:
     st.session_state.selected_marketplace_course = "All"
 
-# Initialize local variable states safely to prevent equation compile drops
+# Initialize local variable states safely
 k_kinetics, k_math, k_cfd = 0.8, 0.5, 0.3
 
 # ==============================================================================
@@ -187,69 +326,67 @@ k_kinetics, k_math, k_cfd = 0.8, 0.5, 0.3
 # ==============================================================================
 if not st.session_state.logged_in:
     
+    # CRITICAL FIX: Left-aligned content blocks must start exactly flush against the screen margin
     landing_html = """
-    <div class="landing-center-box">
-        <div class="hero-glass-panel">
-            <h1 class="landing-title">CariKerja.com</h1>
-            <p class="landing-subtitle">Networking. Career Projection. Job Finding. All in one app.</p>
-            <div class="features-tray">
-                <div class="feature-card">
-                    <div class="feature-title">User Guide</div>
-                    <div class="feature-desc">You are currently on our landing page. To access the actual content of our brainchild, scroll down to login. Once in, allow the UI/UX to guide your journey into our project!
-                    P/S Best viewed on desktops (for now).</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-title">About our Team</div>
-                    <div class="feature-desc">Consisting of 1st Year students from Universiti Teknologi PETRONAS, we have developed this project based on our own woes when discussing our future as seeking-to-be-employed post-graduates; all the while being in-line with what we believe CareerOS is about.</div>
-                </div>
-                <div class="feature-card" style="display: flex; flex-direction: column; justify-content: flex-start;">
-                    <div class="feature-title" style="margin-top: 0px;">Thank you for visiting our project!</div>
-                    <div class="feature-desc">We hope you enjoy your stay here, and get some beneficial input from us as university students from this project.</div>
-                </div>
-                <div class="feature-card" style="padding: 0px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; background: rgba(10, 14, 23, 0.3) !important; border: 1px solid rgba(99, 102, 241, 0.2) !important;">
-                    <div style="width: 100%; flex-grow: 1; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                        <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center center;">
-                    </div>
-                    <div class="feature-subtitle-tag" style="font-size: 11px; color: #818cf8; padding: 10px 12px; margin: 0; background: rgba(17, 22, 34, 0.85); border-top: 1px solid rgba(99, 102, 241, 0.15); width: 100%; text-align: center;">
-                        From the left: Ariq (ACA), Aiman, Imran, Umar.
-                    </div>
-                </div>
+<div class="landing-center-box">
+    <div class="hero-glass-panel">
+        <h1 class="landing-title">CariKerja.com</h1>
+        <p class="landing-subtitle">Networking. Career Projection. Job Finding. All in one app.</p>
+        <div class="features-tray">
+            <div class="feature-card">
+                <div class="feature-title">User Guide</div>
+                <div class="feature-desc">You are currently on our landing page. To access the actual content of our brainchild, scroll down to login. Once in, allow the UI/UX to guide your journey into our project!<br><br>P/S Best viewed on desktops (for now).</div>
             </div>
-        </div>
-
-        <div class="product-details-container">
-            <div class="detail-row">
-                <div class="text-block">
-                    <h2>01. Dynamic Trajectory Modeling</h2>
-                    <p>Stop looking at flat resumes. Career OS renders professional development as a continuous mathematical landscape. Adjust your domain shape vectors over a 40-year horizon to instantly predict long-term growth vectors, senior leadership plateaus, and sector valleys before making critical career moves.</p>
-                </div>
-                <div class="image-placeholder-slot">
-                    [ 📸 Insert Topology Graph Screenshot Here ]
-                </div>
+            <div class="feature-card">
+                <div class="feature-title">About our Team</div>
+                <div class="feature-desc">Consisting of 1st Year students from Universiti Teknologi PETRONAS, we have developed this project based on our own woes when discussing our future as seeking-to-be-employed post-graduates; all the while being in-line with what we believe CareerOS is about.</div>
             </div>
-
-            <div class="detail-row reverse">
-                <div class="text-block">
-                    <h2>02. Background-Running System: Self-updating CV</h2>
-                    <p>Long are the days of having to manually update your portfolio! Our system securely integrates with your day-to-day work systems; (be it GitHub, workspace environments, and university modules) that gets parsed as variables into our complex equations. Te result? A constantly updating ready-to-use CV that translates real project accomplishments into objective, verified skill metrics.</p>
-                </div>
-                <div class="image-placeholder-slot">
-                    [ 📸 Insert Living Portfolio Dashboard Image Here ]
-                </div>
+            <div class="feature-card" style="display: flex; flex-direction: column; justify-content: flex-start;">
+                <div class="feature-subtitle-tag" style="font-size: 11px; color: #2c4a35; margin-bottom: 6px; text-transform: uppercase; font-weight:700;">From the left; Umar, Aiman, Imran, Ariq (Aca).</div>
+                <div class="feature-title" style="margin-top: 0px;">Thank you for visiting our project!</div>
+                <div class="feature-desc">We hope you enjoy your stay here, and get some beneficial input from us as university students from this project.</div>
             </div>
-
-            <div class="detail-row">
-                <div class="text-block">
-                    <h2>03. "Fair Pay Engine": Is your salary right for you?</h2>
-                    <p>Picture this; you accept a posting at a company that offers you X amount starting salary. Later, you end up discovering that X amount is lower than industry standards for the same jobscope. Our "Fair Pay Engine" maps real-time distributed salary benchmarks along your personalized trajectory arc, allowing you to make the right decision, before it becomes too late.</p>
-                </div>
-                <div class="image-placeholder-slot">
-                    [ 📸 Insert Fair Pay Interface Screenshot Here ]
+            <div class="feature-card" style="padding: 0px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff !important; border: 1px solid #e6e4dc !important;">
+                <div style="width: 100%; flex-grow: 1; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height:160px;">
+                    <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
                 </div>
             </div>
         </div>
     </div>
-    """
+
+    <div class="product-details-container">
+        <div class="detail-row">
+            <div class="text-block">
+                <h2>01. Dynamic Trajectory Modeling</h2>
+                <p>Stop looking at flat resumes. Career OS renders professional development as a continuous mathematical landscape. Adjust your domain shape vectors over a 40-year horizon to instantly predict long-term growth vectors, senior leadership plateaus, and sector valleys before making critical career moves.</p>
+            </div>
+            <div class="image-placeholder-slot">
+                [ 📸 Insert Topology Graph Screenshot Here ]
+            </div>
+        </div>
+
+        <div class="detail-row reverse">
+            <div class="text-block">
+                <h2>02. Background-Running System: Self-updating CV</h2>
+                <p>Long are the days of having to manually update your portfolio! Our system securely integrates with your day-to-day work systems; (be it GitHub, workspace environments, and university modules) that gets parsed as variables into our complex equations. The result? A constantly updating ready-to-use CV that translates real project accomplishments into objective, verified skill metrics.</p>
+            </div>
+            <div class="image-placeholder-slot">
+                [ 📸 Insert Living Portfolio Dashboard Image Here ]
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="text-block">
+                <h2>03. "Fair Pay Engine": Is your salary right for you?</h2>
+                <p>Picture this; you accept a posting at a company that offers you X amount starting salary. Later, you end up discovering that X amount is lower than industry standards for the same jobscope. Our "Fair Pay Engine" maps real-time distributed salary benchmarks along your personalized trajectory arc, allowing you to make the right decision, before it becomes too late.</p>
+            </div>
+            <div class="image-placeholder-slot">
+                [ 📸 Insert Fair Pay Interface Screenshot Here ]
+            </div>
+        </div>
+    </div>
+</div>
+"""
     st.html(landing_html)
     
     left_space, center_button_col, right_space = st.columns([2, 1, 2])
@@ -262,13 +399,14 @@ if not st.session_state.logged_in:
 # 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN)
 # ==============================================================================
 else:
+    # ─── BRAND HEADER NAVIGATION BAR ───
     st.markdown("""
 <div class="brand-header-bar">
     <span class="brand-header-title">CariKerja</span>
     <span style="color: #666666; font-size: 14px; margin-left: 15px; font-family: sans-serif;">| Executive Workspace Ecosystem</span>
 </div>
 """, unsafe_allow_html=True)
-    
+
     if st.sidebar.button("Log Out Workspace", key="logout_system_btn"):
         st.session_state.logged_in = False
         st.rerun()
@@ -301,7 +439,6 @@ else:
         feed_col, drawer_col = st.columns([1.8, 1.2])
 
         with feed_col:
-            # Shared video path allocation pointer link array
             raw_github_video_url = "https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
 
             # 🎥 Post Vector 1: Proton NxGV Lead
@@ -320,7 +457,6 @@ else:
         </div>
         <video class="immersive-html5-video" controls autoplay muted loop playsinline>
             <source src="{raw_github_video_url}" type="video/mp4">
-            Your system configuration workspace engine does not currently map native HTML5 rendering arrays.
         </video>
     </div>
     <div class="tiktok-meta">
@@ -331,7 +467,6 @@ else:
 </div>
 """, unsafe_allow_html=True)
             
-            # Action execution buttons match layout boundaries perfectly right underneath the card grid frame structure
             if st.button("Inspect Corporate Profile & Deploy Roles", key="feed_btn_proton"):
                 st.session_state.active_company_drawer = "Proton R&D (NxGV Division)"
 
@@ -353,7 +488,6 @@ else:
         </div>
         <video class="immersive-html5-video" controls muted loop playsinline>
             <source src="{raw_github_video_url}" type="video/mp4">
-            Your system configuration workspace engine does not currently map native HTML5 rendering arrays.
         </video>
     </div>
     <div class="tiktok-meta">
@@ -383,11 +517,9 @@ else:
             else:
                 st.info("Click 'Inspect Corporate Profile' on any scrolling video inside your discovery timeline to auto-extract their open operational tracks and metrics here.")
 
-    # 📊 TAB 2: UNIVERSAL CAREER GRAPH (SLIDERS ONLY SHOW HERE)
+    # 📊 TAB 2: UNIVERSAL CAREER GRAPH
     with app_tabs[1]:
         st.title("CariKerja.com: Path Navigation Engine")
-        
-        # Split layout into Graph display and localized Shape configuration columns
         col1, col2 = st.columns([3, 1])
         
         with col2:
@@ -402,7 +534,6 @@ else:
             else:
                 st.warning("⚠️ **Plateau Warning:** Your current profile relies heavily on traditional downstream kinetics. Watch out for the flat structural mesa appearing on Path A around Year 6.")
 
-        # Recalculate mathematical curves based on current user selections
         path_a_y = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
         path_b_y = 1 + (x_time * (k_math * 0.4))
         path_c_y = 1.5 + (-2 * np.exp(-((x_time - 3)**2) / 4)) + (x_time * (k_cfd * 0.55))
@@ -430,9 +561,9 @@ else:
                 )])
                 fig.update_layout(
                     scene=dict(
-                        xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
-                        yaxis=dict(title='Y: Trajectory Choice', tickvals=[1, 2, 3], ticktext=['Path A: Downstream', 'Path B: Numerical', 'Path C: CFD/Thermal'], gridcolor='#23282f'),
-                        zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#23282f'),
+                        xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc'),
+                        yaxis=dict(title='Y: Trajectory Choice', tickvals=[1, 2, 3], ticktext=['Path A: Downstream', 'Path B: Numerical', 'Path C: CFD/Thermal'], gridcolor='#e6e4dc'),
+                        zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#e6e4dc'),
                         camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
                     ),
                     margin=dict(l=0, r=0, b=0, t=40), height=550,
@@ -440,22 +571,21 @@ else:
                 )
             else:
                 fig = go.Figure()
-                fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#818cf8', width=4)))
-                fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#c084fc', width=4)))
+                fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#1b3b22', width=4)))
+                fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#2c4a35', width=4)))
                 fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#f472b6', width=4)))
                 fig.update_layout(
-                    xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
-                    yaxis=dict(title='Y: Career Viability Metric', range=[-1, 20], gridcolor='#23282f'),
+                    xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc'),
+                    yaxis=dict(title='Y: Career Viability Metric', range=[-1, 20], gridcolor='#e6e4dc'),
                     margin=dict(l=40, r=40, b=40, t=40), height=550,
                     paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
-                    legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)")
+                    legend=dict(font=dict(color="#111111"), bgcolor="rgba(255,255,255,0.6)")
                 )
             st.plotly_chart(fig, use_container_width=True)
 
-    # ⚖️ TAB 3: SALARY SPECIFIC GRAPH (FAIR PAY ENGINE - SLIDERS ALSO SHOW HERE)
+    # ⚖️ TAB 3: FAIR PAY ENGINE
     with app_tabs[2]:
         st.title("⚖️ Fair Pay Engine: Compensation Trajectory Mapping")
-        
         s_col1, s_col2 = st.columns([3, 1])
         
         with s_col2:
@@ -468,20 +598,19 @@ else:
             st.markdown("### 🔍 Pay Shadow Audit")
             st.warning("⚠️ **Asymmetry Detected:** Based on default regional baseline weights, entry-level downstream process operations roles reflect a -15% visual trajectory pay shadow compared to advanced computation fields.")
 
-        # Recalculate financial yield curve heights dynamically
         path_a_y_p = np.where(x_time <= 6, 2 + (x_time * k_kinetics_p), 2 + (6 * k_kinetics_p))
 
         with s_col1:
             salary_fig = go.Figure()
             salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1600, mode='lines', name='Upper Quartile (Top Tier Multinationals)', line=dict(dash='dash', color='#00FF00', width=3)))
-            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1100, mode='lines', name='Median Peer Benchmark Industry Standard', line=dict(color='#818cf8', width=4)))
+            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1100, mode='lines', name='Median Peer Benchmark Industry Standard', line=dict(color='#1b3b22', width=4)))
             salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*750, mode='lines', name='Lower Quartile Base Pay Margin', line=dict(color='#FF3333', width=3)))
 
             salary_fig.update_layout(
-                xaxis=dict(title='Career Timeline Horizon (Years)', gridcolor='#23282f'),
-                yaxis=dict(title='Estimated Monthly Yield Vector (RM / Local Adjusted)', gridcolor='#23282f'),
+                xaxis=dict(title='Career Timeline Horizon (Years)', gridcolor='#e6e4dc'),
+                yaxis=dict(title='Estimated Monthly Yield Vector (RM / Local Adjusted)', gridcolor='#e6e4dc'),
                 height=550, paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
-                legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)")
+                legend=dict(font=dict(color="#111111"), bgcolor="rgba(255,255,255,0.6)")
             )
             st.plotly_chart(salary_fig, use_container_width=True)
 
@@ -514,8 +643,8 @@ else:
     # ─── TAB 5: COMMUNICATIONS NETWORK ───
     with app_tabs[4]:
         st.title("💬 Communications Matrix")
-        
         net_col1, net_col2 = st.columns([1, 2])
+        
         with net_col1:
             st.markdown("### 📭 Channels")
             ch_select = st.radio("Select Thread:", [
@@ -559,7 +688,7 @@ else:
         st.session_state.messages.append({"role": "user", "content": user_query})
 
         system_instruction = f"""
-        You are AIMAN.AI, the CariKerja.com Honest Navigation Copilot. You act as a supportive, grounded, and radically candid mentor for a Chemical Engineering student.
+        You are AIMAN.AI, the Career OS Honest Navigation Copilot. You act as a supportive, grounded, and radically candid mentor for a Chemical Engineering student.
         Your tone is empathetic but highly direct—like a helpful peer, not a rigid lecturer. Avoid corporate fluff; speak with data-driven honesty.
         """
 
