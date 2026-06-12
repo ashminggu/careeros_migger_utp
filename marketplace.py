@@ -250,25 +250,21 @@ if not st.session_state.logged_in:
     <div class="landing-center-box">
         <div class="hero-glass-panel">
             <h1 class="landing-title">CariKerja.com</h1>
-            <p class="landing-subtitle">Your personal data-driven life-long career coach.</p>
+            <p class="landing-subtitle">Networking. Career Projection. Job Finding. All in one app.</p>
             <div class="features-tray">
                 <div class="feature-card">
-                   
                     <div class="feature-title">Career Topology</div>
                     <div class="feature-desc">Interactive 3D mathematical terrain surfaces structural career peaks and valleys.</div>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-box">📂</div>
                     <div class="feature-title">Living Portfolio</div>
                     <div class="feature-desc">Automated system tracking that compiles verifiable workflows quietly in the background.</div>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-box">⚖️</div>
                     <div class="feature-title">Fair Pay Engine</div>
                     <div class="feature-desc">Combats asymmetry by casting direct visual shadows across underpaid peer timelines.</div>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-box">💼</div>
                     <div class="feature-title">Market Deployment</div>
                     <div class="feature-desc">Placements tied to explicit vector actions that physically alter your map variables.</div>
                 </div>
