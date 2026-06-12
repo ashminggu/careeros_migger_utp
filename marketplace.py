@@ -9,7 +9,7 @@ st.set_page_config(page_title="CariKerja.com - Ecosystem", layout="wide", initia
 # Initialize dialogue history session state early
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Hihi! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
+        {"role": "assistant", "content": "Selamat Sejahtera! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
     ]
 
 # ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES ───
@@ -253,8 +253,8 @@ if not st.session_state.logged_in:
             <p class="landing-subtitle">Networking. Career Projection. Job Finding. All in one app.</p>
             <div class="features-tray">
                 <div class="feature-card">
-                    <div class="feature-title">Social Media, but Pro</div>
-                    <div class="feature-desc">Explore your industry outlooks with easy-to-digest content.</div>
+                    <div class="feature-title">User Guide</div>
+                    <div class="feature-desc">You are currently on our landing page. To access the actual content of our brainchild, scroll down to login. Once in, allow the UI/UX to guide your journey into our project.</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-title">Living CV/Portfolio</div>
