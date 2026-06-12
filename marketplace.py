@@ -346,12 +346,7 @@ if not st.session_state.logged_in:
 # 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN)
 # ==============================================================================
 else:
-    st.markdown("""
-        <div class="brand-header-bar">
-            <span class="brand-header-title">CariKerja</span>
-            <span style="color: #666666; font-size: 14px; margin-left: 15px; font-family: sans-serif;">| Executive Workspace Ecosystem</span>
-        </div>
-    """, unsafe_allow_html=True)
+    
     
     if st.sidebar.button("Log Out Workspace", key="logout_system_btn"):
         st.session_state.logged_in = False
