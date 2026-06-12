@@ -257,16 +257,16 @@ if not st.session_state.logged_in:
                     <div class="feature-desc">You are currently on our landing page. To access the actual content of our brainchild, scroll down to login. Once in, allow the UI/UX to guide your journey into our project.</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-title">Living CV/Portfolio</div>
-                    <div class="feature-desc">Automated system that updates your CV based on your verified activity.</div>
+                    <div class="feature-title">About our Team</div>
+                    <div class="feature-desc">Consisting of 1st Year students from Universiti Teknologi PETRONAS, we have developed this project based on our own woes when discussing our future as seeking-to-be-employed post-graduates; all the while being in-line with what we believe CareerOS is about.</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-title">Career Topology</div>
-                    <div class="feature-desc">Observe how your career pathways playout in the long-run according to multiple intrapersonal variables.</div>
+                    <div class="feature-title"Picture of our team</div>
+                    <div class="feature-desc">From the left; Umar, Aiman, Imran, Ariq (Aca).</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-title">Internship and Job Marketplace</div>
-                    <div class="feature-desc">Get internship and job offers that are curated specifically to you and you only.</div>
+                    <div class="feature-title">Thank you for visiting our project!</div>
+                    <div class="feature-desc">We hope you enjoy your stay here, and get some beneficial input from us as university students from this project.</div>
                 </div>
             </div>
         </div>
