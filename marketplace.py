@@ -266,7 +266,7 @@ if not st.session_state.logged_in:
                     <div class="feature-desc">We hope you enjoy your stay here, and get some beneficial input from us as university students from this project.</div>
                 </div>
                 <div class="feature-card" style="padding: 0px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: rgba(10, 14, 23, 0.3) !important; border: 1px solid rgba(99, 102, 241, 0.2) !important;">
-                    <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
                     <div class="feature-subtitle-tag" style="font-size: 11px; color: #818cf8; margin-bottom: 4px;">From the left; Umar, Aiman, Imran, Ariq (Aca).</div>
                 </div>
             </div>
