@@ -441,16 +441,16 @@ else:
 
     # Global Navigation Tabs Architecture
     app_tabs = st.tabs([
-        "📱 Discover Feed", 
-        "📊 Universal Career Graph",
+        "📱 FYP Feed", 
+        "📊 Universal 3D/2D Career Graph",
         "⚖️ Fair Pay Engine",
-        "💼 Placements Marketplace", 
-        "💬 Communications Network"
+        "💼 Intern/Job Marketplace", 
+        "💬 Messages"
     ])
 
     # 📥 TAB 1: SHORT FORM VIDEO DISCOVER FEED
     with app_tabs[0]:
-        st.title("Discover Ecosystem")
+        st.title("For You Page")
         st.caption("Verifiable authentic workflows streamed directly by peer talents and corporate engineering leads.")
         
         feed_col, drawer_col = st.columns([1.8, 1.2])
@@ -540,7 +540,7 @@ else:
         col1, col2 = st.columns([3, 1])
         
         with col2:
-            st.markdown("### 🎛️ Candidate Shape Vector")
+            st.markdown("###Candidate Shape Vector")
             st.write("Adjust parameters to watch the topology surface change:")
             k_kinetics = st.slider("[PATH A] Downstream Operations: Reactor Kinetics Mastery", 0.1, 1.0, 0.8, key="graph_sl_k")
             k_math = st.slider("[PATH B] Numerical Methods in ChemE", 0.1, 1.0, 0.5, key="graph_sl_m")
@@ -551,7 +551,8 @@ else:
             else:
                 st.warning("""⚠️ **Developer note:** These sliders are here for the sake of observing how the graph will change over the course of the 40 year career with different input values. The actual concept here would be that the
                 system will be connected to the user's profile in which it will take into account two main categories of data: 1) details and preferences of the user themselves including the user's current skillset and capabilities (ability to use CAD software, do CFD analysis, etc.), salary over career growth preference (assigned weightage), 
-                and 2) the current and projected growth of the specialization pathway for the career.""")
+                and 2) the current and projected growth of the specialization pathway for the career. All of these data will be assigned as a variable which will be added into an equation which plots the graph. A higher Z value indicates a better
+                'score' for the path. Weightages are applied to each variable depending on the preference of the user (for preference-based variables).""")
 
         path_a_y = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
         path_b_y = 1 + (x_time * (k_math * 0.4))
