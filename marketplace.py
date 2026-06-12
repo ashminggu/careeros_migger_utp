@@ -517,7 +517,7 @@ else:
             else:
                 st.info("Click 'Inspect Corporate Profile' on any scrolling video inside your discovery timeline to auto-extract their open operational tracks and metrics here.")
 
-    # 📊 TAB 2: UNIVERSAL CAREER GRAPH
+   # 📊 TAB 2: UNIVERSAL CAREER GRAPH
     with app_tabs[1]:
         st.title("CariKerja.com: Path Navigation Engine")
         col1, col2 = st.columns([3, 1])
@@ -554,18 +554,19 @@ else:
                 Z[1, :] = path_b_y
                 Z[2, :] = path_c_y
 
+                # FIXED: Moved colorbar title configuration inside the data trace object definition block
                 fig = go.Figure(data=[go.Surface(
                     x=X, y=Y, z=Z, colorscale='Viridis',
                     lighting=dict(ambient=0.6, roughness=0.4),
-                    colorbar=dict(title=dict(text="Z: Market Yield", font=dict(color="#1b3b22")))
+                    colorbar=dict(title=dict(text="Z: Career Yield", font=dict(color="#1b3b22")))
                 )])
-                # PREMIUM LIGHT MODE THEME OVERRIDES
+                
+                # FIXED: Removed the invalid root 'backgroundcolor' key from the scene dictionary block
                 fig.update_layout(
                     scene=dict(
                         xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
                         yaxis=dict(title='Y: Trajectory Choice', tickvals=[1, 2, 3], ticktext=['Path A', 'Path B', 'Path C'], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
-                        zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
-                        backgroundcolor="rgba(0,0,0,0)"
+                        zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222'))
                     ),
                     margin=dict(l=0, r=0, b=0, t=40), height=550,
                     paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
@@ -574,9 +575,8 @@ else:
                 fig = go.Figure()
                 fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#1b3b22', width=4)))
                 fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#2c4a35', width=4)))
-                fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#d97706', width=4))) # Adjusted for contrast
+                fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#d97706', width=4)))
                 
-                # PREMIUM LIGHT MODE THEME OVERRIDES
                 fig.update_layout(
                     xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
                     yaxis=dict(title='Y: Career Viability Metric', range=[-1, 20], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
@@ -609,7 +609,6 @@ else:
             salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1100, mode='lines', name='Median Peer Benchmark Industry Standard', line=dict(color='#1b3b22', width=4)))
             salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*750, mode='lines', name='Lower Quartile Base Pay Margin', line=dict(color='#dc2626', width=3)))
 
-            # PREMIUM LIGHT MODE THEME OVERRIDES
             salary_fig.update_layout(
                 xaxis=dict(title='Career Timeline Horizon (Years)', gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
                 yaxis=dict(title='Estimated Monthly Yield Vector (RM / Local Adjusted)', gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
