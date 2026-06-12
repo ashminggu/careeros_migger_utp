@@ -254,7 +254,8 @@ if not st.session_state.logged_in:
             <div class="features-tray">
                 <div class="feature-card">
                     <div class="feature-title">User Guide</div>
-                    <div class="feature-desc">You are currently on our landing page. To access the actual content of our brainchild, scroll down to login. Once in, allow the UI/UX to guide your journey into our project!  P/S Best viewed on desktops (for now).</div>
+                    <div class="feature-desc">You are currently on our landing page. To access the actual content of our brainchild, scroll down to login. Once in, allow the UI/UX to guide your journey into our project!
+                    P/S Best viewed on desktops (for now).</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-title">About our Team</div>
