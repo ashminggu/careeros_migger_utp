@@ -549,7 +549,9 @@ else:
             if k_cfd > 0.7:
                 st.success("🎯 **Optimal Pathway:** Your high CFD vector has successfully flattened the early friction valley in the EV Automotive sector.")
             else:
-                st.warning("⚠️ **Plateau Warning:** Your current profile relies heavily on traditional downstream kinetics. Watch out for the flat structural mesa appearing on Path A around Year 6.")
+                st.warning("⚠️ **Developer note:** These sliders are here for the sake of observing how the graph will change over the course of the 40 year career with different input values. The actual concept here would be that the
+                system will be connected to the user's profile in which it will take into account two main categories of data: 1) details and preferences of the user themselves including the user's current skillset and capabilities (ability to use CAD software, do CFD analysis, etc.), salary over career growth preference (assigned weightage), 
+                and 2) the current and projected growth of the specialization pathway for the career.")
 
         path_a_y = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
         path_b_y = 1 + (x_time * (k_math * 0.4))
