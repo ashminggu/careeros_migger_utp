@@ -12,65 +12,76 @@ if "messages" not in st.session_state:
         {"role": "assistant", "content": "Selamat Sejahtera! I'm AIMAN.AI, your dynamic Career OS Copilot. I analyze your profile vector data against market realities. Which pathway's trade-offs or personal concerns would you like me to deconstruct honestly?"}
     ]
 
-# ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES ───
+# ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES (CREAM & FOREST GREEN WORKSPACE) ───
 st.markdown("""
     <style>
-    /* Global Background tech grid layout mesh */
+    /* Global Background - Premium Editorial Cream */
     .stApp {
-        background-color: #0b0f17;
+        background-color: #fcfbf7;
         background-image: 
-            linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
+            linear-gradient(rgba(44, 74, 53, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(44, 74, 53, 0.02) 1px, transparent 1px);
+        background-size: 30px 30px;
+        color: #111111;
+    }
+    
+    /* Typography & Core Streamlit Elements Override */
+    h1, h2, h3, [data-testid="stHeader"] {
+        color: #1b3b22 !important; /* Deep Forest Green */
+        font-family: 'Inter', sans-serif;
+    }
+    
+    p, span, label, div {
+        color: #222222;
     }
     
     /* Outer layout positioning frame */
     .landing-center-box {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start; /* Left-aligned minimal layout matching reference */
         width: 100%;
-        padding-top: 5%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 4%;
     }
 
-    /* ─── HERO GLASS PANEL ─── */
+    /* ─── HERO CANVAS PANEL (MINIMAL WHITE BLOCK) ─── */
     .hero-glass-panel {
-        background: rgba(17, 22, 34, 0.65);
-        border: 1px solid rgba(99, 102, 241, 0.15);
-        border-radius: 24px;
-        padding: 60px 40px;
-        max-width: 1200px;
+        background: #ffffff;
+        border: 1px solid #e1ded7;
+        border-radius: 16px;
+        padding: 50px 0px;
         width: 100%;
-        text-align: center;
-        backdrop-filter: blur(12px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        text-align: left; /* Shift text left based on your reference image */
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         position: relative;
-        margin-bottom: 60px;
+        margin-bottom: 40px;
     }
     
     .landing-title {
-        font-size: 96px;
-        font-weight: 900;
-        letter-spacing: -3px;
+        font-size: 72px;
+        font-weight: 800;
+        letter-spacing: -2px;
         line-height: 1.1;
-        background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 15px;
+        color: #1b3b22 !important; /* Pure Dark Green Header */
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+        margin-bottom: 10px;
     }
     
     .landing-subtitle {
-        font-size: 24px;
-        color: #9ca3af;
-        margin-bottom: 50px;
-        font-weight: 300;
-        max-width: 700px;
+        font-size: 20px;
+        color: #555555;
+        margin-bottom: 40px;
+        font-weight: 400;
+        max-width: 650px;
         line-height: 1.5;
     }
     
+    /* ─── FOUR OPENING REMARK BOXES ─── */
     .features-tray {
         display: flex;
         gap: 20px;
@@ -81,42 +92,46 @@ st.markdown("""
     }
     
     .feature-card {
-        background: rgba(10, 14, 23, 0.6) !important;
-        border: 1px solid rgba(240, 246, 252, 0.06) !important;
-        border-radius: 16px;
+        background: #ffffff !important;
+        border: 1px solid #e6e4dc !important;
+        border-radius: 12px;
         padding: 24px;
         flex: 1;
         text-align: left;
         display: flex;
         flex-direction: column;
-    }
-    
-    .icon-box {
-        font-size: 32px;
-        margin-bottom: 12px;
+        box-shadow: 0 4px 12px rgba(44, 74, 53, 0.03);
     }
     
     .feature-title {
-        font-size: 19px;
-        font-weight: 600;
-        color: #f0f6fc;
-        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #1b3b22 !important; /* Dark Green Titles */
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e6e4dc;
+        padding-bottom: 6px;
     }
     
     .feature-desc {
         font-size: 13.5px;
-        color: #8b949e;
+        color: #333333 !important; /* Crisp Black Text */
         line-height: 1.5;
     }
+    
+    .feature-subtitle-tag {
+        font-size: 11px;
+        color: #2c4a35 !important;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
 
-    /* ─── SCROLLABLE PRODUCT DEEP-DIVE SECTIONS ─── */
+    /* ─── SCROLLABLE DEEP DIVE ARTIFACTS ─── */
     .product-details-container {
-        max-width: 1200px;
         width: 100%;
         margin-top: 40px;
         display: flex;
         flex-direction: column;
-        gap: 80px;
+        gap: 60px;
         padding-bottom: 100px;
     }
 
@@ -125,7 +140,6 @@ st.markdown("""
         align-items: center;
         gap: 50px;
         width: 100%;
-        text-align: left;
     }
 
     .detail-row.reverse {
@@ -137,102 +151,110 @@ st.markdown("""
     }
 
     .text-block h2 {
-        font-size: 36px;
+        font-size: 32px;
         font-weight: 700;
-        color: #f0f6fc;
+        color: #1b3b22 !important;
         margin-bottom: 15px;
-        background: linear-gradient(90deg, #ffffff, #9ca3af);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
     }
 
     .text-block p {
-        font-size: 16px;
-        color: #8b949e;
+        font-size: 15px;
+        color: #444444 !important;
         line-height: 1.6;
     }
 
     .image-placeholder-slot {
         flex: 1;
-        height: 320px;
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
-        border: 2px dashed rgba(99, 102, 241, 0.2);
-        border-radius: 20px;
+        height: 300px;
+        background: #f4f3ec;
+        border: 1px solid #e1ded7;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #4f46e5;
-        font-weight: 500;
-        font-size: 14px;
+        color: #2c4a35;
+        font-weight: 600;
+        font-size: 13px;
         letter-spacing: 1px;
         text-transform: uppercase;
-        box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
-        transition: all 0.3s ease;
-    }
-
-    .image-placeholder-slot:hover {
-        border-color: rgba(168, 85, 247, 0.5);
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
     }
     
-    /* ─── STYLED LOGIN BUTTON ─── */
+    /* ─── HIGH CONTRACT EXECUTIVE BUTTON ─── */
     .stButton {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start; /* Left aligned button */
         width: 100%;
     }
     div.stButton > button:first-child {
-        background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+        background: #1b3b22 !important; /* Deep Forest Green Solid Button */
         color: #ffffff !important;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 600;
-        padding: 16px 75px;
-        border-radius: 35px; 
-        border: none;
-        box-shadow: 0 4px 25px rgba(99, 102, 241, 0.4);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: pointer;
+        padding: 12px 50px;
+        border-radius: 8px; 
+        border: 1px solid #142c19;
+        box-shadow: 0 4px 12px rgba(27, 59, 34, 0.15);
+        transition: all 0.2s ease;
     }
     div.stButton > button:first-child:hover {
-        background: linear-gradient(90deg, #5850ec 0%, #8c46ff 100%);
-        transform: scale(1.05) translateY(-2px);
-        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
-        color: white !important;
+        background: #255230 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(27, 59, 34, 0.25);
     }
     
-    /* ─── TIKTOK FEED POST UI ─── */
+    /* ─── WORKSPACE CONTENT ARCHITECTURE (POST-LOGIN GRID) ─── */
     .tiktok-card {
-        background: #111622;
-        border: 1px solid rgba(240, 246, 252, 0.1);
-        border-radius: 16px;
+        background: #ffffff;
+        border: 1px solid #e6e4dc;
+        border-radius: 12px;
         padding: 0px;
         margin-bottom: 25px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
     
     .tiktok-meta {
         padding: 20px;
+        background: #ffffff;
     }
     
     .tiktok-badge {
-        background: rgba(99, 102, 241, 0.15);
-        color: #818cf8;
+        background: rgba(44, 74, 53, 0.08);
+        color: #1b3b22;
         padding: 4px 12px;
-        border-radius: 20px;
+        border-radius: 4px;
         font-size: 12px;
         font-weight: 600;
         display: inline-block;
         margin-bottom: 8px;
     }
 
-    /* ─── VIDEO SIZE CONSTRAINTS OVERRIDE ─── */
+    /* Tabs Styling Adjustments for Light Mode */
+    .stTabs [data-baseweb="tab"] {
+        color: #555555 !important;
+        font-weight: 500;
+    }
+    .stTabs [aria-selected="true"] {
+        color: #1b3b22 !important;
+        font-weight: 700 !important;
+    }
+
+    /* Expander boxes UI fix */
+    div[data-testid="stExpander"] {
+        background-color: #ffffff !important;
+        border: 1px solid #e6e4dc !important;
+        border-radius: 8px !important;
+    }
+
+    /* Video scaling feed constraint override */
     div[data-testid="stVideo"], .stVideo {
         max-width: 440px !important;
         margin: 15px auto !important;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        border: 1px solid #e6e4dc;
     }
     </style>
 """, unsafe_allow_html=True)
