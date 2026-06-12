@@ -262,12 +262,12 @@ if not st.session_state.logged_in:
                     <div class="feature-desc">Consisting of 1st Year students from Universiti Teknologi PETRONAS, we have developed this project based on our own woes when discussing our future as seeking-to-be-employed post-graduates; all the while being in-line with what we believe CareerOS is about.</div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-subtitle-tag" style="font-size: 11px; color: #818cf8; margin-bottom: 4px;">From the left; Umar, Aiman, Imran, Ariq (Aca).</div>
                     <div class="feature-title" style="margin-top: 0px;">Thank you for visiting our project!</div>
                     <div class="feature-desc">We hope you enjoy your stay here, and get some beneficial input from us as university students from this project.</div>
                 </div>
                 <div class="feature-card" style="padding: 0px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: rgba(10, 14, 23, 0.3) !important; border: 1px solid rgba(99, 102, 241, 0.2) !important;">
                     <img src="https://via.placeholder.com/400x500" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="feature-subtitle-tag" style="font-size: 11px; color: #818cf8; margin-bottom: 4px;">From the left; Umar, Aiman, Imran, Ariq (Aca).</div>
                 </div>
             </div>
         </div>
