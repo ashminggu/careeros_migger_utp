@@ -76,6 +76,8 @@ st.markdown("""
         gap: 20px;
         justify-content: center;
         width: 100%;
+        max-height: 280px;
+        align-items: stretch;
     }
     
     .feature-card {
@@ -85,6 +87,8 @@ st.markdown("""
         padding: 24px;
         flex: 1;
         text-align: left;
+        display: flex;
+        flex-direction: column;
     }
     
     .icon-box {
@@ -241,6 +245,9 @@ if "active_company_drawer" not in st.session_state:
 if "selected_marketplace_course" not in st.session_state:
     st.session_state.selected_marketplace_course = "All"
 
+# Initialize local variable states safely to prevent equation compile drops
+k_kinetics, k_math, k_cfd = 0.8, 0.5, 0.3
+
 # ==============================================================================
 # 🚪 PHASE 1: SCROLLABLE LANDING INTERFACE
 # ==============================================================================
@@ -261,16 +268,14 @@ if not st.session_state.logged_in:
                     <div class="feature-title">About our Team</div>
                     <div class="feature-desc">Consisting of 1st Year students from Universiti Teknologi PETRONAS, we have developed this project based on our own woes when discussing our future as seeking-to-be-employed post-graduates; all the while being in-line with what we believe CareerOS is about.</div>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" style="display: flex; flex-direction: column; justify-content: flex-start;">
+                    <div class="feature-subtitle-tag" style="font-size: 11px; color: #818cf8; margin-bottom: 6px; text-transform: uppercase;">From the left; Umar, Aiman, Imran, Ariq (Aca).</div>
                     <div class="feature-title" style="margin-top: 0px;">Thank you for visiting our project!</div>
                     <div class="feature-desc">We hope you enjoy your stay here, and get some beneficial input from us as university students from this project.</div>
                 </div>
                 <div class="feature-card" style="padding: 0px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; background: rgba(10, 14, 23, 0.3) !important; border: 1px solid rgba(99, 102, 241, 0.2) !important;">
                     <div style="width: 100%; flex-grow: 1; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                        <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center center;">
-                    </div>
-                    <div class="feature-subtitle-tag" style="font-size: 11px; color: #818cf8; padding: 10px 12px; margin: 0; background: rgba(17, 22, 34, 0.85); border-top: 1px solid rgba(99, 102, 241, 0.15); width: 100%; text-align: center;">
-                        From the left: Ariq (Aca), Aiman, Imran, Umar.
+                        <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
                     </div>
                 </div>
             </div>
@@ -321,26 +326,14 @@ if not st.session_state.logged_in:
 # 🌐 PHASE 2: MAIN WORKSPACE ECOSYSTEM (LOADS AFTER LOGIN)
 # ==============================================================================
 else:
-    # Global Sidebar Sliders configuration
-    st.sidebar.header("Candidate Shape Vector Configuration")
-    k_kinetics = st.sidebar.slider("[PATH A] Downstream Operations: Reactor Kinetics Mastery", 0.1, 1.0, 0.8)
-    k_math = st.sidebar.slider("[PATH B] Numerical Methods in ChemE", 0.1, 1.0, 0.5)
-    k_cfd = st.sidebar.slider("[PATH C] CFD & Thermal Management", 0.1, 1.0, 0.3)
-    
-    st.sidebar.divider()
-    st.sidebar.info("**Note:** Changing the CFD slider instantly lifts the high-yield EV valley on the map (basis on FSUTP)")
-
     if st.sidebar.button("Log Out Workspace", key="logout_system_btn"):
         st.session_state.logged_in = False
         st.rerun()
 
-    # Shared Mathematics Engine setup
+    # Shared Mathematics Base Horizontal Tracking Array
     x_time = np.linspace(0, 40, 50)
-    path_a_y = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
-    path_b_y = 1 + (x_time * (k_math * 0.4))
-    path_c_y = 1.5 + (-2 * np.exp(-((x_time - 3)**2) / 4)) + (x_time * (k_cfd * 0.55))
 
-    # Master Datastore for listings
+    # Master Datastore for openings
     internships_db = [
         {"company": "PETRONAS Carigali", "role": "Downstream Process Operations Intern", "course": "Chemical Engineering", "duration": "8 Months (May - Dec)", "scope": "Assist in daily monitoring of multi-phase separator constraints. Conduct molar mass balances and evaluate catalyst deactivation profiles.", "impact": "➕ Lifts [Path A] Reactor Kinetics by +0.3"},
         {"company": "Proton R&D (NxGV Division)", "role": "Battery Thermal Management Simulation Trainee", "course": "Mechanical / Chemical Engineering", "duration": "6 Months (June - Nov)", "scope": "Develop transient thermal fluid simulations for liquid-cooled lithium-ion battery packs. Conduct geometric grid meshing and execute thermal FMEA matrix tracking.", "impact": "➕ Lifts [Path C] CFD & Thermal Management by +0.4"},
@@ -357,7 +350,7 @@ else:
         "💬 Communications Network"
     ])
 
-    # 📥 TAB 1: SHORT FORM VIDEO DISCOVER FEED (TIKTOK STYLE)
+    # 📥 TAB 1: SHORT FORM VIDEO DISCOVER FEED
     with app_tabs[0]:
         st.title("Discover Ecosystem")
         st.caption("Verifiable authentic workflows streamed directly by peer talents and corporate engineering leads.")
@@ -367,7 +360,6 @@ else:
         with feed_col:
             # 🎥 Post Vector 1: Proton NxGV Lead
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
-            
             raw_github_video_url = "https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
             st.video(raw_github_video_url, format="video/mp4", start_time=0)
 
@@ -381,7 +373,6 @@ else:
 
             # 🎥 Post Vector 2: PETRONAS Carigali Asset Lead
             st.markdown('<div class="tiktok-card">', unsafe_allow_html=True)
-            
             st.video(raw_github_video_url, format="video/mp4", start_time=0)
 
             st.markdown('<div class="tiktok-meta">', unsafe_allow_html=True)
@@ -408,106 +399,107 @@ else:
             else:
                 st.info("Click 'Inspect Corporate Profile' on any scrolling video inside your discovery timeline to auto-extract their open operational tracks and metrics here.")
 
-    # 📊 TAB 2: ORIGINAL FULL-PAGE UNIVERSAL CAREER GRAPH
+    # 📊 TAB 2: UNIVERSAL CAREER GRAPH (SLIDERS ONLY SHOW HERE)
     with app_tabs[1]:
-        st.title("Career OS: Path Navigation Engine")
+        st.title("CariKerja.com: Path Navigation Engine")
         
-        view_mode = st.radio(
-            "Select Visualization Framework Layout:",
-            ["3D Topography Surface Map", "2D Continuous Line Graph View"],
-            horizontal=True,
-            key="universal_graph_toggle"
-        )
-        st.subheader("Visualizing the 40-Year Career Horizon with Data-Driven Geometry")
-        
-        # ─── CONDITION A: RENDER ORIGINAL 3D TOPOGRAPHY ───
-        if view_mode == "3D Topography Surface Map":
-            y_paths = np.array([1, 2, 3])
-            X, Y = np.meshgrid(x_time, y_paths)
-            Z = np.zeros_like(X)
-            Z[0, :] = path_a_y
-            Z[1, :] = path_b_y
-            Z[2, :] = path_c_y
-
-            fig = go.Figure(data=[go.Surface(
-                x=X, y=Y, z=Z, colorscale='Viridis',
-                lighting=dict(ambient=0.6, roughness=0.4),
-                colorbar=dict(title="Z: Market Yield")
-            )])
-
-            fig.update_layout(
-                scene=dict(
-                    xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
-                    yaxis=dict(
-                        title='Y: Trajectory Choice',
-                        tickvals=[1, 2, 3],
-                        ticktext=['Path A: Downstream', 'Path B: Numerical', 'Path C: CFD/Thermal'],
-                        gridcolor='#23282f'
-                    ),
-                    zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#23282f'),
-                    camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
-                ),
-                margin=dict(l=0, r=0, b=0, t=40), height=650,
-                paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
-            )
-
-        # ─── CONDITION B: RENDER CLEAN 2D MULTI-LINE VIEW ───
-        else:
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#818cf8', width=4)))
-            fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#c084fc', width=4)))
-            fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#f472b6', width=4)))
-
-            fig.update_layout(
-                xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f', zeroline=False),
-                yaxis=dict(title='Y: Career Viability & Yield Metric', range=[-1, 20], gridcolor='#23282f', zeroline=False),
-                margin=dict(l=40, r=40, b=40, t=40), height=550,
-                paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
-                legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)", bordercolor="rgba(99,102,241,0.15)", borderwidth=1)
-            )
-        
+        # Split layout into Graph display and localized Shape configuration columns
         col1, col2 = st.columns([3, 1])
-        with col1:
-            st.plotly_chart(fig, use_container_width=True)
+        
         with col2:
-            st.markdown("### 📋 Navigation Analytics")
+            st.markdown("### 🎛️ Candidate Shape Vector")
+            st.write("Adjust parameters to watch the topology surface change:")
+            k_kinetics = st.slider("[PATH A] Downstream Operations: Reactor Kinetics Mastery", 0.1, 1.0, 0.8, key="graph_sl_k")
+            k_math = st.slider("[PATH B] Numerical Methods in ChemE", 0.1, 1.0, 0.5, key="graph_sl_m")
+            k_cfd = st.slider("[PATH C] CFD & Thermal Management", 0.1, 1.0, 0.3, key="graph_sl_c")
+            st.divider()
             if k_cfd > 0.7:
-                st.success("🎯 **Optimal Pathway Detected:** Your high CFD vector has successfully flattened the early friction valley in the EV Automotive sector.")
+                st.success("🎯 **Optimal Pathway:** Your high CFD vector has successfully flattened the early friction valley in the EV Automotive sector.")
             else:
                 st.warning("⚠️ **Plateau Warning:** Your current profile relies heavily on traditional downstream kinetics. Watch out for the flat structural mesa appearing on Path A around Year 6.")
-            st.markdown("""
-            **Axis Definitions:**
-            * **X-Axis:** Continuous 40-year career arc timeline.
-            * **Y-Axis:** Structural industry domain branches.
-            * **Z-Axis:** Career height vector (compensation range + regional stability multiplier).
-            """)
 
-    # ⚖️ TAB 3: SALARY SPECIFIC GRAPH (FAIR PAY ENGINE)
+        # Recalculate mathematical curves based on current user selections
+        path_a_y = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
+        path_b_y = 1 + (x_time * (k_math * 0.4))
+        path_c_y = 1.5 + (-2 * np.exp(-((x_time - 3)**2) / 4)) + (x_time * (k_cfd * 0.55))
+
+        with col1:
+            view_mode = st.radio(
+                "Select Visualization Framework Layout:",
+                ["3D Topography Surface Map", "2D Continuous Line Graph View"],
+                horizontal=True,
+                key="universal_graph_toggle"
+            )
+            
+            if view_mode == "3D Topography Surface Map":
+                y_paths = np.array([1, 2, 3])
+                X, Y = np.meshgrid(x_time, y_paths)
+                Z = np.zeros_like(X)
+                Z[0, :] = path_a_y
+                Z[1, :] = path_b_y
+                Z[2, :] = path_c_y
+
+                fig = go.Figure(data=[go.Surface(
+                    x=X, y=Y, z=Z, colorscale='Viridis',
+                    lighting=dict(ambient=0.6, roughness=0.4),
+                    colorbar=dict(title="Z: Market Yield")
+                )])
+                fig.update_layout(
+                    scene=dict(
+                        xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
+                        yaxis=dict(title='Y: Trajectory Choice', tickvals=[1, 2, 3], ticktext=['Path A: Downstream', 'Path B: Numerical', 'Path C: CFD/Thermal'], gridcolor='#23282f'),
+                        zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#23282f'),
+                        camera=dict(eye=dict(x=1.8, y=-1.8, z=1.2))
+                    ),
+                    margin=dict(l=0, r=0, b=0, t=40), height=550,
+                    paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
+                )
+            else:
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#818cf8', width=4)))
+                fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#c084fc', width=4)))
+                fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#f472b6', width=4)))
+                fig.update_layout(
+                    xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#23282f'),
+                    yaxis=dict(title='Y: Career Viability Metric', range=[-1, 20], gridcolor='#23282f'),
+                    margin=dict(l=40, r=40, b=40, t=40), height=550,
+                    paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                    legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)")
+                )
+            st.plotly_chart(fig, use_container_width=True)
+
+    # ⚖️ TAB 3: SALARY SPECIFIC GRAPH (FAIR PAY ENGINE - SLIDERS ALSO SHOW HERE)
     with app_tabs[2]:
         st.title("⚖️ Fair Pay Engine: Compensation Trajectory Mapping")
-        st.subheader("Combating Information Asymmetry via Distributed Peer Market Quartiles")
-        st.caption("This full-page projection charts distributed compensation bands over a 25-year tracking horizon based on active shape metrics.")
-        
-        salary_fig = go.Figure()
-        salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y[:35]*1600, mode='lines', name='Upper Quartile (Top Tier Tier-1 Multinationals)', line=dict(dash='dash', color='#00FF00', width=3)))
-        salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y[:35]*1100, mode='lines', name='Median Peer Benchmark Industry Standard', line=dict(color='#818cf8', width=4)))
-        salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y[:35]*750, mode='lines', name='Lower Quartile Base Pay Margin', line=dict(color='#FF3333', width=3)))
-
-        salary_fig.update_layout(
-            xaxis=dict(title='Career Timeline Horizon (Years)', gridcolor='#23282f'),
-            yaxis=dict(title='Estimated Monthly Yield Vector (RM / Local Adjusted)', gridcolor='#23282f'),
-            height=550,
-            paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
-            legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)")
-        )
         
         s_col1, s_col2 = st.columns([3, 1])
-        with s_col1:
-            st.plotly_chart(salary_fig, use_container_width=True)
+        
         with s_col2:
+            st.markdown("### 🎛️ Baseline Variable Weighting")
+            st.write("Tune variables to shift target benchmarking bands:")
+            k_kinetics_p = st.slider("[PATH A] Downstream Operations: Reactor Kinetics Mastery", 0.1, 1.0, 0.8, key="pay_sl_k")
+            k_math_p = st.slider("[PATH B] Numerical Methods in ChemE", 0.1, 1.0, 0.5, key="pay_sl_m")
+            k_cfd_p = st.slider("[PATH C] CFD & Thermal Management", 0.1, 1.0, 0.3, key="pay_sl_c")
+            st.divider()
             st.markdown("### 🔍 Pay Shadow Audit")
             st.warning("⚠️ **Asymmetry Detected:** Based on default regional baseline weights, entry-level downstream process operations roles reflect a -15% visual trajectory pay shadow compared to advanced computation fields.")
-            st.info("💡 **Vector Remedy:** Increasing your [Path B] Numerical Simulation profile tracking slider lifts your early career salary anchor line away from the lower quartile valley boundary.")
+
+        # Recalculate financial yield curve heights dynamically
+        path_a_y_p = np.where(x_time <= 6, 2 + (x_time * k_kinetics_p), 2 + (6 * k_kinetics_p))
+
+        with s_col1:
+            salary_fig = go.Figure()
+            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1600, mode='lines', name='Upper Quartile (Top Tier Multinationals)', line=dict(dash='dash', color='#00FF00', width=3)))
+            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*1100, mode='lines', name='Median Peer Benchmark Industry Standard', line=dict(color='#818cf8', width=4)))
+            salary_fig.add_trace(go.Scatter(x=x_time[:35], y=path_a_y_p[:35]*750, mode='lines', name='Lower Quartile Base Pay Margin', line=dict(color='#FF3333', width=3)))
+
+            salary_fig.update_layout(
+                xaxis=dict(title='Career Timeline Horizon (Years)', gridcolor='#23282f'),
+                yaxis=dict(title='Estimated Monthly Yield Vector (RM / Local Adjusted)', gridcolor='#23282f'),
+                height=550, paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                legend=dict(font=dict(color="#f0f6fc"), bgcolor="rgba(10,14,23,0.6)")
+            )
+            st.plotly_chart(salary_fig, use_container_width=True)
 
     # 💼 TAB 4: PLACEMENTS PLUGINS MARKETPLACE
     with app_tabs[3]:
@@ -537,11 +529,9 @@ else:
 
     # ─── TAB 5: COMMUNICATIONS NETWORK ───
     with app_tabs[4]:
-        st.title("💬 Career OS Communications Matrix")
-        st.subheader("Real-Time Network Inbound Tracks & Verification Logs")
+        st.title("💬 Communications Matrix")
         
         net_col1, net_col2 = st.columns([1, 2])
-        
         with net_col1:
             st.markdown("### 📭 Channels")
             ch_select = st.radio("Select Thread:", [
@@ -554,20 +544,20 @@ else:
             st.markdown("### 💬 Conversational Wire")
             if "PETRONAS" in ch_select:
                 st.markdown("**From: PETRONAS Carigali HR**")
-                st.info("『System Alert Match』 Our background semantic parser identified your high downstream vector profile from your university performance module logs. We would love to evaluate your fit for our 8-month Downstream Separator optimization block.")
+                st.info("『System Alert Match』 Our background semantic parser identified your high downstream vector profile from your university performance module logs.")
                 st.text_input("Send encrypted corporate transmission response...", key="msg_petronas")
             elif "Proton" in ch_select:
                 st.markdown("**From: Proton NxGV Lead Technical Architect**")
-                st.warning("Hey candidate, caught your workflow screen-capture video regarding transient thermal dissipation modeling on the system discovery index. Impressive mesh adjustment parameters. Let's schedule a technical panel.")
+                st.warning("Hey candidate, caught your workflow screen-capture video regarding transient thermal dissipation modeling on the system discovery index.")
                 st.text_input("Send response to tech architect...", key="msg_proton")
             else:
                 st.markdown("**From: Safaruddin Raja Ghopal**")
-                st.markdown("*Bro, look at the Fair Pay shadow chart metric. I just verified my engineering logs, and our university project parameters shifted my median track up instantly. Let me know if you want to look over my dashboard code.*")
+                st.markdown("*Bro, look at the Fair Pay shadow chart metric. Let me know if you want to look over my dashboard code.*")
                 st.text_input("Send message to Safaruddin...", key="msg_peer")
 
     # ─── GLOBAL CHAT INPUT PROCESSING & AI INTEGRATION ───
     st.divider()
-    st.subheader("🤖 Career OS: AIMAN.AI Navigation Copilot")
+    st.subheader("🤖 CariKerja: AIMAN.AI Navigation Copilot")
     chat_container = st.container()
     with chat_container:
         for message in st.session_state.messages:
@@ -585,18 +575,11 @@ else:
         st.session_state.messages.append({"role": "user", "content": user_query})
 
         system_instruction = f"""
-        You are AIMAN.AI, the Career OS Honest Navigation Copilot. You act as a supportive, grounded, and radically candid mentor for a Chemical Engineering student.
+        You are AIMAN.AI, the CariKerja.com Honest Navigation Copilot. You act as a supportive, grounded, and radically candid mentor for a Chemical Engineering student.
         Your tone is empathetic but highly direct—like a helpful peer, not a rigid lecturer. Avoid corporate fluff; speak with data-driven honesty.
-        
-        The user is navigating an ecosystem with distinct tabs for short form discover feeds, a full 3D growth topography page, and a full fair pay engine layout:
-        - Reactor Kinetics Mastery (Path A Core): {k_kinetics}/1.0
-        - Numerical Methods Vector (Path B Core): {k_math}/1.0
-        - CFD & Thermal Management Vector (Path C Core): {k_cfd}/1.0
         """
 
-        formatted_contents = []
-        for msg in st.session_state.messages[:-1]:
-            formatted_contents.append(f"{msg['role'].upper()}: {msg['content']}")
+        formatted_contents = [f"{msg['role'].upper()}: {msg['content']}" for msg in st.session_state.messages[:-1]]
         formatted_contents.append(f"USER: {user_query}")
         
         with chat_container:
