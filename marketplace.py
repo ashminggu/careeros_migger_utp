@@ -45,7 +45,7 @@ st.markdown("""
         letter-spacing: -1px;
     }
     
-    /* Outer layout positioning frame - CENTERED FOR LANDING */
+    /* Outer layout positioning frame */
     .landing-center-box {
         display: flex;
         flex-direction: column;
@@ -72,203 +72,60 @@ st.markdown("""
         box-shadow: 0 15px 40px rgba(44, 74, 53, 0.04);
     }
     
-    .landing-title {
-        font-size: 80px;
-        font-weight: 900;
-        letter-spacing: -2px;
-        line-height: 1.1;
-        color: #1b3b22 !important;
-        margin-bottom: 15px;
-    }
-    
-    .landing-subtitle {
-        font-size: 22px;
-        color: #555555 !important;
-        margin-bottom: 40px;
-        font-weight: 400;
-        max-width: 700px;
-        line-height: 1.5;
-    }
-    
-    /* ─── FEATURE TRAY & BOXES ─── */
-    .features-tray {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        width: 100%;
-        align-items: stretch;
-    }
-    
-    .feature-card {
-        background: #ffffff !important;
-        border: 1px solid #e6e4dc !important;
-        border-radius: 16px;
-        padding: 24px;
-        flex: 1;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 12px rgba(44, 74, 53, 0.02);
-    }
-    
-    .feature-title {
-        font-size: 18px;
-        font-weight: 700;
-        color: #1b3b22 !important;
-        margin-bottom: 12px;
-        border-bottom: 1px solid #e6e4dc;
-        padding-bottom: 6px;
-    }
-    
-    .feature-desc {
-        font-size: 13.5px;
-        color: #222222 !important; 
-        line-height: 1.6;
-        font-weight: 400 !important;
-    }
-
-    /* ─── PRODUCT DEEP DIVE ARTIFACTS ─── */
-    .product-details-container {
-        width: 100%;
-        margin-top: 50px;
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
-        padding-bottom: 80px;
-    }
-
-    .detail-row {
-        display: flex;
-        align-items: center;
-        gap: 50px;
-        width: 100%;
-        text-align: left;
-    }
-
-    .detail-row.reverse {
-        flex-direction: row-reverse;
-    }
-
-    .text-block {
-        flex: 1;
-    }
-
-    .text-block h2 {
-        font-size: 32px;
-        font-weight: 700;
-        color: #1b3b22 !important;
-        margin-bottom: 15px;
-    }
-
-    .text-block p {
-        font-size: 15px;
-        color: #444444 !important;
-        line-height: 1.6;
-    }
-
-    .image-placeholder-slot {
-        flex: 1;
-        height: 300px;
-        background: #f4f3ec;
-        border: 1px solid #e1ded7;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #2c4a35;
-        font-weight: 600;
-        font-size: 13px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-    
-    /* ─── HIGH CONTRAST BUTTONS ─── */
-    .stButton {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    div.stButton > button:first-child {
-        background: #1b3b22 !important;
-        color: #ffffff !important;
-        font-size: 18px;
-        font-weight: 600;
-        padding: 12px 60px;
-        border-radius: 30px; 
-        border: 1px solid #142c19;
-        box-shadow: 0 4px 15px rgba(27, 59, 34, 0.15);
-        transition: all 0.2s ease;
-    }
-    div.stButton > button:first-child:hover {
-        background: #255230 !important;
-        transform: translateY(-1px);
-        color: #ffffff !important;
-    }
-    
-    .stSidebar div.stButton > button:first-child {
-        background: #cbd5e1 !important;
-        color: #1e293b !important;
-        border: 1px solid #cbd5e1;
-        font-size: 14px;
-        padding: 8px 20px;
-        border-radius: 6px;
-    }
-    
-    /* ─── MAIN APP WORKSPACE FEED OVERRIDES (FIXED VIDEO FRAMING) ─── */
+    /* ─── MAIN APP WORKSPACE FEED OVERRIDES (FIXED REELS MOCKUP) ─── */
     .tiktok-card {
         background: #ffffff;
         border: 1px solid #e6e4dc;
-        border-radius: 16px;
+        border-radius: 20px;
         padding: 0px;
         margin: 0 auto 30px auto;
-        max-width: 420px; /* Forces card to stay beautifully compact */
+        max-width: 350px; /* Perfectly bounds your mobile card view width */
         overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        box-shadow: 0 8px 32px rgba(44,74,53,0.05);
     }
     
-    /* Immersive Overlay Frame Setup */
+    /* Immersive Core Video View Sandbox Container Frame */
     .video-overlay-wrapper {
-        position: relative;
+        position: relative; /* Lock absolute children down inside this specific perimeter */
         width: 100%;
-        max-width: 380px;
-        margin: 15px auto;
+        height: 520px; /* Keeps standard vertical video aspect ratio frame intact */
+        background-color: #000000;
     }
     
-    /* Fixed Video Size Overrides */
-    div[data-testid="stVideo"], .stVideo {
-        max-width: 380px !important;
-        margin: 0 auto !important;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid #e6e4dc;
+    /* HTML5 Canvas Component Mapping Override */
+    .immersive-html5-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Forces the clip profile to fully track bounding layout box margins */
     }
     
     /* Absolute Floating Sidebar Controls */
     .video-action-overlay {
         position: absolute;
-        right: 12px;
-        bottom: 40px;
+        right: 14px; /* Securely lock array column against the right hand side edge */
+        bottom: 30px; /* Float up above lower dashboard playback tracking controls */
         display: flex;
         flex-direction: column;
-        gap: 16px;
-        z-index: 99;
+        gap: 12px;
+        z-index: 999; /* Forces layer structure to slide completely above your video feed graphics */
         align-items: center;
+        text-align: center;
     }
     
     .overlay-action-btn {
         background: rgba(27, 59, 34, 0.85) !important;
-        border: 1px solid rgba(255,255,255,0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
         color: #ffffff !important;
-        width: 42px;
-        height: 42px;
+        width: 44px;
+        height: 44px;
         border-radius: 50% !important;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
+        font-size: 18px;
         cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        transition: transform 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     
     .overlay-action-btn:hover {
@@ -279,10 +136,11 @@ st.markdown("""
     .overlay-action-counter {
         font-size: 11px;
         color: #ffffff;
-        font-weight: 600;
-        margin-top: -12px;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        font-family: sans-serif;
+        font-weight: 700;
+        margin-top: -4px;
+        margin-bottom: 4px;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+        font-family: 'Inter', sans-serif;
     }
     
     .tiktok-meta {
@@ -440,70 +298,71 @@ else:
         st.title("Discover Ecosystem")
         st.caption("Verifiable authentic workflows streamed directly by peer talents and corporate engineering leads.")
         
-        feed_col, drawer_col = st.columns([2, 1])
+        feed_col, drawer_col = st.columns([1.8, 1.2])
 
         with feed_col:
-            # 🎥 Post Vector 1: Proton NxGV Lead
-            st.markdown("""
-            <div class="tiktok-card">
-                <div class="video-overlay-wrapper">
-                    <div class="video-action-overlay">
-                        <div class="overlay-action-btn">❤️</div>
-                        <div class="overlay-action-counter">14.2k</div>
-                        <div class="overlay-action-btn">💬</div>
-                        <div class="overlay-action-counter">382</div>
-                        <div class="overlay-action-btn">🔖</div>
-                        <div class="overlay-action-counter">1.8k</div>
-                        <div class="overlay-action-btn">↩️</div>
-                        <div class="overlay-action-counter">Share</div>
-                    </div>
-            """, unsafe_allow_html=True)
-            
-            # The Streamlit Video element lives here inside the structured wrapper bounds
+            # Shared video path allocation pointer link array
             raw_github_video_url = "https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/WhatsApp%20Video%202026-06-10%20at%2022.24.44.mp4"
-            st.video(raw_github_video_url, format="video/mp4", start_time=0)
 
-            st.markdown("""
-                </div> <div class="tiktok-meta">
-                    <span class="tiktok-badge">🔥 Corporate Engineering Update</span>
-                    <h4>"Why mechanical grid meshing limits transient cooling iterations in hybrid powertrains."</h4>
-                    <p style="color:#555555; font-size:14px; margin-bottom:15px;">Published by: Proton R&D (NxGV Division)</p>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+            # 🎥 Post Vector 1: Proton NxGV Lead
+            st.markdown(f"""
+<div class="tiktok-card">
+    <div class="video-overlay-wrapper">
+        <div class="video-action-overlay">
+            <div class="overlay-action-btn">❤️</div>
+            <div class="overlay-action-counter">14.2k</div>
+            <div class="overlay-action-btn">💬</div>
+            <div class="overlay-action-counter">382</div>
+            <div class="overlay-action-btn">🔖</div>
+            <div class="overlay-action-counter">1.8k</div>
+            <div class="overlay-action-btn">↩️</div>
+            <div class="overlay-action-counter">Share</div>
+        </div>
+        <video class="immersive-html5-video" controls autoplay muted loop playsinline>
+            <source src="{raw_github_video_url}" type="video/mp4">
+            Your system configuration workspace engine does not currently map native HTML5 rendering arrays.
+        </video>
+    </div>
+    <div class="tiktok-meta">
+        <span class="tiktok-badge">🔥 Corporate Engineering Update</span>
+        <h4 style="margin-top:0px; line-height:1.3; font-size:16px;">"Why mechanical grid meshing limits transient cooling iterations in hybrid powertrains."</h4>
+        <p style="color:#555555; font-size:13px; margin-bottom:15px;">Published by: Proton R&D (NxGV Division)</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
             
-            # Custom styled application launch button
+            # Action execution buttons match layout boundaries perfectly right underneath the card grid frame structure
             if st.button("Inspect Corporate Profile & Deploy Roles", key="feed_btn_proton"):
                 st.session_state.active_company_drawer = "Proton R&D (NxGV Division)"
 
-            st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown("<br><br>", unsafe_allow_html=True)
 
             # 🎥 Post Vector 2: PETRONAS Carigali Asset Lead
-            st.markdown("""
-            <div class="tiktok-card">
-                <div class="video-overlay-wrapper">
-                    <div class="video-action-overlay">
-                        <div class="overlay-action-btn">❤️</div>
-                        <div class="overlay-action-counter">9.8k</div>
-                        <div class="overlay-action-btn">💬</div>
-                        <div class="overlay-action-counter">214</div>
-                        <div class="overlay-action-btn">🔖</div>
-                        <div class="overlay-action-counter">943</div>
-                        <div class="overlay-action-btn">↩️</div>
-                        <div class="overlay-action-counter">Share</div>
-                    </div>
-            """, unsafe_allow_html=True)
-            
-            st.video(raw_github_video_url, format="video/mp4", start_time=0)
-
-            st.markdown("""
-                </div> <div class="tiktok-meta">
-                    <span class="tiktok-badge">⚡ Asset Performance Deployment</span>
-                    <h4>"Balancing downstream separator constraint margins during unexpected catalyst deactivation cycles."</h4>
-                    <p style="color:#555555; font-size:14px; margin-bottom:15px;">Published by: PETRONAS Carigali</p>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(f"""
+<div class="tiktok-card">
+    <div class="video-overlay-wrapper">
+        <div class="video-action-overlay">
+            <div class="overlay-action-btn">❤️</div>
+            <div class="overlay-action-counter">9.8k</div>
+            <div class="overlay-action-btn">💬</div>
+            <div class="overlay-action-counter">214</div>
+            <div class="overlay-action-btn">🔖</div>
+            <div class="overlay-action-counter">943</div>
+            <div class="overlay-action-btn">↩️</div>
+            <div class="overlay-action-counter">Share</div>
+        </div>
+        <video class="immersive-html5-video" controls muted loop playsinline>
+            <source src="{raw_github_video_url}" type="video/mp4">
+            Your system configuration workspace engine does not currently map native HTML5 rendering arrays.
+        </video>
+    </div>
+    <div class="tiktok-meta">
+        <span class="tiktok-badge">⚡ Asset Performance Deployment</span>
+        <h4 style="margin-top:0px; line-height:1.3; font-size:16px;">"Balancing downstream separator constraint margins during unexpected catalyst deactivation cycles."</h4>
+        <p style="color:#555555; font-size:13px; margin-bottom:15px;">Published by: PETRONAS Carigali</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
             
             if st.button("Inspect Corporate Profile & Deploy Roles", key="feed_btn_petronas"):
                 st.session_state.active_company_drawer = "PETRONAS Carigali"
