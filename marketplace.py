@@ -18,12 +18,13 @@ st.markdown("""
     /* 🛠️ IMPORT WEBFONTS DIRECTLY FROM GOOGLE */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap');
 
-    /* 🎯 MAX-WIDTH LAYOUT PATCH (FIXES THE 67% ZOOM GAP) */
+    /* 🎯 MAX-WIDTH LAYOUT PATCH (FIXES THE 67% ZOOM GAP BY CENTERING CONTAINER) */
     .block-container {
         max-width: 1300px !important;
         padding-top: 2rem !important;
         padding-bottom: 2rem !important;
-        margin: 0 auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     /* Global Background - Premium Editorial Cream */
