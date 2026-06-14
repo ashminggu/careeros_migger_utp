@@ -603,75 +603,7 @@ else:
                     legend=dict(font=dict(color="#1b3b22"), bgcolor="rgba(255,255,255,0.8)", bordercolor="#e6e4dc", borderwidth=1)
                 )
             st.plotly_chart(fig, use_container_width=True)
-
-            # 📊 TAB 2: UNIVERSAL CAREER GRAPH
-    with app_tabs[1]:
-        st.title("CariKerja.com: Path Navigation Engine")
-        col1, col2 = st.columns([3, 1])
-        
-        with col2:
-            st.markdown("### 🎛️ Candidate Shape Vector")
-            st.write("Adjust parameters to watch the topology surface change:")
-            k_kinetics = st.slider("[PATH A] Downstream Operations: Reactor Kinetics Mastery", 0.1, 1.0, 0.8, key="graph_sl_k")
-            k_math = st.slider("[PATH B] Numerical Methods in ChemE", 0.1, 1.0, 0.5, key="graph_sl_m")
-            k_cfd = st.slider("[PATH C] CFD & Thermal Management", 0.1, 1.0, 0.3, key="graph_sl_c")
-            st.divider()
-            if k_cfd > 0.7:
-                st.success("🎯 **Optimal Pathway:** Your high CFD vector has successfully flattened the early friction valley in the EV Automotive sector.")
-            else:
-                st.warning("⚠️ **Plateau Warning:** Your current profile relies heavily on traditional downstream kinetics. Watch out for the flat structural mesa appearing on Path A around Year 6.")
-
-        path_a_y = np.where(x_time <= 6, 2 + (x_time * k_kinetics), 2 + (6 * k_kinetics))
-        path_b_y = 1 + (x_time * (k_math * 0.4))
-        path_c_y = 1.5 + (-2 * np.exp(-((x_time - 3)**2) / 4)) + (x_time * (k_cfd * 0.55))
-
-        with col1:
-            view_mode = st.radio(
-                "Select Visualization Framework Layout:",
-                ["3D Topography Surface Map", "2D Continuous Line Graph View"],
-                horizontal=True,
-                key="universal_graph_toggle"
-            )
             
-            if view_mode == "3D Topography Surface Map":
-                y_paths = np.array([1, 2, 3])
-                X, Y = np.meshgrid(x_time, y_paths)
-                Z = np.zeros_like(X)
-                Z[0, :] = path_a_y
-                Z[1, :] = path_b_y
-                Z[2, :] = path_c_y
-
-                fig = go.Figure(data=[go.Surface(
-                    x=X, y=Y, z=Z, colorscale='Viridis',
-                    lighting=dict(ambient=0.6, roughness=0.4),
-                    colorbar=dict(title=dict(text="Z: Career Yield", font=dict(color="#1b3b22")))
-                )])
-                
-                fig.update_layout(
-                    scene=dict(
-                        xaxis=dict(title='X: Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
-                        yaxis=dict(title='Y: Trajectory Choice', tickvals=[1, 2, 3], ticktext=['Path A', 'Path B', 'Path C'], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
-                        zaxis=dict(title='Z: Career Yield', range=[-1, 20], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222'))
-                    ),
-                    margin=dict(l=0, r=0, b=0, t=40), height=550,
-                    paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
-                )
-            else:
-                fig = go.Figure()
-                fig.add_trace(go.Scatter(x=x_time, y=path_a_y, mode='lines', name='Path A: Downstream Operations', line=dict(color='#1b3b22', width=4)))
-                fig.add_trace(go.Scatter(x=x_time, y=path_b_y, mode='lines', name='Path B: Numerical Simulation', line=dict(color='#2c4a35', width=4)))
-                fig.add_trace(go.Scatter(x=x_time, y=path_c_y, mode='lines', name='Path C: CFD & Thermal Management', line=dict(color='#d97706', width=4)))
-                
-                fig.update_layout(
-                    xaxis=dict(title='X: Time / Career Horizon (Years)', range=[0, 40], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
-                    yaxis=dict(title='Y: Career Viability Metric', range=[-1, 20], gridcolor='#e6e4dc', title_font=dict(color='#1b3b22'), tickfont=dict(color='#222222')),
-                    margin=dict(l=40, r=40, b=40, t=40), height=550,
-                    paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
-                    legend=dict(font=dict(color="#1b3b22"), bgcolor="rgba(255,255,255,0.8)", bordercolor="#e6e4dc", borderwidth=1)
-                )
-            st.plotly_chart(fig, use_container_width=True)
-
-        # 🎯 CHAT CONTAINER BOUND DIRECTLY TO TAB 2 INTERFACE
         st.divider()
         st.subheader("🤖 CariKerja: AIMAN.AI Navigation Copilot")
         chat_container = st.container()
