@@ -387,10 +387,14 @@ if not st.session_state.logged_in:
                 <div class="feature-desc">We hope you enjoy your stay here, and get some beneficial input from us as university students from this project.</div>
             </div>
             <div class="feature-card" style="padding: 0px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff !important; border: 1px solid #e6e4dc !important;">
-                <div style="width: 100%; flex-grow: 1; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height:160px;">
-                    <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" alt="Team Photo" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                <div style="width: 100%; flex-grow: 1; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 160px; background: #ffffff;">
+                    <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/teambro.png" 
+                         alt="Team Photo" 
+                         style="width: 100%; height: auto; max-height: 280px; object-fit: contain;">
                 </div>
-                <div class="feature-subtitle-tag" style="font-size: 11px; color: #2c4a35; margin-bottom: 6px; text-transform: uppercase; font-weight:700;">From the left; Ariq (ACA), Aiman, Imran, Umar.</div>
+                <div class="feature-subtitle-tag" style="font-size: 11px; color: #2c4a35; padding: 10px; text-transform: uppercase; font-weight:700; text-align: center;">
+                    From the left; Ariq (ACA), Aiman, Imran, Umar.
+                </div>
             </div>
         </div>
     </div>
