@@ -25,6 +25,13 @@ st.markdown("""
         color: #111111 !important;
     }
     
+    .block-container {
+        max-width: 1300px !important;
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+        margin: 0 auto !important;
+    }
+    
     /* UNIVERSAL CONTRAST FORCE - Fixes blending text across ALL components */
     .stApp, p, span, label, li, div, [data-testid="stMarkdownContainer"] p {
         color: #222222 !important;
