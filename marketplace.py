@@ -15,6 +15,17 @@ if "messages" not in st.session_state:
 # ─── ADVANCED FIGMA-STYLE CSS UI OVERRIDES (CREAM & FOREST GREEN) ───
 st.markdown("""
     <style>
+    /* 🛠️ IMPORT WEBFONTS DIRECTLY FROM GOOGLE */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap');
+
+    /* 🎯 MAX-WIDTH LAYOUT PATCH (FIXES THE 67% ZOOM GAP) */
+    .block-container {
+        max-width: 1300px !important;
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+        margin: 0 auto !important;
+    }
+
     /* Global Background - Premium Editorial Cream */
     .stApp {
         background-color: #fcfbf7;
@@ -23,13 +34,6 @@ st.markdown("""
             linear-gradient(90deg, rgba(44, 74, 53, 0.03) 1px, transparent 1px);
         background-size: 30px 30px;
         color: #111111 !important;
-    }
-    
-    .block-container {
-        max-width: 1300px !important;
-        padding-top: 2rem !important;
-        padding-bottom: 2rem !important;
-        margin: 0 auto !important;
     }
     
     /* UNIVERSAL CONTRAST FORCE - Fixes blending text across ALL components */
