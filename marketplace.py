@@ -18,13 +18,25 @@ st.markdown("""
     /* 🛠️ IMPORT WEBFONTS DIRECTLY FROM GOOGLE */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap');
 
-    /* 🎯 MAX-WIDTH LAYOUT PATCH (FIXES THE 67% ZOOM GAP BY CENTERING CONTAINER) */
+    /* 🎯 ULTRA-WIDE DISPLAY & ZOOM GAP PATCH */
+    [data-testid="stAppViewContainer"] {
+        display: flex !important;
+        justify-content: center !important;
+        background-color: #fcfbf7 !important;
+    }
+
     .block-container {
-        max-width: 1300px !important;
+        max-width: 1350px !important;
+        width: 100% !important;
         padding-top: 2rem !important;
-        padding-bottom: 2rem !important;
+        padding-bottom: 5rem !important;
         margin-left: auto !important;
         margin-right: auto !important;
+    }
+    
+    /* Forces the structural column layouts inside to optimize space uniformly */
+    [data-testid="stColumn"] {
+        width: 100% !important;
     }
 
     /* Global Background - Premium Editorial Cream */
