@@ -405,8 +405,10 @@ if not st.session_state.logged_in:
                 <h2>01. Dynamic Trajectory Modeling</h2>
                 <p>Stop looking at flat resumes. Career OS renders professional development as a continuous mathematical landscape. Adjust your domain shape vectors over a 40-year horizon to instantly predict long-term growth vectors, senior leadership plateaus, and sector valleys before making critical career moves.</p>
             </div>
-            <div class="image-placeholder-slot">
-                [ 📸 Insert Topology Graph Screenshot Here ]
+            <div style="flex: 1; min-height: 300px; display: flex; align-items: center; justify-content: center; background: #ffffff !important; border: 1px solid #e1ded7 !important; border-radius: 16px; overflow: hidden;">
+                <img src="https://raw.githubusercontent.com/ashminggu/careeros_migger_utp/main/topology_graph.png" 
+                     alt="Dynamic Trajectory Topology Graph" 
+                     style="width: 100%; height: 100%; object-fit: contain; padding: 15px;">
             </div>
         </div>
 
